@@ -5,6 +5,10 @@
   --page-padding: 5rem;
 }
 
+html {
+  overflow: hidden;
+}
+
 body {
   height: 100vh;
 }
@@ -62,6 +66,7 @@ form .input-container input {
   color: var(--black);
   border: 0.1rem solid #00000075;
   border-radius: 0.2rem;
+  background-color: transparent;
 }
 
 form .input-container input:focus {
@@ -85,7 +90,8 @@ form .input-container label {
   padding: 0 0.5rem;
 }
 
-form .input-container input:focus ~ label {
+form .input-container input:focus ~ label,
+form .input-container input:valid ~ label {
   top: 0;
 }
 
@@ -191,4 +197,28 @@ form p a {
 
 form p a:hover {
   text-decoration: underline;
+}
+
+#msg {
+  position: absolute;
+  bottom: 3rem;
+  right: 3rem;
+  padding: 2rem 4rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  font-size: 1.7rem;
+  color: var(--black);
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+.msg-anime {
+  animation: msg 5s linear;
+}
+
+@keyframes msg {
+  5%,
+  95% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

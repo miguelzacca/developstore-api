@@ -7,9 +7,15 @@ export const homePage = (req: Request, res: Response) => {
 };
 
 export const loginPage = (req: Request, res: Response) => {
-  res.render("pages/login", { login: true });
+  res.render("pages/login", {
+    login: true,
+    jsFiles: ["/auth/login.mjs"],
+  });
 };
 
 export const registerPage = (req: Request, res: Response) => {
-  res.render("pages/login", { login: false });
+  res.render("pages/login", {
+    login: false,
+    jsFiles: ["/auth/register.mjs"],
+  });
 };

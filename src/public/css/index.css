@@ -433,18 +433,6 @@ footer .main-container .contact .links img:hover {
     padding: 2rem;
   }
 
-  header .search-container {
-    position: absolute;
-    top: 14rem;
-    width: calc(100% - 4rem);
-    justify-content: center;
-    align-items: center;
-  }
-
-  header .search-container input {
-    max-width: calc(100% - 4rem);
-  }
-
   main {
     margin-top: 5rem;
   }
