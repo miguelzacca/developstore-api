@@ -1,0 +1,16 @@
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/images/window-logo.webp" type="image/webp" />
+  <title>Develop Store | E-Commerce | Miguel Zacca</title>
+  <% if (typeof cssFiles !== "undefined") { %>
+    <% for (const file of cssFiles) { %>
+      <link rel="stylesheet" href="/css/<%= file %>" />
+    <% } %>
+  <% } %>
+  <% if (typeof jsFiles !== "undefined") { %> 
+    <% for (const file of jsFiles) { %>
+      <script src="/js/<%= file %>" defer></script>
+    <% } %>
+  <% } %>
+</head>

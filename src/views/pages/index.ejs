@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("../partials/_head", { cssFiles: ["global.css", "index.css",
+  "header.css"], jsFiles: ["scrollList.js"] }) %>
+  <body>
+    <%- include("../partials/_header", { path: "> home" }) %>
+    <main>
+      <div class="sales-container">
+        <div class="offer">
+          <h2>
+            Products on <br />
+            offer 2024
+          </h2>
+          <h3 translate="no">20% OFF</h3>
+          <button class="shopping-now">
+            <img src="/images/shopping-icon.png" alt="Shopping icon" />
+            Shopping now
+          </button>
+        </div>
+        <picture>
+          <img src="/images/product.png" alt="Sale product image" />
+        </picture>
+      </div>
+      <section id="recommended-products">
+        <div class="control-container">
+          <h2>Recommended</h2>
+          <div class="scroll-container">
+            <button class="scroll-right">
+              <img src="/images/arrow-left.png" alt="Arrow left icon" />
+            </button>
+            <button class="scroll-left">
+              <img src="/images/arrow-right.png" alt="Arrow right icon" />
+            </button>
+          </div>
+        </div>
+        <ul>
+          <% for (let i=0; i <= 6; i++) { %>
+          <li style="--i: <%= i %>">
+            <button class="favorite">
+              <img src="/images/favorite-icon.png" alt="Favorite icon" />
+            </button>
+            <picture>
+              <img src="/images/product.png" alt="Product image" />
+            </picture>
+            <div class="info-container">
+              <h3>Product Name</h3>
+              <p>Small information</p>
+              <div class="price-container">
+                <del>R$ 4,99</del>
+                <p id="price">R$ 1,99</p>
+              </div>
+            </div>
+            <button id="buy">+</button>
+          </li>
+          <% } %>
+        </ul>
+      </section>
+      <section id="popular-products">
+        <div class="control-container">
+          <h2>Popular 2024</h2>
+          <div class="scroll-container">
+            <button class="scroll-right">
+              <img src="/images/arrow-left.png" alt="Arrow left icon" />
+            </button>
+            <button class="scroll-left">
+              <img src="/images/arrow-right.png" alt="Arrow right icon" />
+            </button>
+          </div>
+        </div>
+        <ul>
+          <% for (let i=0; i <= 6; i++) { %>
+          <li>
+            <button class="favorite">
+              <img src="/images/favorite-icon.png" alt="Favorite icon" />
+            </button>
+            <picture>
+              <img src="/images/product.png" alt="Product image" />
+            </picture>
+            <div class="info-container">
+              <h3>Product Name</h3>
+              <p>Small information</p>
+              <div class="price-container">
+                <del>R$ 4,99</del>
+                <p id="price">R$ 1,99</p>
+              </div>
+            </div>
+            <button id="buy">+</button>
+          </li>
+          <% } %>
+        </ul>
+      </section>
+      <section id="best-products">
+        <div class="control-container">
+          <h2>The best</h2>
+          <div class="scroll-container">
+            <button class="scroll-right">
+              <img src="/images/arrow-left.png" alt="Arrow left icon" />
+            </button>
+            <button class="scroll-left">
+              <img src="/images/arrow-right.png" alt="Arrow right icon" />
+            </button>
+          </div>
+        </div>
+        <ul>
+          <% for (let i=0; i <= 6; i++) { %>
+          <li>
+            <button class="favorite">
+              <img src="/images/favorite-icon.png" alt="Favorite icon" />
+            </button>
+            <picture>
+              <img src="/images/product.png" alt="Product image" />
+            </picture>
+            <div class="info-container">
+              <h3>Product Name</h3>
+              <p>Small information</p>
+              <div class="price-container">
+                <del>R$ 4,99</del>
+                <p id="price">R$ 1,99</p>
+              </div>
+            </div>
+            <button id="buy">+</button>
+          </li>
+          <% } %>
+        </ul>
+      </section>
+    </main>
+    <footer>
+      <div class="benefits-container">
+        <div class="container">
+          <img src="/images/delivery.png" alt="Delivery icon" />
+          INSTANT DELIVERY
+        </div>
+        <div class="container">
+          <img src="/images/pay-return.png" alt="Refund icon" />
+          NOT REFUND
+        </div>
+        <div class="container">
+          <img src="/images/secure-pay.png" alt="Secure payment icon" />
+          SECURE PAYMENT
+        </div>
+        <div class="container">
+          <img src="/images/support.png" alt="Support icon" />
+          24/7 SUPPORT
+        </div>
+      </div>
+      <div class="footer-search-container">
+        <h2>Start your search</h2>
+        <div class="search-container">
+          <input
+            type="search"
+            name="query"
+            id="search-input-foo"
+            placeholder="Search product"
+          />
+          <button id="search-button">
+            <img src="/images/search-icon.png" alt="Search icon" />
+          </button>
+        </div>
+      </div>
+      <div class="main-container">
+        <div class="site-profile">
+          <a href="/">
+            <img src="/images/logo.webp" alt="Logo" />
+          </a>
+          <p class="describe">
+            The best <br />
+            e-commerce dev
+          </p>
+        </div>
+        <div class="payment-methods" style="position: relative">
+          <img src="/images/visa-payment.png" alt="Visa icon" />
+          <img src="/images/mastercard-payment.png" alt="Mastercard icon" />
+          <img src="/images/pix-payment.png" alt="Pix icon" />
+        </div>
+        <div class="contact">
+          <p class="number">+55 (48) 99664-7429</p>
+          <p class="info-number">Personal telephone</p>
+          <div class="links">
+            <a href="./support.html">
+              <img src="/images/email.png" alt="Email icon" />
+            </a>
+            <a href="https://www.linkedin.com/in/miguelzacca" target="_blank">
+              <img src="/images/linkedin.png" alt="Linkedin icon" />
+            </a>
+            <a href="https://github.com/miguelzacca" target="_blank">
+              <img src="/images/github.png" alt="Github icon" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

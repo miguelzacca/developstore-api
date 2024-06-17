@@ -1,0 +1,119 @@
+header .low-container details {
+  color: var(--black);
+}
+
+header {
+  width: 100%;
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+}
+
+header .high-container,
+header nav a {
+  justify-content: center;
+  display: flex;
+}
+
+header .high-container {
+  gap: 4rem;
+  align-items: center;
+  width: 100%;
+  height: 7rem;
+}
+
+header .low-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 3rem;
+}
+
+footer .main-container .site-profile img,
+header .logo {
+  height: 3.5rem;
+  filter: drop-shadow(0 0 0.4rem #00000015);
+}
+
+header .low-container .path {
+  font-size: 1.5rem;
+  color: var(--gray);
+  word-spacing: 1rem;
+}
+
+header .low-container details {
+  font-size: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+  z-index: 99;
+}
+
+header .low-container details div {
+  display: flex;
+  background-color: #fff;
+  box-shadow: 0 0 0.75rem #00000030;
+  border-radius: 0.5rem;
+  flex-direction: column;
+  overflow: hidden;
+  margin: 1rem;
+}
+
+header .low-container details a {
+  padding: 1rem 2rem;
+}
+
+header .low-container details a:hover {
+  background-color: #eee;
+}
+
+header .refresh-link {
+  margin-right: auto;
+}
+
+header .logo {
+  width: 6rem;
+  animation: 0.5s ease-out intro-logo;
+}
+
+@keyframes intro-logo {
+  from {
+    transform: translateY(-7.5rem);
+  }
+}
+
+header nav a {
+  align-items: center;
+  font-size: 1.6rem;
+  position: relative;
+  padding: 0.5rem 1.25rem;
+}
+
+header nav a::before {
+  position: absolute;
+  content: "";
+  left: 50%;
+  width: 0;
+  bottom: 0;
+  transform: translateX(-50%);
+  height: 0.2rem;
+  background-color: var(--black);
+  transition: width 0.2s ease-out;
+}
+
+header nav a:hover::before {
+  width: 100%;
+}
+
+header .account-link {
+  gap: 0.5rem;
+}
+
+header .account-link img {
+  width: 1.9rem;
+}
+
+header .favorite-link img,
+header .shopping-link img {
+  width: 2rem;
+}
