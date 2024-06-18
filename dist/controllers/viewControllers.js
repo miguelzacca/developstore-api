@@ -17,3 +17,6 @@ export const registerPage = (req, res) => {
 export const verifyEmailPage = (req, res) => {
     res.render("pages/verifyEmail");
 };
+export const accountPage = (req, res) => {
+    res.render("pages/account");
+};

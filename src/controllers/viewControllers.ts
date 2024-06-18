@@ -23,3 +23,7 @@ export const registerPage = (req: Request, res: Response) => {
 export const verifyEmailPage = (req: Request, res: Response) => {
   res.render("pages/verifyEmail");
 };
+
+export const accountPage = (req: Request, res: Response) => {
+  res.render("pages/account");
+};

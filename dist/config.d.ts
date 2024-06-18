@@ -9,7 +9,7 @@ declare const _default: {
     };
     transporter: nodemailer.Transporter<import("nodemailer/lib/smtp-transport").SentMessageInfo>;
     cors: {
-        origin: string;
+        origin: string[];
         methods: string[];
         credentials: boolean;
     };

@@ -222,3 +222,13 @@ form p a:hover {
     opacity: 1;
   }
 }
+
+@media screen and (max-width: 768px) {
+  form {
+    width: 100%;
+  }
+
+  body {
+    padding: 0 2rem;
+  }
+}
