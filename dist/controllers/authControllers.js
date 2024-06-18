@@ -47,7 +47,7 @@ export const register = async (req, res) => {
             passwd: passwdHash,
         });
         const emailToken = jwt.sign({ email }, config.env.SECRET, {
-            expiresIn: "5m",
+            expiresIn: "1h",
         });
         config.transporter.sendMail({
             from: "Develop Store",

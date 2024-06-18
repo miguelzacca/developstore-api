@@ -4,12 +4,6 @@ import { NextFunction, Response, Request } from "express";
 import config from "../config.js";
 import { jwtVerify } from "../utils.js";
 
-/**
- * @example
- * app.get("/example", checkToken, (req, res) => {
- *   ...
- * })
- */
 export const checkToken = (req: Request, res: Response, next: NextFunction) => {
   const token = req.cookies?.token;
 

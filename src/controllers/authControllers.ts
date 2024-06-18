@@ -63,7 +63,7 @@ export const register = async (req: Request, res: Response) => {
     });
 
     const emailToken = jwt.sign({ email }, <string>config.env.SECRET, {
-      expiresIn: "5m",
+      expiresIn: "1h",
     });
 
     config.transporter.sendMail({

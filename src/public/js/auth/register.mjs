@@ -1,6 +1,6 @@
 "use strict";
 
-import { formDataToJson, handleMsg, wait } from "./utils.mjs";
+import { formDataToJson, handleMsg, wait } from "../utils.mjs";
 
 {
   const form = document.querySelector("form");

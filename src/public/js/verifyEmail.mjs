@@ -1,12 +1,12 @@
 "use strict";
 
-import { wait } from "./auth/utils.mjs";
+import { wait } from "./utils.mjs";
 
 {
   const display = document.getElementById("timer");
   const checkLink = document.getElementById("check");
 
-  let time = 300;
+  let time = 1 * 60 * 60 - 1;
 
   const startCountdown = async () => {
     while (time > 0) {

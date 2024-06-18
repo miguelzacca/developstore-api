@@ -1,3 +1,5 @@
+"use strict";
+
 import { Model } from "sequelize";
 
 export interface Obj {
@@ -11,4 +13,3 @@ export interface InputData extends Obj {
 export interface UserModel extends Model {
   [key: string]: any;
 }
-
