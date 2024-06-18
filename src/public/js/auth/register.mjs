@@ -24,7 +24,8 @@ import { formDataToJson, handleMsg, wait } from "../utils.mjs";
             handleMsg(data);
             if (res.ok) {
               await wait(1000);
-              location.href = "/verify-email";
+              const objData = JSON.parse(jsonData);
+              location.href = `/verify-email/${objData.email}`;
             }
           })
           .catch((err) => console.error(err))

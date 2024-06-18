@@ -30,6 +30,7 @@ main h2 {
   font-size: 3rem;
   font-weight: 400;
   color: var(--black);
+  text-align: center;
 }
 
 main .container {
