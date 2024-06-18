@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("../partials/_head", { cssFiles:["global.css", "verifyEmail.css"],
+  jsFiles: ["verifyEmail.mjs"] }) %>
+  <body>
+    <main>
+      <h2>A verification link has been sent to your email</h2>
+      <div class="container">
+        <div id="timer"></div>
+        <a href="/login" id="check">Verified</a>
+      </div>
+    </main>
+  </body>
+</html>

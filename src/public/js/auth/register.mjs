@@ -1,6 +1,6 @@
 "use strict";
 
-import { formDataToJson, handleMsg } from "./utils.mjs";
+import { formDataToJson, handleMsg, wait } from "./utils.mjs";
 
 {
   const form = document.querySelector("form");
@@ -20,7 +20,13 @@ import { formDataToJson, handleMsg } from "./utils.mjs";
       .then((res) =>
         res
           .json()
-          .then((data) => handleMsg(data))
+          .then(async (data) => {
+            handleMsg(data);
+            if (res.ok) {
+              await wait(1000);
+              location.href = "/verify-email";
+            }
+          })
           .catch((err) => console.error(err))
       )
       .catch((err) => console.error(err));

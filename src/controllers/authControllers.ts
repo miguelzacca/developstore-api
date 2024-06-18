@@ -67,10 +67,10 @@ export const register = async (req: Request, res: Response) => {
     });
 
     config.transporter.sendMail({
-      from: config.env.SMTP_USER,
+      from: "Develop Store",
       to: email,
-      subject: "Email Verification",
-      text: `Link:\n http://127.0.0.1:8000/auth/email-verify/${emailToken}`,
+      subject: "Email Verification Link",
+      html: `<h3 style="font-weight: 400">http://127.0.0.1:8000/auth/email-verify/${emailToken}</h3>`,
     });
 
     res.status(201).json({ msg: config.msg.user.created });

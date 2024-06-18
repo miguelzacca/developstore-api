@@ -1,0 +1,70 @@
+:root {
+  --black: #222;
+  --gray: #666;
+  --light-gray: #dfdfdf;
+  --page-padding: 5rem;
+}
+
+body {
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+html {
+  overflow: hidden;
+}
+
+main {
+  padding: 4rem 8rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+main h2 {
+  font-size: 3rem;
+  font-weight: 400;
+  color: var(--black);
+}
+
+main .container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 12.5rem;
+  gap: 5rem;
+}
+
+#timer {
+  padding: 1rem;
+  text-align: center;
+  border-radius: 0.5rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  font-size: 2rem;
+  color: var(--black);
+  display: inline;
+}
+
+main .container a {
+  font-size: 1.7rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  border: 0.2rem solid transparent;
+  background-color: rgb(0, 185, 0);
+  width: 100%;
+  height: 100%;
+}
+
+main .container a:hover {
+  border: 0.2rem solid rgb(0, 185, 0);
+  color: rgb(0, 185, 0);
+  background-color: transparent;
+}

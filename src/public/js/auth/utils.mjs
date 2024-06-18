@@ -1,15 +1,15 @@
 "use strict";
 
-const wait = (ms) => {
-  return new Promise((resolve) => {
-    setTimeout(resolve, ms);
-  });
-};
-
 const animeMsg = async (display) => {
   display.classList.toggle("msg-anime");
   await wait(5000);
   display.classList.toggle("msg-anime");
+};
+
+export const wait = (ms) => {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
 };
 
 export const formDataToJson = (formData) => {
