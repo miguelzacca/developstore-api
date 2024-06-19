@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node dist/app.js",
-    "build": "tsc",
+    "build": "npx tsc",
     "dev": "tsc && nodemon dist/app.js"
   },
   "author": "Miguel Zacca",
@@ -40,5 +40,13 @@
     "@types/sequelize": "^4.28.20",
     "nodemon": "^3.1.0",
     "typescript": "^5.4.5"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miguelzacca/e-commerce.git"
+  },
+  "bugs": {
+    "url": "https://github.com/miguelzacca/e-commerce/issues"
+  },
+  "homepage": "https://github.com/miguelzacca/e-commerce#readme"
 }
