@@ -36,7 +36,7 @@ export default {
   }),
 
   cors: {
-    origin: ["http://127.0.0.1:8000", HOST],
+    origin: ["http://127.0.0.1:8000", <string>HOST],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   },
