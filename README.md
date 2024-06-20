@@ -23,7 +23,6 @@ npm start
 - `dotenv`
 - `ejs`
 - `express`
-- `fs`
 - `jsonwebtoken`
 - `node-cron`
 - `nodemailer`

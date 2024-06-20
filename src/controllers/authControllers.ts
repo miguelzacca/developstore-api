@@ -34,7 +34,7 @@ export const emailVerify = async (req: Request, res: Response) => {
     user["verifiedEmail"] = true;
     await user.save();
 
-    res.status(200).redirect("http://127.0.0.1:8000/login");
+    res.status(200).redirect(`${config.env.HOST}/login`);
   } catch (err) {
     console.error(err);
     res.status(500).json({ msg: config.msg.server.err });

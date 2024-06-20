@@ -9,24 +9,12 @@
         <h2><% if (login) { %> Login <% } else { %> Register <% } %></h2>
         <% if (!login) { %>
         <div class="input-container">
-          <input
-            type="text"
-            name="name"
-            id="name"
-            required
-            autocomplete="off"
-          />
+          <input type="text" name="name" id="name" required />
           <label for="name">Username</label>
         </div>
         <% } %>
         <div class="input-container">
-          <input
-            type="email"
-            name="email"
-            id="email"
-            required
-            autocomplete="off"
-          />
+          <input type="email" name="email" id="email" required />
           <label for="email">Email</label>
         </div>
         <div class="input-container">

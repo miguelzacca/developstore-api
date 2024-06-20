@@ -1,6 +1,5 @@
 "use strict";
 
-import fs from "fs";
 import config from "../config.js";
 import { Response, Request } from "express";
 import { InputData } from "../types/types.js";
@@ -23,9 +22,7 @@ export const getUser = async (req: Request, res: Response) => {
       return res.status(404).json({ msg: config.msg.user.notFound });
     }
 
-    const html = fs.readFileSync("./src/views/profile.html", "utf-8");
-
-    res.status(200).json({ user, html });
+    res.status(200).json({ user });
   } catch (err) {
     console.error(err);
     res.status(500).json({ msg: config.msg.server.err });
