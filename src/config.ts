@@ -43,7 +43,7 @@ export default {
 
   cookie: {
     httpOnly: true,
-    secure: NODE_ENV === "prod",
+    secure: NODE_ENV === "production",
     maxAge: Number(AUTH_DURATION_DAYS) * 24 * 60 * 60 * 1000,
     sameSite: "None",
   },
