@@ -5,13 +5,21 @@ import nodemailer from "nodemailer";
 
 dotenv.config();
 
-const { NODE_ENV, PORT, SMTP_USER, SMTP_PASS, AUTH_DURATION_DAYS, SECRET } =
-  process.env;
+const {
+  NODE_ENV,
+  PORT,
+  HOST,
+  SMTP_USER,
+  SMTP_PASS,
+  AUTH_DURATION_DAYS,
+  SECRET,
+} = process.env;
 
 export default {
   env: {
     NODE_ENV,
     PORT: Number(PORT),
+    HOST,
     SMTP_USER,
     AUTH_DURATION_DAYS: Number(AUTH_DURATION_DAYS),
     SECRET,
@@ -28,18 +36,14 @@ export default {
   }),
 
   cors: {
-    origin: [
-      "http://127.0.0.1:8000",
-      "https://dev.serveo.net",
-      "https://developstore.onrender.com",
-    ],
+    origin: ["http://127.0.0.1:8000", HOST],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   },
 
   cookie: {
     httpOnly: true,
-    secure: NODE_ENV === "production",
+    secure: NODE_ENV === "prod",
     maxAge: Number(AUTH_DURATION_DAYS) * 24 * 60 * 60 * 1000,
     sameSite: "None",
   },
