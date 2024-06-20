@@ -1,5 +1,5 @@
 "use strict";
 
 export default {
-  HOST: "https://developstore.onrender.com",
+  HOST: "https://developstore.up.railway.app",
 };
