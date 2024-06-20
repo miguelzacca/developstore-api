@@ -34,4 +34,4 @@ npm start
 
 ## Preview
 
-https://developstore.onrender.com
+https://developstore.up.railway.app
