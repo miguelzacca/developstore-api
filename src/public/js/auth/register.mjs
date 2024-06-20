@@ -1,6 +1,7 @@
 "use strict";
 
 import { formDataToJson, handleMsg, wait } from "../utils.mjs";
+import config from "../config.mjs";
 
 {
   const form = document.querySelector("form");
@@ -9,7 +10,7 @@ import { formDataToJson, handleMsg, wait } from "../utils.mjs";
     const formData = new FormData(form);
     const jsonData = formDataToJson(formData);
 
-    fetch("http://127.0.0.1:8000/auth/register", {
+    fetch(`${config.HOST}/auth/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
