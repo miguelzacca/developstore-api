@@ -28,7 +28,11 @@ export default {
   }),
 
   cors: {
-    origin: ["http://127.0.0.1:8000", "https://dev.serveo.net"],
+    origin: [
+      "http://127.0.0.1:8000",
+      "https://dev.serveo.net",
+      "https://developstore.onrender.com",
+    ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   },

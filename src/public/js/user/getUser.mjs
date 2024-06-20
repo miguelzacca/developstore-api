@@ -1,7 +1,9 @@
 "use strict";
 
+import config from "../config.mjs";
+
 {
-  fetch("http://127.0.0.1:8000/user", {
+  fetch(`${config.HOST}/user`, {
     credentials: "include",
   })
     .then((res) => {
