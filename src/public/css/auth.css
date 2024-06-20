@@ -21,8 +21,51 @@ main {
   align-items: center;
 }
 
+main::before,
+main::after {
+  content: "";
+  display: block;
+  position: absolute;
+  opacity: 0.5;
+  filter: blur(10rem);
+  width: 30rem;
+  aspect-ratio: 1;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  opacity: 0;
+  border-radius: 50%;
+  z-index: -1;
+}
+
+main::before {
+  background-color: #ffba24;
+  animation: main-before 1s forwards;
+}
+
+main::after {
+  background-color: #ff4343;
+  animation: main-after 1s forwards;
+}
+
+@keyframes main-before {
+  to {
+    transform: translate(-100%, -100%);
+    opacity: 0.7;
+  }
+}
+
+@keyframes main-after {
+  to {
+    transform: translate(0%, 0%);
+    opacity: 0.7;
+  }
+}
+
 form {
   display: flex;
+  background-color: #fff;
+  z-index: 3;
   flex-direction: column;
   position: relative;
   gap: 2rem;
@@ -91,8 +134,9 @@ form .input-container label {
 }
 
 form .input-container input:focus ~ label,
-form .input-container input:valid ~ label {
+form .input-container input:not(:placeholder-shown) ~ label {
   top: 0;
+  font-size: 1.3rem;
 }
 
 form button {
