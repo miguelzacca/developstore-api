@@ -2,17 +2,10 @@
 
 E-Commerce project. School work
 
-## Build and Install
-
-```bash
-npm ci
-npm run build
-```
-
 ## Up
 
 ```bash
-npm start
+sudo docker-compose up
 ```
 
 ## Dependencies
