@@ -19,7 +19,6 @@ sudo docker-compose up
 - `jsonwebtoken`
 - `node-cron`
 - `nodemailer`
-- `path`
 - `sequelize`
 - `sqlite3`
 - `xss`

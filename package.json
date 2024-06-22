@@ -22,7 +22,6 @@
     "jsonwebtoken": "^9.0.2",
     "node-cron": "^3.0.3",
     "nodemailer": "^6.9.13",
-    "path": "^0.12.7",
     "sequelize": "^6.37.3",
     "sqlite3": "^5.1.7",
     "xss": "^1.0.15",
