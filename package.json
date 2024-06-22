@@ -11,7 +11,7 @@
     "dev": "tsc && nodemon dist/app.js"
   },
   "author": "Miguel Zacca",
-  "license": "MIT",
+  "license": "CC-BY-NC-4.0",
   "dependencies": {
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.6",
