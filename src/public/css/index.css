@@ -56,6 +56,7 @@ main .sales-container {
   align-items: center;
   overflow: hidden;
   position: relative;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 main .sales-container div,
@@ -109,13 +110,13 @@ main .sales-container .offer h3 {
 
 @keyframes intro-off {
   from {
-    transform: translateX(-20rem);
+    transform: translateX(-30rem);
   }
 }
 
 @keyframes sales-image {
   from {
-    transform: translateX(20rem);
+    transform: translateX(30rem);
   }
 }
 
@@ -240,7 +241,7 @@ main section ul li {
 
 main #recommended-products ul li {
   animation: 0.5s ease-out forwards intro-li;
-  animation-delay: calc(0.1s * var(--i));
+  animation-delay: calc(0.15s * var(--i));
   transform: translateY(100%);
 }
 
