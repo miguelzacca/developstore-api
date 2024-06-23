@@ -24,6 +24,50 @@ main {
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  border-radius: 0.5rem;
+  border-left: 0.3rem solid #ff4343;
+  background-color: #fff;
+}
+
+main::before,
+main::after {
+  content: "";
+  display: block;
+  position: absolute;
+  opacity: 0.5;
+  filter: blur(10rem);
+  width: 30rem;
+  aspect-ratio: 1;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  opacity: 0;
+  border-radius: 50%;
+  z-index: -1;
+}
+
+main::before {
+  background-color: #ffba24;
+  animation: main-before 1s forwards;
+}
+
+main::after {
+  background-color: #ff4343;
+  animation: main-after 1s forwards;
+}
+
+@keyframes main-before {
+  to {
+    transform: translate(-100%, -75%);
+    opacity: 0.7;
+  }
+}
+
+@keyframes main-after {
+  to {
+    transform: translate(0%, -25%);
+    opacity: 0.7;
+  }
 }
 
 main h2 {
@@ -75,6 +119,10 @@ main .container a:hover {
     font-size: 2.5rem;
     width: 100%;
     text-align: center;
+  }
+
+  main .container {
+    gap: 2.5rem;
   }
 
   main {

@@ -8,4 +8,8 @@ const db = new Sequelize({
   logging: false,
 });
 
+db.authenticate().catch((err) => {
+  console.error(err);
+});
+
 export default db;
