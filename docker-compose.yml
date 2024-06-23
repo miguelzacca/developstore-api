@@ -4,10 +4,10 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    volumes:
+      - ./.data:/app/.data
     ports:
       - "8000:8000"
-    volumes:
-      - .:/app
     environment:
       NODE_ENV: ${NODE_ENV}
       PORT: ${PORT}
@@ -16,4 +16,4 @@ services:
       SMTP_PASS: ${SMTP_PASS}
       AUTH_DURATION_DAYS: ${AUTH_DURATION_DAYS}
       SECRET: ${SECRET}
-    command: npm run start
+    command: npm start
