@@ -17,12 +17,12 @@ const {
 
 export default {
   env: {
-    NODE_ENV,
+    NODE_ENV: <string>NODE_ENV,
     PORT: Number(PORT),
-    HOST,
-    SMTP_USER,
+    HOST: <string>HOST,
+    SMTP_USER: <string>SMTP_USER,
     AUTH_DURATION_DAYS: Number(AUTH_DURATION_DAYS),
-    SECRET,
+    SECRET: <string>SECRET,
   },
 
   transporter: nodemailer.createTransport({
@@ -36,8 +36,11 @@ export default {
   }),
 
   cors: {
-    origin: ["http://127.0.0.1:8000", <string>HOST],
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    origin: [
+      // `http://127.0.0.1:${PORT}`,
+      <string>HOST,
+    ],
+    methods: ["GET", "POST", "PATCH", "DELETE"],
     credentials: true,
   },
 

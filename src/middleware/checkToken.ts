@@ -1,10 +1,10 @@
 "use strict";
 
-import { NextFunction, Response, Request } from "express";
 import config from "../config.js";
+import { IMiddleware } from "../types/global.js";
 import { jwtVerify } from "../utils.js";
 
-export const checkToken = (req: Request, res: Response, next: NextFunction) => {
+export const checkToken: IMiddleware = (req, res, next) => {
   const token = req.cookies?.token;
 
   if (!token) {

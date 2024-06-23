@@ -10,6 +10,7 @@ import userRoutes from "./routes/userRoutes.js";
 import viewRoutes from "./routes/viewRoutes.js";
 import db from "./db/sequelize.js";
 import { rmUnverifiedUsers } from "./jobs/rmUnverifiedUsers.js";
+import { notFound } from "./middleware/notFound.js";
 
 const app = express();
 
@@ -25,6 +26,8 @@ app.use(cookieParser());
 app.use("/auth", authRoutes);
 app.use("/user", userRoutes);
 app.use("/", viewRoutes);
+
+app.use(notFound);
 
 cron.schedule("0 0 * * *", () => {
   rmUnverifiedUsers();

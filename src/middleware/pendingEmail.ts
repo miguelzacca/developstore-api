@@ -1,15 +1,10 @@
 "use strict";
 
 import config from "../config.js";
-import { UserModel } from "../types/types.js";
+import { IMiddleware, UserModel } from "../types/global.js";
 import { findUserByField } from "../utils.js";
-import { NextFunction, Request, Response } from "express";
 
-export const pendingEmail = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const pendingEmail: IMiddleware = async (req, res, next) => {
   const email = req.params?.email;
 
   try {
@@ -17,7 +12,7 @@ export const pendingEmail = async (
       return res.status(403).redirect("/");
     }
 
-    const user: UserModel | null = await findUserByField({ email });
+    const user: UserModel = await findUserByField({ email });
 
     if (user && !user["verifiedEmail"]) {
       return next();

@@ -1,8 +1,7 @@
 "use strict";
 
 import config from "../config.js";
-import { Response, Request } from "express";
-import { InputData } from "../types/types.js";
+import { IObjKey, UserModel, IController } from "../types/global.js";
 import {
   sanitizeInput,
   validateInput,
@@ -11,9 +10,9 @@ import {
   jwtVerify,
 } from "../utils.js";
 
-export const getUser = async (req: Request, res: Response) => {
+export const getUser: IController = async (req, res) => {
   const token = req.cookies.token;
-  const id = jwtVerify(token);
+  const id = jwtVerify(token, "id");
 
   try {
     const user = await findUserByField({ id }, true);
@@ -29,17 +28,17 @@ export const getUser = async (req: Request, res: Response) => {
   }
 };
 
-export const putUser = async (req: Request, res: Response) => {
+export const patchUser: IController = async (req, res) => {
   const token = req.cookies.token;
-  const id = jwtVerify(token);
+  const id = jwtVerify(token, "id");
 
   try {
     const sanitizedInput = sanitizeInput(req.body);
-    const input: InputData = validateInput(sanitizedInput);
+    const input: IObjKey = validateInput(sanitizedInput, "patch");
 
     console.log(req.body);
 
-    let user = await findUserByField({ id });
+    let user: UserModel = await findUserByField({ id });
 
     if (!user) {
       return res.status(404).json({ msg: config.msg.user.notFound });
@@ -58,9 +57,9 @@ export const putUser = async (req: Request, res: Response) => {
   }
 };
 
-export const deleteUser = async (req: Request, res: Response) => {
+export const deleteUser: IController = async (req, res) => {
   const token = req.cookies.token;
-  const id = jwtVerify(token);
+  const id = jwtVerify(token, "id");
 
   try {
     const user = await findUserByField({ id });

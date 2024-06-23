@@ -6,20 +6,24 @@ import jwt, { JwtPayload } from "jsonwebtoken";
 import xss from "xss";
 import User from "./models/User.js";
 import config from "./config.js";
-import { Obj, UserModel } from "./types/types.js";
-import { FindAttributeOptions } from "sequelize";
+import {
+  FindAttributes,
+  IObjKey,
+  IZodHandleSchema,
+  UserModel,
+} from "./types/global.js";
 
-const inputDataSchema = z.object({
-  name: z.string().min(3).max(100).optional(),
-  email: z.string().max(100).email().optional(),
-  passwd: z.string().min(6).max(16).optional(),
+const registerSchema = z.object({
+  name: z.string().min(3).max(100),
+  email: z.string().max(100).email(),
+  passwd: z.string().min(6).max(16),
 });
 
-/**
- * @example
- * const { key, value } = objectKey(obj)
- */
-const objectKey = (obj: Obj) => {
+const patchSchema = z.object({
+  name: z.string().min(3).max(100),
+});
+
+const objectKey = (obj: IObjKey) => {
   const key = Object.keys(obj)[0];
   return {
     key,
@@ -27,52 +31,38 @@ const objectKey = (obj: Obj) => {
   };
 };
 
-/**
- * @example
- * const inputValidated = validateInput(input)
- * @throws
- */
-export const validateInput = (input: object) => {
+export const validateInput = (input: object, schema: string) => {
   try {
-    return inputDataSchema.parse(input);
+    const handleSchema: IZodHandleSchema = {
+      register: registerSchema,
+      patch: patchSchema,
+    };
+    return handleSchema[schema].parse(input);
   } catch (err) {
     throw { zod: err };
   }
 };
 
-/**
- * @async
- * @example
- * const user = await findUserByField({ name: "example" })
- */
-export const findUserByField = async (field: Obj, restrict = false) => {
+export const findUserByField = async (field: IObjKey, restrict = false) => {
   const { key, value } = objectKey(field);
 
-  let attributes: FindAttributeOptions | undefined = undefined;
+  let attributes: FindAttributes = undefined;
   if (restrict) {
-    attributes = { exclude: ["passwd"] };
+    attributes = { exclude: ["id", "passwd"] };
   }
 
   return await User.findOne({ where: { [key]: value }, attributes });
 };
 
-/**
- * @example
- * const sanitizedInput = sanitizeInput(input)
- */
-export const sanitizeInput = (input: Obj) => {
-  const sanitizedData: Obj = {};
+export const sanitizeInput = (input: IObjKey) => {
+  const sanitizedData: IObjKey = {};
   for (const key of Object.keys(input)) {
     sanitizedData[key] = xss(input[key]);
   }
   return sanitizedData;
 };
 
-/**
- * @example
- * updateUserField(user, { name: "example" })
- */
-export const updateUserField = async (user: UserModel, field: Obj) => {
+export const updateUserField = async (user: UserModel, field: IObjKey) => {
   const { key, value } = objectKey(field);
 
   if (key !== "passwd") {
@@ -86,16 +76,10 @@ export const updateUserField = async (user: UserModel, field: Obj) => {
   return user;
 };
 
-/**
- * @example
- * const id = jwtVerify(token)
- * @throws
- */
-export const jwtVerify = (token: string) => {
+export const jwtVerify = (token: string, payloadName?: string) => {
   try {
-    const secret = <string>config.env.SECRET;
-    const payload = <JwtPayload>jwt.verify(token, secret);
-    return payload.id;
+    const payload = <JwtPayload>jwt.verify(token, config.env.SECRET);
+    return payloadName && payload[payloadName];
   } catch (err) {
     throw err;
   }

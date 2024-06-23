@@ -4,7 +4,7 @@ import { DataTypes } from "sequelize";
 import db from "../db/sequelize.js";
 
 const User = db.define(
-  "user",
+  "User",
   {
     id: {
       type: DataTypes.UUID,

@@ -2,13 +2,12 @@
 
 import bcrypt from "bcrypt";
 import jwt, { JwtPayload } from "jsonwebtoken";
-import { Request, Response } from "express";
 import User from "../models/User.js";
 import config from "../config.js";
 import { sanitizeInput, validateInput, findUserByField } from "../utils.js";
-import { InputData, UserModel } from "../types/types.js";
+import { IObjKey, UserModel, IController } from "../types/global.js";
 
-export const emailVerify = async (req: Request, res: Response) => {
+export const emailVerify: IController = async (req, res) => {
   const emailToken = req.params?.token;
 
   if (!emailToken) {
@@ -16,10 +15,10 @@ export const emailVerify = async (req: Request, res: Response) => {
   }
 
   try {
-    const decoded = jwt.verify(emailToken, <string>config.env.SECRET);
+    const decoded = jwt.verify(emailToken, config.env.SECRET);
     const { email } = <JwtPayload>decoded;
 
-    const user: UserModel | null = await findUserByField({ email });
+    const user: UserModel = await findUserByField({ email });
 
     if (!user) {
       return res.status(400).json({ msg: config.msg.server.invalidToken });
@@ -41,10 +40,10 @@ export const emailVerify = async (req: Request, res: Response) => {
   }
 };
 
-export const register = async (req: Request, res: Response) => {
+export const register: IController = async (req, res) => {
   try {
     const sanitizedInput = sanitizeInput(req.body);
-    const input: InputData = validateInput(sanitizedInput);
+    const input: IObjKey = validateInput(sanitizedInput, "register");
     const { name, email, passwd } = input;
 
     const emailExists = await findUserByField({ email });
@@ -62,7 +61,7 @@ export const register = async (req: Request, res: Response) => {
       passwd: passwdHash,
     });
 
-    const emailToken = jwt.sign({ email }, <string>config.env.SECRET, {
+    const emailToken = jwt.sign({ email }, config.env.SECRET, {
       expiresIn: "1h",
     });
 
@@ -83,13 +82,13 @@ export const register = async (req: Request, res: Response) => {
   }
 };
 
-export const login = async (req: Request, res: Response) => {
+export const login: IController = async (req, res) => {
   try {
     const sanitizedInput = sanitizeInput(req.body);
-    const input: InputData = sanitizedInput;
+    const input: IObjKey = sanitizedInput;
     const { email, passwd } = input;
 
-    const user: UserModel | null = await findUserByField({ email });
+    const user: UserModel = await findUserByField({ email });
 
     if (!user) {
       return res.status(404).json({ msg: config.msg.user.notFound });
@@ -105,9 +104,7 @@ export const login = async (req: Request, res: Response) => {
       return res.status(422).json({ msg: config.msg.auth.incorrect });
     }
 
-    const secret = config.env.SECRET;
-
-    const token = jwt.sign({ id: user.id }, <string>secret, {
+    const token = jwt.sign({ id: user.id }, config.env.SECRET, {
       expiresIn: config.env.AUTH_DURATION_DAYS * 24 * 60 * 60,
     });
 
