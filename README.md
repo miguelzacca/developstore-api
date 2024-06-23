@@ -1,11 +1,26 @@
-# e-commerce
+# E-Commerce
 
-E-Commerce project. School work
+E-Commerce project. School work. (Under development)
+
+## Config
+
+Create your `.env` following `.env.example` and don't forget
+to modify the `const HOST` in `src/public/js/config.mjs`
+
+## Development
+
+Modify the `HOST=` in `.env` to your location and the `NODE_ENV=` to
+`development` and modify the `const HOST` in `src/public/js/config.mjs` as well.
+
+```bash
+npm ci
+npm run build
+```
 
 ## Up
 
 ```bash
-sudo docker-compose up
+docker-compose up
 ```
 
 ## Dependencies
@@ -23,6 +38,11 @@ sudo docker-compose up
 - `sqlite3`
 - `xss`
 - `zod`
+
+## Database
+
+Currently the project uses SQLite `sqlite3` and `sequelize` as ORM.
+The database location is at `.data/database.db`
 
 ## Preview
 

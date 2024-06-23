@@ -5,9 +5,9 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - ./.data:/app/.data
+      - .:/app
     ports:
-      - "8000:8000"
+      - "${PORT}:${PORT}"
     environment:
       NODE_ENV: ${NODE_ENV}
       PORT: ${PORT}
