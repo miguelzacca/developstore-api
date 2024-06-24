@@ -2,6 +2,7 @@
 
 import dotenv from "dotenv";
 import nodemailer from "nodemailer";
+import { IEnv } from "./types/global";
 
 dotenv.config();
 
@@ -17,13 +18,13 @@ const {
 
 export default {
   env: {
-    NODE_ENV: <string>NODE_ENV,
+    NODE_ENV,
     PORT: Number(PORT),
-    HOST: <string>HOST,
-    SMTP_USER: <string>SMTP_USER,
+    HOST,
+    SMTP_USER,
     AUTH_DURATION_DAYS: Number(AUTH_DURATION_DAYS),
-    SECRET: <string>SECRET,
-  },
+    SECRET,
+  } as IEnv,
 
   transporter: nodemailer.createTransport({
     host: "smtp.gmail.com",
@@ -36,14 +37,14 @@ export default {
   }),
 
   cors: {
-    origin: [<string>HOST],
+    origin: [HOST as string],
     methods: ["GET", "POST", "PATCH", "DELETE"],
     credentials: true,
   },
 
   cookie: {
     httpOnly: true,
-    secure: NODE_ENV === "production",
+    secure: (NODE_ENV as string) === "production",
     maxAge: Number(AUTH_DURATION_DAYS) * 24 * 60 * 60 * 1000,
     sameSite: "None",
   },

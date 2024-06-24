@@ -9,8 +9,8 @@ import config from "./config.js";
 import {
   FindAttributes,
   IObjKey,
+  IUserModel,
   IZodHandleSchema,
-  UserModel,
 } from "./types/global.js";
 
 const registerSchema = z.object({
@@ -51,7 +51,9 @@ export const findUserByField = async (field: IObjKey, restrict = false) => {
     attributes = { exclude: ["id", "passwd"] };
   }
 
-  return await User.findOne({ where: { [key]: value }, attributes });
+  const user = await User.findOne({ where: { [key]: value }, attributes });
+
+  return user as IUserModel;
 };
 
 export const sanitizeInput = (input: IObjKey) => {
@@ -62,7 +64,7 @@ export const sanitizeInput = (input: IObjKey) => {
   return sanitizedData;
 };
 
-export const updateUserField = async (user: UserModel, field: IObjKey) => {
+export const updateUserField = async (user: IUserModel, field: IObjKey) => {
   const { key, value } = objectKey(field);
 
   if (key !== "passwd") {
@@ -78,7 +80,7 @@ export const updateUserField = async (user: UserModel, field: IObjKey) => {
 
 export const jwtVerify = (token: string, payloadName?: string) => {
   try {
-    const payload = <JwtPayload>jwt.verify(token, config.env.SECRET);
+    const payload = jwt.verify(token, config.env.SECRET) as JwtPayload;
     return payloadName && payload[payloadName];
   } catch (err) {
     throw err;

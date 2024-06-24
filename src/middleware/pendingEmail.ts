@@ -1,7 +1,7 @@
 "use strict";
 
 import config from "../config.js";
-import { IMiddleware, UserModel } from "../types/global.js";
+import { IMiddleware } from "../types/global.js";
 import { findUserByField } from "../utils.js";
 
 export const pendingEmail: IMiddleware = async (req, res, next) => {
@@ -12,7 +12,7 @@ export const pendingEmail: IMiddleware = async (req, res, next) => {
       return res.status(403).redirect("/");
     }
 
-    const user: UserModel = await findUserByField({ email });
+    const user = await findUserByField({ email });
 
     if (user && !user["verifiedEmail"]) {
       return next();

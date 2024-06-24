@@ -1,11 +1,16 @@
 "use strict";
 
 import bcrypt from "bcrypt";
-import jwt, { JwtPayload } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import User from "../models/User.js";
 import config from "../config.js";
-import { sanitizeInput, validateInput, findUserByField } from "../utils.js";
-import { IObjKey, UserModel, IController } from "../types/global.js";
+import {
+  sanitizeInput,
+  validateInput,
+  findUserByField,
+  jwtVerify,
+} from "../utils.js";
+import { IObjKey, IController } from "../types/global.js";
 
 export const emailVerify: IController = async (req, res) => {
   const emailToken = req.params?.token;
@@ -15,10 +20,9 @@ export const emailVerify: IController = async (req, res) => {
   }
 
   try {
-    const decoded = jwt.verify(emailToken, config.env.SECRET);
-    const { email } = <JwtPayload>decoded;
+    const email = jwtVerify(emailToken, "email");
 
-    const user: UserModel = await findUserByField({ email });
+    const user = await findUserByField({ email });
 
     if (!user) {
       return res.status(400).json({ msg: config.msg.server.invalidToken });
@@ -88,7 +92,7 @@ export const login: IController = async (req, res) => {
     const input: IObjKey = sanitizedInput;
     const { email, passwd } = input;
 
-    const user: UserModel = await findUserByField({ email });
+    const user = await findUserByField({ email });
 
     if (!user) {
       return res.status(404).json({ msg: config.msg.user.notFound });
@@ -108,7 +112,7 @@ export const login: IController = async (req, res) => {
       expiresIn: config.env.AUTH_DURATION_DAYS * 24 * 60 * 60,
     });
 
-    res.cookie("token", token, <object>config.cookie);
+    res.cookie("token", token, config.cookie as object);
 
     res.status(200).json({ msg: config.msg.auth.ok });
   } catch (err) {

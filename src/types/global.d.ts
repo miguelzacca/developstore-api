@@ -2,7 +2,7 @@
 
 import { Request, Response, NextFunction } from "express";
 import { Model, FindAttributeOptions } from "sequelize";
-import { Schema } from "zod";
+import { Schema, ZodError } from "zod";
 
 interface IUserModel extends Model {
   [key: string]: any;
@@ -14,6 +14,15 @@ interface IPublicDataMsg {
 
 interface IPublicDataZod {
   zod: ZodError;
+}
+
+export interface IEnv {
+  NODE_ENV: string;
+  PORT: number;
+  HOST: HOST;
+  SMTP_USER: string;
+  AUTH_DURATION_DAYS: number;
+  SECRET: string;
 }
 
 export interface IZodHandleSchema {
@@ -37,7 +46,5 @@ export interface IObjFromFormData {
 }
 
 export type PublicData = IPublicDataMsg | IPublicDataZod;
-
-export type UserModel = UserModel | null;
 
 export type FindAttributes = FindAttributeOptions | undefined;

@@ -1,7 +1,7 @@
 "use strict";
 
 import config from "../config.js";
-import { IObjKey, UserModel, IController } from "../types/global.js";
+import { IObjKey, IController } from "../types/global.js";
 import {
   sanitizeInput,
   validateInput,
@@ -38,7 +38,7 @@ export const patchUser: IController = async (req, res) => {
 
     console.log(req.body);
 
-    let user: UserModel = await findUserByField({ id });
+    let user = await findUserByField({ id });
 
     if (!user) {
       return res.status(404).json({ msg: config.msg.user.notFound });
