@@ -8,6 +8,14 @@ interface IUserModel extends Model {
   [key: string]: any;
 }
 
+interface IPublicDataMsg {
+  msg: string;
+}
+
+interface IPublicDataZod {
+  zod: ZodError;
+}
+
 export interface IZodHandleSchema {
   [key: string]: Schema;
 }
@@ -23,6 +31,12 @@ export interface IObjKey {
 export interface IMiddleware {
   (req: Request, res: Response, next: NextFunction): void;
 }
+
+export interface IObjFromFormData {
+  [key: string]: FormDataEntryValue;
+}
+
+export type PublicData = IPublicDataMsg | IPublicDataZod;
 
 export type UserModel = UserModel | null;
 

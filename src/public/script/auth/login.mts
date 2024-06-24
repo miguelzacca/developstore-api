@@ -6,6 +6,10 @@ import config from "../config.mjs";
 {
   const form = document.querySelector("form");
 
+  if (!form) {
+    throw new Error("Missing HTML Elements.");
+  }
+
   const login = () => {
     const formData = new FormData(form);
     const jsonData = formDataToJson(formData);

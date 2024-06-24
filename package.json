@@ -5,10 +5,10 @@
   "main": "src/app.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:ts": "npx tsc",
+    "copy:public": "copyfiles -u 2 './src/public/**/!(*.mts)' ./dist/public",
     "start": "node dist/app.js",
-    "build": "npx tsc",
-    "dev": "tsc && nodemon dist/app.js"
+    "build": "npm run build:ts && npm run copy:public"
   },
   "author": "Miguel Zacca",
   "license": "CC-BY-NC-4.0",
@@ -36,6 +36,7 @@
     "@types/node-cron": "^3.0.11",
     "@types/nodemailer": "^6.4.15",
     "@types/sequelize": "^4.28.20",
+    "copyfiles": "^2.4.1",
     "typescript": "^5.4.5"
   },
   "repository": {

@@ -10,7 +10,7 @@
   <% } %>
   <% if (typeof jsFiles !== "undefined") { %> 
     <% for (const file of jsFiles) { %>
-      <script src="/js/<%= file %>" type="module" defer></script>
+      <script src="/script/<%= file %>" type="module" defer></script>
     <% } %>
   <% } %>
 </head>

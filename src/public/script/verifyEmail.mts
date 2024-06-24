@@ -4,7 +4,11 @@ import { wait } from "./utils.mjs";
 
 {
   const display = document.getElementById("timer");
-  const checkLink = document.getElementById("check");
+  const checkLink = document.getElementById("check") as HTMLAnchorElement;
+
+  if (!display || !checkLink) {
+    throw new Error("Missing HTML Elements.");
+  }
 
   let time = 1 * 60 * 60 - 1;
 
@@ -32,7 +36,7 @@ import { wait } from "./utils.mjs";
     });
   };
 
-  const updateDisplay = (time) => {
+  const updateDisplay = (time: number) => {
     const minutes = Math.floor(time / 60);
     const seconds = time % 60;
 

@@ -5,7 +5,7 @@
   const leftBtns = document.querySelectorAll("section .scroll-left");
   const rightBtns = document.querySelectorAll("section .scroll-right");
 
-  const moveScroll = (list, value) => {
+  const moveScroll = (list: Element, value: number) => {
     list.scrollBy({
       left: value,
       behavior: "smooth",
