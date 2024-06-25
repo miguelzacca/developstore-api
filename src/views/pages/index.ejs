@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include("../partials/_head", { cssFiles: ["global.css", "index.css",
-  "header.css"], jsFiles: ["scrollList.js"] }) %>
+  <%- include("../partials/_head", { cssFiles: ["index.css", "header.css"],
+  jsFiles: ["scrollList.js"] }) %>
   <body>
     <%- include("../partials/_header", { path: "> home" }) %>
     <main>
@@ -13,12 +13,12 @@
           </h2>
           <h3 translate="no">20% OFF</h3>
           <button class="shopping-now">
-            <img src="/images/shopping-icon.png" alt="Shopping icon" />
+            <img src="/images/shopping-icon.webp" alt="Shopping icon" />
             Shopping now
           </button>
         </div>
         <picture>
-          <img src="/images/product.png" alt="Sale product image" />
+          <img src="/images/product.webp" alt="Sale product image" />
         </picture>
       </div>
       <section id="recommended-products">
@@ -26,10 +26,10 @@
           <h2>Recommended</h2>
           <div class="scroll-container">
             <button class="scroll-right">
-              <img src="/images/arrow-left.png" alt="Arrow left icon" />
+              <img src="/images/arrow-left.webp" alt="Arrow left icon" />
             </button>
             <button class="scroll-left">
-              <img src="/images/arrow-right.png" alt="Arrow right icon" />
+              <img src="/images/arrow-right.webp" alt="Arrow right icon" />
             </button>
           </div>
         </div>
@@ -37,10 +37,10 @@
           <% for (let i=0; i <= 6; i++) { %>
           <li style="--i: <%= i %>">
             <button class="favorite">
-              <img src="/images/favorite-icon.png" alt="Favorite icon" />
+              <img src="/images/favorite-icon.webp" alt="Favorite icon" />
             </button>
             <picture>
-              <img src="/images/product.png" alt="Product image" />
+              <img src="/images/product.webp" alt="Product image" />
             </picture>
             <div class="info-container">
               <h3>Product Name</h3>
@@ -60,10 +60,10 @@
           <h2>Popular 2024</h2>
           <div class="scroll-container">
             <button class="scroll-right">
-              <img src="/images/arrow-left.png" alt="Arrow left icon" />
+              <img src="/images/arrow-left.webp" alt="Arrow left icon" />
             </button>
             <button class="scroll-left">
-              <img src="/images/arrow-right.png" alt="Arrow right icon" />
+              <img src="/images/arrow-right.webp" alt="Arrow right icon" />
             </button>
           </div>
         </div>
@@ -71,10 +71,10 @@
           <% for (let i=0; i <= 6; i++) { %>
           <li>
             <button class="favorite">
-              <img src="/images/favorite-icon.png" alt="Favorite icon" />
+              <img src="/images/favorite-icon.webp" alt="Favorite icon" />
             </button>
             <picture>
-              <img src="/images/product.png" alt="Product image" />
+              <img src="/images/product.webp" alt="Product image" />
             </picture>
             <div class="info-container">
               <h3>Product Name</h3>
@@ -94,10 +94,10 @@
           <h2>The best</h2>
           <div class="scroll-container">
             <button class="scroll-right">
-              <img src="/images/arrow-left.png" alt="Arrow left icon" />
+              <img src="/images/arrow-left.webp" alt="Arrow left icon" />
             </button>
             <button class="scroll-left">
-              <img src="/images/arrow-right.png" alt="Arrow right icon" />
+              <img src="/images/arrow-right.webp" alt="Arrow right icon" />
             </button>
           </div>
         </div>
@@ -105,10 +105,10 @@
           <% for (let i=0; i <= 6; i++) { %>
           <li>
             <button class="favorite">
-              <img src="/images/favorite-icon.png" alt="Favorite icon" />
+              <img src="/images/favorite-icon.webp" alt="Favorite icon" />
             </button>
             <picture>
-              <img src="/images/product.png" alt="Product image" />
+              <img src="/images/product.webp" alt="Product image" />
             </picture>
             <div class="info-container">
               <h3>Product Name</h3>
@@ -127,19 +127,19 @@
     <footer>
       <div class="benefits-container">
         <div class="container">
-          <img src="/images/delivery.png" alt="Delivery icon" />
+          <img src="/images/delivery.webp" alt="Delivery icon" />
           INSTANT DELIVERY
         </div>
         <div class="container">
-          <img src="/images/pay-return.png" alt="Refund icon" />
+          <img src="/images/pay-return.webp" alt="Refund icon" />
           NOT REFUND
         </div>
         <div class="container">
-          <img src="/images/secure-pay.png" alt="Secure payment icon" />
+          <img src="/images/secure-pay.webp" alt="Secure payment icon" />
           SECURE PAYMENT
         </div>
         <div class="container">
-          <img src="/images/support.png" alt="Support icon" />
+          <img src="/images/support.webp" alt="Support icon" />
           24/7 SUPPORT
         </div>
       </div>
@@ -153,7 +153,7 @@
             placeholder="Search product"
           />
           <button id="search-button">
-            <img src="/images/search-icon.png" alt="Search icon" />
+            <img src="/images/search-icon.webp" alt="Search icon" />
           </button>
         </div>
       </div>
@@ -168,23 +168,23 @@
           </p>
         </div>
         <div class="payment-methods" style="position: relative">
-          <img src="/images/visa-payment.png" alt="Visa icon" />
-          <img src="/images/mastercard-payment.png" alt="Mastercard icon" />
-          <img src="/images/pix-payment.png" alt="Pix icon" />
-          <img src="/images/stripe-payment.png" alt="Stripe icon" />
+          <img src="/images/visa-payment.webp" alt="Visa icon" />
+          <img src="/images/mastercard-payment.webp" alt="Mastercard icon" />
+          <img src="/images/pix-payment.webp" alt="Pix icon" />
+          <img src="/images/stripe-payment.webp" alt="Stripe icon" />
         </div>
         <div class="contact">
           <p class="number">+55 (48) 99664-7429</p>
           <p class="info-number">Personal telephone</p>
           <div class="links">
             <a href="./support.html">
-              <img src="/images/email.png" alt="Email icon" />
+              <img src="/images/email.webp" alt="Email icon" />
             </a>
             <a href="https://www.linkedin.com/in/miguelzacca" target="_blank">
-              <img src="/images/linkedin.png" alt="Linkedin icon" />
+              <img src="/images/linkedin.webp" alt="Linkedin icon" />
             </a>
             <a href="https://github.com/miguelzacca" target="_blank">
-              <img src="/images/github.png" alt="Github icon" />
+              <img src="/images/github.webp" alt="Github icon" />
             </a>
           </div>
         </div>
