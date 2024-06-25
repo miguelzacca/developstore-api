@@ -21,6 +21,6 @@ export const pendingEmail: IMiddleware = async (req, res, next) => {
     res.status(403).redirect("/");
   } catch (err) {
     console.error(err);
-    res.status(500).json({ msg: config.msg.server.err });
+    res.status(500).json({ msg: config.serverMsg.err });
   }
 };

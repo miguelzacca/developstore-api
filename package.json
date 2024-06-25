@@ -6,7 +6,9 @@
   "type": "module",
   "scripts": {
     "build:ts": "npx tsc",
-    "copy:public": "copyfiles -u 2 './src/public/**/!(*.mts)' ./dist/public",
+    "copy:public:bash": "cp -r ./src/public/images ./dist/public && cp -r ./src/public/css ./dist/public",
+    "copy:public:cmd": "xcopy /E /I ./src/public/images ./dist/public && xcopy /E /I ./src/public/css ./dist/public",
+    "copy:public": "copyfiles -u 2 './src/public/**/!(*.mts|*.ts)' ./dist/public",
     "start": "node dist/app.js",
     "build": "npm run build:ts && npm run copy:public"
   },

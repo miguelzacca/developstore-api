@@ -1,6 +1,6 @@
 "use strict";
 
-import express from "express";
+import { Router } from "express";
 import {
   accountPage,
   homePage,
@@ -10,7 +10,7 @@ import {
 } from "../controllers/viewControllers.js";
 import { pendingEmail } from "../middleware/pendingEmail.js";
 
-const router = express.Router();
+const router = Router();
 
 router.get("/", homePage);
 

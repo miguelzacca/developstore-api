@@ -8,13 +8,13 @@ export const checkToken: IMiddleware = (req, res, next) => {
   const token = req.cookies?.token;
 
   if (!token) {
-    return res.status(403).json({ msg: config.msg.server.denied });
+    return res.status(403).json({ msg: config.serverMsg.denied });
   }
 
   try {
     jwtVerify(token);
     next();
   } catch (err) {
-    res.status(401).json({ msg: config.msg.server.invalidToken });
+    res.status(401).json({ msg: config.serverMsg.invalidToken });
   }
 };

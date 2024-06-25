@@ -1,10 +1,10 @@
 "use strict";
 
-import dotenv from "dotenv";
+import { config } from "dotenv";
 import nodemailer from "nodemailer";
 import { IEnv } from "./types/global";
 
-dotenv.config();
+config();
 
 const {
   NODE_ENV,
@@ -47,30 +47,28 @@ export default {
     secure: (NODE_ENV as string) === "production",
     maxAge: Number(AUTH_DURATION_DAYS) * 24 * 60 * 60 * 1000,
     sameSite: "None",
+  } as object,
+
+  authMsg: {
+    ok: "Authentication successful.",
+    incorrect: "Incorrect password.",
+    emailExists: "This email already exists.",
+    noEmailToken: "No email token provided.",
+    emailAlreadyVerified: "Email already verified.",
+    noVerifiedEmail: "No email verified.",
   },
 
-  msg: {
-    auth: {
-      ok: "Authentication successful.",
-      incorrect: "Incorrect password.",
-      emailExists: "This email already exists.",
-      noEmailToken: "No email token provided.",
-      emailAlreadyVerified: "Email already verified.",
-      noVerifiedEmail: "No email verified.",
-    },
+  userMsg: {
+    notFound: "User not found.",
+    created: "User created successfully.",
+    deleted: "User deleted successfully.",
+    updated: "User updated successfully.",
+  },
 
-    user: {
-      notFound: "User not found.",
-      created: "User created successfully.",
-      deleted: "User deleted successfully.",
-      updated: "User updated successfully.",
-    },
-
-    server: {
-      great: "Welcome!",
-      err: "A server occurred error. Please try later.",
-      denied: "Access denied.",
-      invalidToken: "Invalid token.",
-    },
+  serverMsg: {
+    great: "Welcome!",
+    err: "A server occurred error. Please try later.",
+    denied: "Access denied.",
+    invalidToken: "Invalid token.",
   },
 };

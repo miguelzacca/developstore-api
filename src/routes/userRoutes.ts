@@ -1,10 +1,14 @@
 "use strict";
 
-import express from "express";
-import { getUser, patchUser, deleteUser } from "../controllers/userControllers.js";
+import { Router } from "express";
+import {
+  getUser,
+  patchUser,
+  deleteUser,
+} from "../controllers/userControllers.js";
 import { checkToken } from "../middleware/checkToken.js";
 
-const router = express.Router();
+const router = Router();
 
 router.get("/", checkToken, getUser);
 

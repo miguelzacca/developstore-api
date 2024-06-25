@@ -1,13 +1,13 @@
 "use strict";
 
-import express from "express";
+import { Router } from "express";
 import {
   login,
   register,
   emailVerify,
 } from "../controllers/authControllers.js";
 
-const router = express.Router();
+const router = Router();
 
 router.get("/email-verify/:token", emailVerify);
 
