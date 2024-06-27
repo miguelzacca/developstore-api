@@ -3,6 +3,7 @@
   <%- include("../partials/_head", { cssFiles: ["auth.css"], jsFiles}) %>
   <body>
     <main>
+      <div id="msg"></div>
       <form>
         <div class="header"></div>
         <h2><% if (login) { %> Login <% } else { %> Register <% } %></h2>
@@ -40,10 +41,14 @@
           <div class="bottom"></div>
         </button>
         <% if (login) { %>
-        <p>Don`t have an account? <a href="register">Register now</a></p>
+        <p>Forgot password? <a href="recovery-passwd">Recovery password</a></p>
         <% } %>
       </form>
-      <div id="msg"></div>
+      <% if (login) { %>
+      <a id="handleAuthPage" href="register">Register</a>
+      <% } else { %>
+      <a id="handleAuthPage" href="login">Login</a>
+      <% } %>
     </main>
   </body>
 </html>

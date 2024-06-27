@@ -3,7 +3,7 @@
 import config from "../config.mjs";
 
 {
-  fetch(`${config.HOST}/user`, {
+  fetch(`${config.baseURL}/api/user`, {
     credentials: "include",
   })
     .then((res) => {

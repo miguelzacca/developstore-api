@@ -5,14 +5,8 @@ import utils from "../utils.js";
 
 export const pendingEmail: IMiddleware = async (req, res, next) => {
   const email = req.params?.email;
-  const token = req.cookies?.token;
 
   try {
-    if (token) {
-      utils.jwtVerify(token);
-      return next();
-    }
-
     if (!email) {
       return res.status(403).redirect("/");
     }

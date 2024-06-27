@@ -17,6 +17,8 @@ router.get("/verify-email/:email", pendingEmail, view.verifyEmailPage);
 
 router.get("/account", view.accountPage);
 
-router.get("/passwd-recovery", checkToken, view.changePasswdPage);
+router.get("/recovery-passwd", view.requestToChangePasswdPage);
+
+router.get("/change-passwd/:token", checkToken, view.changePasswdPage);
 
 export default router;

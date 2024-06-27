@@ -53,9 +53,12 @@ class Utils {
       attributes = { exclude: ["id", "passwd"] };
     }
 
-    const user = await User.findOne({ where: { [key]: value }, attributes });
+    const user = (await User.findOne({
+      where: { [key]: value },
+      attributes,
+    })) as IUserModel;
 
-    return user as IUserModel;
+    return user;
   };
 
   public sanitizeInput = (input: IObjKey) => {

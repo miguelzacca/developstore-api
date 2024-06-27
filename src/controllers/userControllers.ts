@@ -7,9 +7,14 @@ import utils from "../utils.js";
 class UserControllers {
   public getUser: IController = async (req, res) => {
     const token = req.cookies.token;
-    const id = utils.jwtVerify(token, "id");
 
     try {
+      const id = utils.jwtVerify(token, "id");
+
+      if (token && !id) {
+        return res.status(401).json({ msg: config.serverMsg.invalidToken });
+      }
+
       const user = await utils.findUserByField({ id }, true);
 
       if (!user) {
@@ -24,9 +29,10 @@ class UserControllers {
 
   public patchUser: IController = async (req, res) => {
     const token = req.cookies.token;
-    const id = utils.jwtVerify(token, "id");
 
     try {
+      const id = utils.jwtVerify(token, "id");
+
       const sanitizedInput = utils.sanitizeInput(req.body);
       const input: IObjKey = utils.validateInput(sanitizedInput, "patch");
 
@@ -78,10 +84,12 @@ class UserControllers {
       let user = await utils.findUserByField({ email });
 
       if (!user) {
-        res.status(404).json({ msg: config.userMsg.notFound });
+        return res.status(404).json({ msg: config.userMsg.notFound });
       }
 
       user = await utils.updateUserField(user, { passwd });
+
+      await user.save();
 
       res.status(200).json({ msg: config.userMsg.updated });
     } catch (err) {

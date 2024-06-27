@@ -14,7 +14,7 @@ import config from "../config.mjs";
     const formData = new FormData(form);
     const jsonData = utils.formDataToJson(formData);
 
-    fetch(`${config.HOST}/auth/register`, {
+    fetch(`${config.baseURL}/api/auth/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -16,18 +16,17 @@ import config from "../config.mjs";
 
     const email = JSON.parse(jsonData).email;
 
-    fetch(`${config.HOST}/auth/passwd-recovery/${email}`, {
+    fetch(`${config.baseURL}/api/auth/passwd-recovery/${email}`, {
       credentials: "include",
     })
       .then((res) =>
         res
           .json()
           .then(async (data) => {
-            utils.handleMsg(data);
-            if (res.ok) {
-              await utils.wait(1000);
-              location.href = `/change-passwd`;
+            if (!res.ok) {
+              return utils.handleMsg(data);
             }
+            utils.handleMsg({ msg: "Verify your email." });
           })
           .catch((err) => console.error(err))
       )

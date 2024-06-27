@@ -31,17 +31,19 @@ class ViewControllers {
   };
 
   public changePasswdPage: IController = (req, res) => {
-    const token = req.params?.token;
-
-    if (!token) {
-      return res.status(403).json({ msg: config.serverMsg.denied });
-    }
-
+    const token = req.params.token;
     res.cookie("token", token, config.cookie);
 
-    res.render("pages/auth", {
-      login: true,
-      jsFiles: ["/auth/changePasswd"],
+    res.render("pages/changePasswd", {
+      request: false,
+      jsFiles: ["/user/changePasswd.mjs"],
+    });
+  };
+
+  public requestToChangePasswdPage: IController = (req, res) => {
+    res.render("pages/changePasswd", {
+      request: true,
+      jsFiles: ["/auth/passwdRecovery.mjs"],
     });
   };
 }

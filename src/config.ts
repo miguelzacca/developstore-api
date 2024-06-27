@@ -35,7 +35,7 @@ class Config {
 
   public cookie: object = {
     httpOnly: true,
-    secure: this.env.NODE_ENV === "production",
+    secure: true,
     maxAge: this.env.AUTH_DURATION_DAYS * 24 * 60 * 60 * 1000,
     sameSite: "None",
   };

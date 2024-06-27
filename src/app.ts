@@ -23,10 +23,10 @@ app.use(cors(config.cors));
 app.use(express.json());
 app.use(cookieParser());
 
-app.use("/auth", authRoutes);
-app.use("/user", userRoutes);
-app.use("/", viewRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/user", userRoutes);
 
+app.use("/", viewRoutes);
 app.use(notFound);
 
 cron.schedule("0 0 * * *", () => {

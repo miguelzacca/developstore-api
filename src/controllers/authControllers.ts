@@ -64,7 +64,7 @@ class AuthControllers {
         expiresIn: "1h",
       });
 
-      const verifyLink = `${config.env.HOST}/auth/email-verify/${emailToken}`;
+      const verifyLink = `${config.env.HOST}/api/auth/email-verify/${emailToken}`;
 
       config.transporter.sendMail({
         from: "Develop Store",
@@ -127,7 +127,7 @@ class AuthControllers {
         expiresIn: "1h",
       });
 
-      const recoveryLink = `${config.env.HOST}/passwd-recovery/${recoveryToken}`;
+      const recoveryLink = `${config.env.HOST}/change-passwd/${recoveryToken}`;
 
       config.transporter.sendMail({
         from: "Develop Store",

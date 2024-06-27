@@ -273,6 +273,25 @@ form p a:hover {
   }
 }
 
+#handleAuthPage {
+  position: absolute;
+  bottom: 3rem;
+  right: 3rem;
+  padding: 1rem 2rem;
+  background-color: #5f5;
+  border: 0.2rem solid transparent;
+  transition: all 0.25s;
+  color: #fff;
+  font-size: 1.6rem;
+  border-radius: 1rem;
+}
+
+#handleAuthPage:hover {
+  border-color: #5f5;
+  background-color: transparent;
+  color: #5f5;
+}
+
 @media screen and (max-width: 768px) {
   form {
     width: 100%;
