@@ -1,4 +1,9 @@
-@import url(global.css);
+:root {
+  --black: #222;
+  --gray: #666;
+  --light-gray: #dfdfdf;
+  --page-padding: 5rem;
+}
 
 header .low-container details {
   color: var(--black);
