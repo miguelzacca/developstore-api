@@ -1,6 +1,6 @@
 "use strict";
 
-import { wait } from "./utils.mjs";
+import utils from "./utils.mjs";
 
 {
   const display = document.getElementById("timer");
@@ -15,7 +15,7 @@ import { wait } from "./utils.mjs";
   const startCountdown = async () => {
     while (time > 0) {
       updateDisplay(time);
-      await wait(1000);
+      await utils.wait(1000);
       time--;
     }
 

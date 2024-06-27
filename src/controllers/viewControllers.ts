@@ -1,29 +1,49 @@
 "use strict";
 
+import config from "../config.js";
 import { IController } from "../types/global";
 
-export const homePage: IController = (req, res) => {
-  res.render("pages/index");
-};
+class ViewControllers {
+  public homePage: IController = (req, res) => {
+    res.render("pages/index");
+  };
 
-export const loginPage: IController = (req, res) => {
-  res.render("pages/auth", {
-    login: true,
-    jsFiles: ["/auth/login.mjs"],
-  });
-};
+  public loginPage: IController = (req, res) => {
+    res.render("pages/auth", {
+      login: true,
+      jsFiles: ["/auth/login.mjs"],
+    });
+  };
 
-export const registerPage: IController = (req, res) => {
-  res.render("pages/auth", {
-    login: false,
-    jsFiles: ["/auth/register.mjs"],
-  });
-};
+  public registerPage: IController = (req, res) => {
+    res.render("pages/auth", {
+      login: false,
+      jsFiles: ["/auth/register.mjs"],
+    });
+  };
 
-export const verifyEmailPage: IController = (req, res) => {
-  res.render("pages/verifyEmail");
-};
+  public verifyEmailPage: IController = (req, res) => {
+    res.render("pages/verifyEmail");
+  };
 
-export const accountPage: IController = (req, res) => {
-  res.render("pages/account");
-};
+  public accountPage: IController = (req, res) => {
+    res.render("pages/account");
+  };
+
+  public changePasswdPage: IController = (req, res) => {
+    const token = req.params?.token;
+
+    if (!token) {
+      return res.status(403).json({ msg: config.serverMsg.denied });
+    }
+
+    res.cookie("token", token, config.cookie);
+
+    res.render("pages/auth", {
+      login: true,
+      jsFiles: ["/auth/changePasswd"],
+    });
+  };
+}
+
+export default new ViewControllers();

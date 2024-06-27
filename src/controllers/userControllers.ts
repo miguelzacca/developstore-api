@@ -2,79 +2,92 @@
 
 import config from "../config.js";
 import { IObjKey, IController } from "../types/global.js";
-import {
-  sanitizeInput,
-  validateInput,
-  findUserByField,
-  updateUserField,
-  jwtVerify,
-} from "../utils.js";
+import utils from "../utils.js";
 
-export const getUser: IController = async (req, res) => {
-  const token = req.cookies.token;
-  const id = jwtVerify(token, "id");
+class UserControllers {
+  public getUser: IController = async (req, res) => {
+    const token = req.cookies.token;
+    const id = utils.jwtVerify(token, "id");
 
-  try {
-    const user = await findUserByField({ id }, true);
+    try {
+      const user = await utils.findUserByField({ id }, true);
 
-    if (!user) {
-      return res.status(404).json({ msg: config.userMsg.notFound });
+      if (!user) {
+        return res.status(404).json({ msg: config.userMsg.notFound });
+      }
+
+      res.status(200).json({ user });
+    } catch (err) {
+      utils.handleError(res, err);
     }
+  };
 
-    res.status(200).json({ user });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ msg: config.serverMsg.err });
-  }
-};
+  public patchUser: IController = async (req, res) => {
+    const token = req.cookies.token;
+    const id = utils.jwtVerify(token, "id");
 
-export const patchUser: IController = async (req, res) => {
-  const token = req.cookies.token;
-  const id = jwtVerify(token, "id");
+    try {
+      const sanitizedInput = utils.sanitizeInput(req.body);
+      const input: IObjKey = utils.validateInput(sanitizedInput, "patch");
 
-  try {
-    const sanitizedInput = sanitizeInput(req.body);
-    const input: IObjKey = validateInput(sanitizedInput, "patch");
+      console.log(req.body);
 
-    console.log(req.body);
+      let user = await utils.findUserByField({ id });
 
-    let user = await findUserByField({ id });
+      if (!user) {
+        return res.status(404).json({ msg: config.userMsg.notFound });
+      }
 
-    if (!user) {
-      return res.status(404).json({ msg: config.userMsg.notFound });
+      for (const key in input) {
+        user = await utils.updateUserField(user, { [key]: input[key] });
+      }
+
+      await user.save();
+
+      res.status(200).json({ msg: config.userMsg.updated });
+    } catch (err) {
+      utils.handleError(res, err);
     }
+  };
 
-    for (const key in input) {
-      user = await updateUserField(user, { [key]: input[key] });
+  public deleteUser: IController = async (req, res) => {
+    const token = req.cookies.token;
+    const id = utils.jwtVerify(token, "id");
+
+    try {
+      const user = await utils.findUserByField({ id });
+
+      if (!user) {
+        return res.status(404).json({ msg: config.userMsg.notFound });
+      }
+
+      await user.destroy();
+
+      res.clearCookie("token");
+
+      res.status(200).json({ msg: config.userMsg.deleted });
+    } catch (err) {
+      utils.handleError(res, err);
     }
+  };
 
-    await user.save();
+  public changePasswd: IController = async (req, res) => {
+    const { email, passwd } = req.body;
 
-    res.status(200).json({ msg: config.userMsg.updated });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ msg: config.serverMsg.err });
-  }
-};
+    try {
+      let user = await utils.findUserByField({ email });
 
-export const deleteUser: IController = async (req, res) => {
-  const token = req.cookies.token;
-  const id = jwtVerify(token, "id");
+      if (!user) {
+        res.status(404).json({ msg: config.userMsg.notFound });
+      }
 
-  try {
-    const user = await findUserByField({ id });
+      user = await utils.updateUserField(user, { passwd });
 
-    if (!user) {
-      return res.status(404).json({ msg: config.userMsg.notFound });
+      res.status(200).json({ msg: config.userMsg.updated });
+    } catch (err) {
+      utils.handleError(res, err);
     }
+  };
+}
 
-    await user.destroy();
-
-    res.clearCookie("token");
-
-    res.status(200).json({ msg: config.userMsg.deleted });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ msg: config.serverMsg.err });
-  }
-};
+export default new UserControllers();

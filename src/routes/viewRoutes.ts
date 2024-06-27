@@ -1,25 +1,22 @@
 "use strict";
 
 import { Router } from "express";
-import {
-  accountPage,
-  homePage,
-  loginPage,
-  registerPage,
-  verifyEmailPage,
-} from "../controllers/viewControllers.js";
+import view from "../controllers/viewControllers.js";
 import { pendingEmail } from "../middleware/pendingEmail.js";
+import { checkToken } from "../middleware/checkToken.js";
 
 const router = Router();
 
-router.get("/", homePage);
+router.get("/", view.homePage);
 
-router.get("/login", loginPage);
+router.get("/login", view.loginPage);
 
-router.get("/register", registerPage);
+router.get("/register", view.registerPage);
 
-router.get("/verify-email/:email", pendingEmail, verifyEmailPage);
+router.get("/verify-email/:email", pendingEmail, view.verifyEmailPage);
 
-router.get("/account", accountPage);
+router.get("/account", view.accountPage);
+
+router.get("/passwd-recovery", checkToken, view.changePasswdPage);
 
 export default router;

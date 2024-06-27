@@ -1,6 +1,7 @@
 "use strict";
 
 import { Request, Response, NextFunction } from "express";
+import { Secret } from "jsonwebtoken";
 import { Model, FindAttributeOptions } from "sequelize";
 import { Schema, ZodError } from "zod";
 
@@ -17,12 +18,7 @@ interface IPublicDataZod {
 }
 
 export interface IEnv {
-  NODE_ENV: string;
-  PORT: number;
-  HOST: HOST;
-  SMTP_USER: string;
-  AUTH_DURATION_DAYS: number;
-  SECRET: string;
+  [key: string]: any;
 }
 
 export interface IZodHandleSchema {

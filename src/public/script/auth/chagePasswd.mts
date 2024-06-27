@@ -10,22 +10,25 @@ import config from "../config.mjs";
     throw new Error("Missing HTML Elements.");
   }
 
-  const login = () => {
+  const changePasswd = () => {
     const formData = new FormData(form);
     const jsonData = utils.formDataToJson(formData);
 
-    fetch(`${config.HOST}/auth/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: jsonData,
+    const email = JSON.parse(jsonData).email;
+
+    fetch(`${config.HOST}/auth/passwd-recovery/${email}`, {
       credentials: "include",
     })
       .then((res) =>
         res
           .json()
-          .then((data) => utils.handleMsg(data))
+          .then(async (data) => {
+            utils.handleMsg(data);
+            if (res.ok) {
+              await utils.wait(1000);
+              location.href = `/change-passwd`;
+            }
+          })
           .catch((err) => console.error(err))
       )
       .catch((err) => console.error(err));
@@ -33,7 +36,7 @@ import config from "../config.mjs";
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    login();
+    changePasswd();
     form.reset();
   });
 }

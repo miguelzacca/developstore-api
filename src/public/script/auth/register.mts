@@ -1,6 +1,6 @@
 "use strict";
 
-import { formDataToJson, handleMsg, wait } from "../utils.mjs";
+import utils from "../utils.mjs";
 import config from "../config.mjs";
 
 {
@@ -12,7 +12,7 @@ import config from "../config.mjs";
 
   const register = () => {
     const formData = new FormData(form);
-    const jsonData = formDataToJson(formData);
+    const jsonData = utils.formDataToJson(formData);
 
     fetch(`${config.HOST}/auth/register`, {
       method: "POST",
@@ -26,9 +26,9 @@ import config from "../config.mjs";
         res
           .json()
           .then(async (data) => {
-            handleMsg(data);
+            utils.handleMsg(data);
             if (res.ok) {
-              await wait(1000);
+              await utils.wait(1000);
               const objData = JSON.parse(jsonData);
               location.href = `/verify-email/${objData.email}`;
             }

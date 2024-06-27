@@ -1,18 +1,16 @@
 "use strict";
 
 import { Router } from "express";
-import {
-  login,
-  register,
-  emailVerify,
-} from "../controllers/authControllers.js";
+import auth from "../controllers/authControllers.js";
 
 const router = Router();
 
-router.get("/email-verify/:token", emailVerify);
+router.get("/email-verify/:token", auth.emailVerify);
 
-router.post("/register", register);
+router.post("/register", auth.register);
 
-router.post("/login", login);
+router.post("/login", auth.login);
+
+router.get("/passwd-recovery/:email", auth.passwdRecovery);
 
 export default router;

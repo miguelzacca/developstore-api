@@ -11,78 +11,91 @@ import {
   IObjKey,
   IUserModel,
   IZodHandleSchema,
-} from "./types/global.js";
+} from "./types/global";
+import { Response } from "express";
 
-const registerSchema = z.object({
-  name: z.string().min(3).max(100),
-  email: z.string().max(100).email(),
-  passwd: z.string().min(6).max(16),
-});
+class Utils {
+  private _registerSchema = z.object({
+    name: z.string().min(3).max(100),
+    email: z.string().max(100).email(),
+    passwd: z.string().min(6).max(16),
+  });
 
-const patchSchema = z.object({
-  name: z.string().min(3).max(100),
-});
+  private _patchSchema = z.object({
+    name: z.string().min(3).max(100),
+  });
 
-const objectKey = (obj: IObjKey) => {
-  const key = Object.keys(obj)[0];
-  return {
-    key,
-    value: obj[key],
-  };
-};
-
-export const validateInput = (input: object, schema: string) => {
-  try {
-    const handleSchema: IZodHandleSchema = {
-      register: registerSchema,
-      patch: patchSchema,
+  private _objectKey = (obj: IObjKey) => {
+    const key = Object.keys(obj)[0];
+    return {
+      key,
+      value: obj[key],
     };
-    return handleSchema[schema].parse(input);
-  } catch (err) {
-    throw { zod: err };
-  }
-};
+  };
 
-export const findUserByField = async (field: IObjKey, restrict = false) => {
-  const { key, value } = objectKey(field);
+  public validateInput = (input: object, schema: string) => {
+    try {
+      const handleSchema: IZodHandleSchema = {
+        register: this._registerSchema,
+        patch: this._patchSchema,
+      };
+      return handleSchema[schema].parse(input);
+    } catch (err) {
+      throw { zod: err };
+    }
+  };
 
-  let attributes: FindAttributes = undefined;
-  if (restrict) {
-    attributes = { exclude: ["id", "passwd"] };
-  }
+  public findUserByField = async (field: IObjKey, restrict = false) => {
+    const { key, value } = this._objectKey(field);
 
-  const user = await User.findOne({ where: { [key]: value }, attributes });
+    let attributes: FindAttributes = undefined;
+    if (restrict) {
+      attributes = { exclude: ["id", "passwd"] };
+    }
 
-  return user as IUserModel;
-};
+    const user = await User.findOne({ where: { [key]: value }, attributes });
 
-export const sanitizeInput = (input: IObjKey) => {
-  const sanitizedData: IObjKey = {};
-  for (const key of Object.keys(input)) {
-    sanitizedData[key] = xss(input[key]);
-  }
-  return sanitizedData;
-};
+    return user as IUserModel;
+  };
 
-export const updateUserField = async (user: IUserModel, field: IObjKey) => {
-  const { key, value } = objectKey(field);
+  public sanitizeInput = (input: IObjKey) => {
+    const sanitizedData: IObjKey = {};
+    for (const key of Object.keys(input)) {
+      sanitizedData[key] = xss(input[key]);
+    }
+    return sanitizedData;
+  };
 
-  if (key !== "passwd") {
-    user[key] = value;
+  public updateUserField = async (user: IUserModel, field: IObjKey) => {
+    const { key, value } = this._objectKey(field);
+
+    if (key !== "passwd") {
+      user[key] = value;
+      return user;
+    }
+
+    const salt = await bcrypt.genSalt(12);
+    user[key] = await bcrypt.hash(value, salt);
+
     return user;
-  }
+  };
 
-  const salt = await bcrypt.genSalt(12);
-  user[key] = await bcrypt.hash(value, salt);
+  public jwtVerify = (token: string, payloadName?: string) => {
+    try {
+      const payload = jwt.verify(token, config.env.SECRET) as JwtPayload;
+      return payloadName && payload[payloadName];
+    } catch (err) {
+      throw err;
+    }
+  };
 
-  return user;
-};
+  public handleError = (res: Response, err: any) => {
+    if (err.zod) {
+      return res.status(422).json(err);
+    }
+    console.error(err);
+    res.status(500).json({ msg: config.serverMsg.err });
+  };
+}
 
-export const jwtVerify = (token: string, payloadName?: string) => {
-  try {
-    const payload = jwt.verify(token, config.env.SECRET) as JwtPayload;
-    return payloadName && payload[payloadName];
-  } catch (err) {
-    throw err;
-  }
-};
+export default new Utils();
