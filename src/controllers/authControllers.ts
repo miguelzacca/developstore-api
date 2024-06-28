@@ -66,11 +66,10 @@ class AuthControllers {
 
       const verifyLink = `${config.env.HOST}/api/auth/email-verify/${emailToken}`;
 
-      config.transporter.sendMail({
-        from: "Develop Store",
+      utils.sendEmail({
         to: email,
         subject: "Email Verification Link",
-        html: `<h3 style="font-weight: 400">${verifyLink}</h3>`,
+        link: verifyLink,
       });
 
       res.status(201).json({ msg: config.userMsg.created });
@@ -102,7 +101,7 @@ class AuthControllers {
       }
 
       const token = jwt.sign({ id: user.id }, config.env.SECRET, {
-        expiresIn: config.env.AUTH_DURATION_DAYS * 24 * 60 * 60,
+        expiresIn: `${config.env.AUTH_DURATION_DAYS * 24}h`,
       });
 
       res.cookie("token", token, config.cookie);
@@ -129,11 +128,10 @@ class AuthControllers {
 
       const recoveryLink = `${config.env.HOST}/change-passwd/${recoveryToken}`;
 
-      config.transporter.sendMail({
-        from: "Develop Store",
+      utils.sendEmail({
         to: email,
         subject: "Password Recovery",
-        html: `<h3 style="font-weight: 400">${recoveryLink}</h3>`,
+        link: recoveryLink,
       });
 
       res.status(200).json({ msg: config.authMsg.recoveryEmail });

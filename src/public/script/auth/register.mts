@@ -4,11 +4,7 @@ import utils from "../utils.mjs";
 import config from "../config.mjs";
 
 {
-  const form = document.querySelector("form");
-
-  if (!form) {
-    throw new Error("Missing HTML Elements.");
-  }
+  const form = document.querySelector("form") as HTMLFormElement;
 
   const register = () => {
     const formData = new FormData(form);
@@ -29,8 +25,8 @@ import config from "../config.mjs";
             utils.handleMsg(data);
             if (res.ok) {
               await utils.wait(1000);
-              const objData = JSON.parse(jsonData);
-              location.href = `/verify-email/${objData.email}`;
+              const email = JSON.parse(jsonData).email;
+              location.href = `/verify-email/${email}`;
             }
           })
           .catch((err) => console.error(err))

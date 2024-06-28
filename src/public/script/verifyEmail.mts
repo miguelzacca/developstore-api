@@ -3,12 +3,8 @@
 import utils from "./utils.mjs";
 
 {
-  const display = document.getElementById("timer");
+  const display = document.getElementById("timer") as HTMLElement;
   const checkLink = document.getElementById("check") as HTMLAnchorElement;
-
-  if (!display || !checkLink) {
-    throw new Error("Missing HTML Elements.");
-  }
 
   let time = 1 * 60 * 60 - 1;
 

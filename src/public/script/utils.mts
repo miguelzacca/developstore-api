@@ -1,6 +1,6 @@
 "use strict";
 
-import { IObjFromFormData, PublicData } from "../../types/global";
+import { IObjFromFormData, IObjKey } from "../../types/global";
 
 class Utils {
   private _animeMsg = async (display: Element) => {
@@ -23,21 +23,9 @@ class Utils {
     return JSON.stringify(obj);
   };
 
-  public handleMsg = async (data: PublicData) => {
-    const display = document.getElementById("msg");
-
-    if (!display) {
-      return;
-    }
-
-    if ("msg" in data) {
-      display.textContent = data.msg;
-      await this._animeMsg(display);
-      return;
-    }
-
-    const dir = data.zod.issues[0];
-    display.textContent = `${dir.path}: ${dir.message}`;
+  public handleMsg = (data: IObjKey) => {
+    const display = document.getElementById("msg") as HTMLElement;
+    display.textContent = data.msg || data.zod;
     this._animeMsg(display);
   };
 }

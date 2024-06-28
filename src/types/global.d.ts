@@ -9,14 +9,6 @@ interface IUserModel extends Model {
   [key: string]: any;
 }
 
-interface IPublicDataMsg {
-  msg: string;
-}
-
-interface IPublicDataZod {
-  zod: ZodError;
-}
-
 export interface IEnv {
   [key: string]: any;
 }
@@ -40,7 +32,5 @@ export interface IMiddleware {
 export interface IObjFromFormData {
   [key: string]: FormDataEntryValue;
 }
-
-export type PublicData = IPublicDataMsg | IPublicDataZod;
 
 export type FindAttributes = FindAttributeOptions | undefined;

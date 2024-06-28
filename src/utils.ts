@@ -99,10 +99,22 @@ class Utils {
 
   public handleError = (res: Response, err: any) => {
     if (err.zod) {
+      const __dir = err.zod.issues[0];
+      err.zod = `${__dir.path}: ${__dir.message}`;
       return res.status(422).json(err);
     }
+
     console.error(err);
     res.status(500).json({ msg: config.serverMsg.err });
+  };
+
+  public sendEmail = async ({ to, subject, link }: IObjKey) => {
+    await config.transporter.sendMail({
+      from: "Develop Store",
+      to,
+      subject,
+      html: `<h3 style="font-weight: 400">${link}</h3>`,
+    });
   };
 }
 

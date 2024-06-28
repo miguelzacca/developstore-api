@@ -4,11 +4,7 @@ import utils from "../utils.mjs";
 import config from "../config.mjs";
 
 {
-  const form = document.querySelector("form");
-
-  if (!form) {
-    throw new Error("Missing HTML Elements.");
-  }
+  const form = document.querySelector("form") as HTMLFormElement;
 
   const changePasswd = () => {
     const formData = new FormData(form);
@@ -22,7 +18,7 @@ import config from "../config.mjs";
       .then((res) =>
         res
           .json()
-          .then(async (data) => {
+          .then((data) => {
             if (!res.ok) {
               return utils.handleMsg(data);
             }

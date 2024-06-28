@@ -4,11 +4,7 @@ import utils from "../utils.mjs";
 import config from "../config.mjs";
 
 {
-  const form = document.querySelector("form");
-
-  if (!form) {
-    throw new Error("Missing HTML Elements.");
-  }
+  const form = document.querySelector("form") as HTMLFormElement;
 
   const login = () => {
     const formData = new FormData(form);
