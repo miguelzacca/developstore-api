@@ -431,7 +431,7 @@ footer .main-container .contact .links img:hover {
 
 @media screen and (max-width: 768px) {
   body {
-    padding: 2rem;
+    padding: 1.5rem;
   }
 
   main {

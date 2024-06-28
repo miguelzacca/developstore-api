@@ -25,6 +25,10 @@ class Utils {
     name: z.string().min(3).max(100),
   });
 
+  private _changePasswdSchema = z.object({
+    passwd: z.string().min(3).max(100),
+  });
+
   private _objectKey = (obj: IObjKey) => {
     const key = Object.keys(obj)[0];
     return {
@@ -38,6 +42,7 @@ class Utils {
       const handleSchema: IZodHandleSchema = {
         register: this._registerSchema,
         patch: this._patchSchema,
+        changePasswd: this._changePasswdSchema,
       };
       return handleSchema[schema].parse(input);
     } catch (err) {

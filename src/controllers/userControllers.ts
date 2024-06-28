@@ -78,9 +78,12 @@ class UserControllers {
   };
 
   public changePasswd: IController = async (req, res) => {
-    const { email, passwd } = req.body;
-
+    const token = req.cookies?.token;
+    
     try {
+      const email = utils.jwtVerify(token, "email");
+      const { passwd } = utils.validateInput(req.body, "changePasswd");
+
       let user = await utils.findUserByField({ email });
 
       if (!user) {

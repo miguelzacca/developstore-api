@@ -248,7 +248,7 @@ form p a:hover {
   top: 3rem;
   right: 3rem;
   background-color: #fff;
-  z-index: 3;
+  z-index: 99;
   border-left: 0.3rem solid #ff4343;
   border-radius: 0.5rem;
   padding: 2rem 4rem;
@@ -257,6 +257,7 @@ form p a:hover {
   color: var(--black);
   transform: translateY(-100%);
   opacity: 0;
+  max-width: 40rem;
 }
 
 .msg-anime {
@@ -275,9 +276,11 @@ form p a:hover {
   position: absolute;
   bottom: 3rem;
   right: 3rem;
+  z-index: 99;
   padding: 1rem 2rem;
   background-color: #5f5;
   border: 0.2rem solid transparent;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   transition: all 0.25s;
   color: #fff;
   font-size: 1.6rem;
@@ -286,7 +289,7 @@ form p a:hover {
 
 #handleAuthPage:hover {
   border-color: #5f5;
-  background-color: transparent;
+  background-color: #fff;
   color: #5f5;
 }
 
@@ -297,5 +300,10 @@ form p a:hover {
 
   body {
     padding: 0 2rem;
+  }
+
+  #msg {
+    max-width: 75%;
+    padding: 1.5rem;
   }
 }
