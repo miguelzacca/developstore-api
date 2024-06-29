@@ -119,7 +119,7 @@ class AuthControllers {
       const userExists = await utils.findUserByField({ email });
 
       if (!userExists) {
-        res.status(404).json({ msg: config.userMsg.notFound });
+        return res.status(404).json({ msg: config.userMsg.notFound });
       }
 
       const recoveryToken = jwt.sign({ email }, config.env.SECRET, {

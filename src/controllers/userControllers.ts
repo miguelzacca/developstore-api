@@ -6,14 +6,10 @@ import utils from "../utils.js";
 
 class UserControllers {
   public getUser: IController = async (req, res) => {
-    const token = req.cookies.token;
+    const token = req.cookies?.token;
 
     try {
       const id = utils.jwtVerify(token, "id");
-
-      if (token && !id) {
-        return res.status(401).json({ msg: config.serverMsg.invalidToken });
-      }
 
       const user = await utils.findUserByField({ id }, true);
 
@@ -28,7 +24,7 @@ class UserControllers {
   };
 
   public patchUser: IController = async (req, res) => {
-    const token = req.cookies.token;
+    const token = req.cookies?.token;
 
     try {
       const id = utils.jwtVerify(token, "id");
@@ -36,17 +32,13 @@ class UserControllers {
       const sanitizedInput = utils.sanitizeInput(req.body);
       const input: IObjKey = utils.validateInput(sanitizedInput, "patch");
 
-      console.log(req.body);
-
       let user = await utils.findUserByField({ id });
 
       if (!user) {
         return res.status(404).json({ msg: config.userMsg.notFound });
       }
 
-      for (const key in input) {
-        user = await utils.updateUserField(user, { [key]: input[key] });
-      }
+      user = await utils.updateUserField(user, input);
 
       await user.save();
 
@@ -57,10 +49,11 @@ class UserControllers {
   };
 
   public deleteUser: IController = async (req, res) => {
-    const token = req.cookies.token;
-    const id = utils.jwtVerify(token, "id");
+    const token = req.cookies?.token;
 
     try {
+      const id = utils.jwtVerify(token, "id");
+
       const user = await utils.findUserByField({ id });
 
       if (!user) {
@@ -79,7 +72,7 @@ class UserControllers {
 
   public changePasswd: IController = async (req, res) => {
     const token = req.cookies?.token;
-    
+
     try {
       const email = utils.jwtVerify(token, "email");
       const { passwd } = utils.validateInput(req.body, "changePasswd");

@@ -9,10 +9,6 @@ interface IUserModel extends Model {
   [key: string]: any;
 }
 
-export interface IEnv {
-  [key: string]: any;
-}
-
 export interface IZodHandleSchema {
   [key: string]: Schema;
 }

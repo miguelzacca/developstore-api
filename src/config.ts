@@ -2,20 +2,18 @@
 
 import { config } from "dotenv";
 import nodemailer from "nodemailer";
-import { IEnv } from "./types/global";
+import utils from "./utils.js";
 
 config();
 
 class Config {
-  public env: IEnv = {
-    NODE_ENV: process.env.NODE_ENV,
-    PORT: Number(process.env.PORT),
-    HOST: process.env.HOST,
-    SMTP_USER: process.env.SMTP_USER,
-    SMTP_PASS: process.env.SMTP_PASS,
-    AUTH_DURATION_DAYS: Number(process.env.AUTH_DURATION_DAYS),
-    SECRET: process.env.SECRET,
-  };
+  public get env() {
+    try {
+      return utils.validateInput(process.env, "env");
+    } catch (err: any) {
+      throw new Error(err.zod);
+    }
+  }
 
   public transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",

@@ -2,7 +2,7 @@
   "name": "developstore",
   "version": "latest",
   "description": "Node.js authentication with Sequelize and MySQL.",
-  "main": "src/app.js",
+  "main": "dist/app.js",
   "type": "module",
   "scripts": {
     "build:ts": "npx tsc",

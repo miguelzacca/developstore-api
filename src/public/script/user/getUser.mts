@@ -9,5 +9,7 @@ fetch(`${config.baseURL}/api/user`, {
     if (!res.ok) {
       location.href = "/login";
     }
+    const main = document.querySelector("main") as HTMLElement;
+    main.textContent = "SUCCESS";
   })
   .catch((err) => console.error(err));
