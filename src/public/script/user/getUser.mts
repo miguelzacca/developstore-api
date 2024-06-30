@@ -7,7 +7,7 @@ fetch(`${config.baseURL}/api/user`, {
 })
   .then((res) => {
     if (!res.ok) {
-      location.href = "/login";
+      return location.href = "/login";
     }
     const main = document.querySelector("main") as HTMLElement;
     main.textContent = "SUCCESS";

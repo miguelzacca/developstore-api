@@ -1,7 +1,6 @@
 "use strict";
 
 import { Request, Response, NextFunction } from "express";
-import { Secret } from "jsonwebtoken";
 import { Model, FindAttributeOptions } from "sequelize";
 import { Schema, ZodError } from "zod";
 

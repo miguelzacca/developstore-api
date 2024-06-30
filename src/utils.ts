@@ -44,7 +44,7 @@ class Utils {
     };
   };
 
-  public handleZodError = (err: any) => {
+  private _handleZodError = (err: any) => {
     const __dir = err.issues[0];
     return `${__dir.path}: ${__dir.message}`;
   };
@@ -59,7 +59,7 @@ class Utils {
       };
       return handleSchema[schema].parse(input);
     } catch (err) {
-      throw { zod: this.handleZodError(err) };
+      throw { zod: this._handleZodError(err) };
     }
   };
 

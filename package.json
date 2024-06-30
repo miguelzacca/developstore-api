@@ -6,11 +6,12 @@
   "type": "module",
   "scripts": {
     "build:ts": "npx tsc",
-    "copy:public:bash": "cp -r ./src/public/images ./dist/public && cp -r ./src/public/css ./dist/public",
-    "copy:public:cmd": "xcopy /E /I ./src/public/images ./dist/public && xcopy /E /I ./src/public/css ./dist/public",
-    "copy:public": "copyfiles -u 2 './src/public/**/!(*.mts|*.ts)' ./dist/public",
+    "copy:img": "copyfiles -u 2 './src/public/images' ./dist/public/images",
     "start": "node dist/app.js",
-    "build": "npm run build:ts && npm run copy:public"
+    "build:start": "npm run build && npm start",
+    "public:start": "npm run build:public && npm start",
+    "build:public": "sass --no-source-map --style compressed ./src/public/styles:./dist/public/styles && npm run copy:img",
+    "build": "npm run build:ts && npm run build:public"
   },
   "author": "Miguel Zacca",
   "license": "CC-BY-NC-4.0",
@@ -39,6 +40,7 @@
     "@types/nodemailer": "^6.4.15",
     "@types/sequelize": "^4.28.20",
     "copyfiles": "^2.4.1",
+    "sass": "^1.77.6",
     "typescript": "^5.4.5"
   },
   "repository": {

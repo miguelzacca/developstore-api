@@ -31,7 +31,7 @@ class AuthControllers {
       }
 
       user["verifiedEmail"] = true;
-      await user.save();
+      user.save();
 
       res.status(200).redirect(`${config.env.HOST}/login`);
     } catch (err) {

@@ -20,7 +20,13 @@ const login = () => {
     .then((res) =>
       res
         .json()
-        .then((data) => utils.handleMsg(data))
+        .then(async (data) => {
+          utils.handleMsg(data);
+          if (res.ok) {
+            await utils.wait(1000);
+            location.href = "/account";
+          }
+        })
         .catch((err) => console.error(err))
     )
     .catch((err) => console.error(err));

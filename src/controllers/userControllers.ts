@@ -17,7 +17,7 @@ class UserControllers {
         return res.status(404).json({ msg: config.userMsg.notFound });
       }
 
-      res.status(200).json({ user });
+      res.status(200).json(user);
     } catch (err) {
       utils.handleError(res, err);
     }
@@ -40,7 +40,7 @@ class UserControllers {
 
       user = await utils.updateUserField(user, input);
 
-      await user.save();
+      user.save();
 
       res.status(200).json({ msg: config.userMsg.updated });
     } catch (err) {
@@ -85,7 +85,7 @@ class UserControllers {
 
       user = await utils.updateUserField(user, { passwd });
 
-      await user.save();
+      user.save();
 
       res.status(200).json({ msg: config.userMsg.updated });
     } catch (err) {

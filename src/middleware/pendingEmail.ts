@@ -13,7 +13,7 @@ export const pendingEmail: IMiddleware = async (req, res, next) => {
 
     const user = await utils.findUserByField({ email });
 
-    if (user && !user["verifiedEmail"]) {
+    if (!user["verifiedEmail"]) {
       return next();
     }
 

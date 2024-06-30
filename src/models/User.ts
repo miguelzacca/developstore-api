@@ -1,36 +1,36 @@
 "use strict";
 
-import { DataTypes } from "sequelize";
+import { UUID, UUIDV4, STRING, BOOLEAN } from "sequelize";
 import db from "../db/sequelize.js";
 
 const User = db.define(
   "User",
   {
     id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
+      type: UUID,
+      defaultValue: UUIDV4,
       primaryKey: true,
     },
 
     name: {
-      type: DataTypes.STRING(100),
+      type: STRING(100),
       allowNull: false,
     },
 
     email: {
-      type: DataTypes.STRING(100),
+      type: STRING(100),
       unique: true,
       allowNull: false,
     },
 
     verifiedEmail: {
-      type: DataTypes.BOOLEAN,
+      type: BOOLEAN,
       defaultValue: false,
       allowNull: false,
     },
 
     passwd: {
-      type: DataTypes.STRING,
+      type: STRING,
       allowNull: false,
     },
   },
