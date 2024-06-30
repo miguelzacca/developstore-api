@@ -96,6 +96,17 @@ main {
         background-color: transparent;
       }
     }
+
+    a.disable {
+      border-color: #aaa;
+      background-color: #aaa;
+      color: #fff;
+
+      &:hover {
+        color: #aaa;
+        background-color: transparent;
+      }
+    }
   }
 
   #timer {
