@@ -188,9 +188,6 @@ main {
         flex-direction: column;
         position: relative;
         scroll-snap-align: center;
-        animation: 0.5s ease-out forwards intro-li;
-        animation-delay: calc(0.15s * var(--i));
-        transform: translateY(100%);
 
         picture {
           background-color: var(--light-gray);
@@ -313,6 +310,12 @@ main {
         }
       }
     }
+  }
+
+  #recommended-products ul li {
+    animation: 0.5s ease-out forwards intro-li;
+    animation-delay: calc(0.15s * var(--i));
+    transform: translateY(100%);
   }
 }
 
