@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "build:ts": "npx tsc",
-    "copy:img": "copyfiles -u 2 './src/public/images' ./dist/public/images",
+    "copy:img": "copyfiles -u 2 './src/public/images/*.webp' ./dist/public",
     "start": "node dist/app.js",
     "build:start": "npm run build && npm start",
     "public:start": "npm run build:public && npm start",
