@@ -1,5 +1,3 @@
-"use strict";
-
 import { Router } from "express";
 import user from "../controllers/userControllers.js";
 import { checkToken } from "../middleware/checkToken.js";

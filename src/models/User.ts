@@ -1,5 +1,3 @@
-"use strict";
-
 import { UUID, UUIDV4, STRING, BOOLEAN } from "sequelize";
 import db from "../db/sequelize.js";
 

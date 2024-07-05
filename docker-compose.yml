@@ -1,4 +1,5 @@
 version: '3.8'
+
 services:
   app:
     build:
@@ -8,12 +9,6 @@ services:
       - ./.data:/app/.data
     ports:
       - "${PORT}:${PORT}"
-    environment:
-      NODE_ENV: ${NODE_ENV}
-      PORT: ${PORT}
-      HOST: ${HOST}
-      SMTP_USER: ${SMTP_USER}
-      SMTP_PASS: ${SMTP_PASS}
-      AUTH_DURATION_DAYS: ${AUTH_DURATION_DAYS}
-      SECRET: ${SECRET}
-    command: npm start
+    env_file:
+      - .env
+    command: ["npm", "start"]

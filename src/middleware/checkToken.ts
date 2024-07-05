@@ -1,5 +1,3 @@
-"use strict";
-
 import config from "../config.js";
 import { IMiddleware } from "../types/global.js";
 import utils from "../utils.js";

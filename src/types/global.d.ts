@@ -1,5 +1,3 @@
-"use strict";
-
 import { Request, Response, NextFunction } from "express";
 import { Model, FindAttributeOptions } from "sequelize";
 import { Schema, ZodError } from "zod";
@@ -22,10 +20,6 @@ export interface IObjKey {
 
 export interface IMiddleware {
   (req: Request, res: Response, next: NextFunction): void;
-}
-
-export interface IObjFromFormData {
-  [key: string]: FormDataEntryValue;
 }
 
 export type FindAttributes = FindAttributeOptions | undefined;

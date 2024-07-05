@@ -1,5 +1,3 @@
-"use strict";
-
 import bcrypt from "bcrypt";
 import { z } from "zod";
 import jwt, { JwtPayload } from "jsonwebtoken";

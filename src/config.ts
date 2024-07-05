@@ -1,5 +1,3 @@
-"use strict";
-
 import { config } from "dotenv";
 import nodemailer from "nodemailer";
 import utils from "./utils.js";
@@ -9,7 +7,7 @@ config();
 class Config {
   public get env() {
     try {
-      return utils.validateInput(process.env, "env");
+      return utils.validateInput(process.env, "en");
     } catch (err: any) {
       throw new Error(err.zod);
     }

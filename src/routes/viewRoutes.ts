@@ -1,5 +1,3 @@
-"use strict";
-
 import { Router } from "express";
 import view from "../controllers/viewControllers.js";
 import { pendingEmail } from "../middleware/pendingEmail.js";

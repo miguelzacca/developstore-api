@@ -1,5 +1,3 @@
-"use strict";
-
 import { Op } from "sequelize";
 import User from "../models/User.js";
 

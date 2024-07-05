@@ -1,6 +1,4 @@
-*.md
-LICENSE
-.env*
-.git*
-dist
 node_modules
+.env
+.data
+dist

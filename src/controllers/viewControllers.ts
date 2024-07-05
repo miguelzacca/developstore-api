@@ -1,5 +1,3 @@
-"use strict";
-
 import config from "../config.js";
 import { IController } from "../types/global";
 

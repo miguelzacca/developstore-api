@@ -1,17 +1,13 @@
 {
-  "name": "developstore",
+  "name": "developstore-api",
   "version": "latest",
-  "description": "Node.js authentication with Sequelize and MySQL.",
+  "description": "Develop Store API.",
   "main": "dist/app.js",
   "type": "module",
   "scripts": {
-    "build:ts": "npx tsc",
-    "copy:img": "copyfiles -u 2 './src/public/images/*.webp' ./dist/public",
+    "build": "npx tsc",
     "start": "node dist/app.js",
-    "build:start": "npm run build && npm start",
-    "public:start": "npm run build:public && npm start",
-    "build:public": "sass --no-source-map --style compressed ./src/public/styles:./dist/public/styles && npm run copy:img",
-    "build": "npm run build:ts && npm run build:public"
+    "dev": "tsx watch ."
   },
   "author": "Miguel Zacca",
   "license": "CC-BY-NC-4.0",
@@ -20,7 +16,6 @@
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
-    "ejs": "^3.1.10",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
     "node-cron": "^3.0.3",
