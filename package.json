@@ -7,6 +7,7 @@
   "scripts": {
     "build": "npx tsc",
     "start": "node dist/app.js",
+    "b:s": "npm run build && npm start",
     "dev": "tsx watch ."
   },
   "author": "Miguel Zacca",

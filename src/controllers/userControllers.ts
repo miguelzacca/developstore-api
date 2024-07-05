@@ -4,7 +4,7 @@ import utils from "../utils.js";
 
 class UserControllers {
   public getUser: IController = async (req, res) => {
-    const token = req.cookies?.token;
+    const { token } = req.cookies;
 
     try {
       const id = utils.jwtVerify(token, "id");
@@ -22,7 +22,7 @@ class UserControllers {
   };
 
   public patchUser: IController = async (req, res) => {
-    const token = req.cookies?.token;
+    const { token } = req.cookies;
 
     try {
       const id = utils.jwtVerify(token, "id");
@@ -47,7 +47,7 @@ class UserControllers {
   };
 
   public deleteUser: IController = async (req, res) => {
-    const token = req.cookies?.token;
+    const { token } = req.cookies;
 
     try {
       const id = utils.jwtVerify(token, "id");
@@ -69,7 +69,7 @@ class UserControllers {
   };
 
   public changePasswd: IController = async (req, res) => {
-    const token = req.cookies?.token;
+    const { token } = req.cookies;
 
     try {
       const email = utils.jwtVerify(token, "email");

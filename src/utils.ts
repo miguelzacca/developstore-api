@@ -27,7 +27,8 @@ class Utils {
   private _envSchema = z.object({
     NODE_ENV: z.enum(["production", "development"]),
     PORT: z.coerce.number().min(3000),
-    HOST: z.string().url(),
+    ORIGIN_HOST: z.string().url(),
+    API_HOST: z.string().url(),
     SMTP_USER: z.string().email(),
     SMTP_PASS: z.string().length(19),
     AUTH_DURATION_DAYS: z.coerce.number().min(1),

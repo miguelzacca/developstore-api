@@ -11,4 +11,6 @@ router.post("/login", auth.login);
 
 router.get("/passwd-recovery/:email", auth.passwdRecovery);
 
+router.get("/token-validator/:token", auth.tokenValidator);
+
 export default router;

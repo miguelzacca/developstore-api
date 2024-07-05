@@ -23,15 +23,13 @@ class AuthControllers {
       }
 
       if (user["verifiedEmail"]) {
-        return res
-          .status(400)
-          .json({ msg: config.authMsg.emailAlreadyVerified });
+        return res.redirect(`${config.env.ORIGIN_HOST}/login`)
       }
 
       user["verifiedEmail"] = true;
       user.save();
 
-      res.status(200).redirect(`${config.env.HOST}/login`);
+      res.status(200).redirect(`${config.env.ORIGIN_HOST}/login`);
     } catch (err) {
       utils.handleError(res, err);
     }
@@ -62,7 +60,7 @@ class AuthControllers {
         expiresIn: "1h",
       });
 
-      const verifyLink = `${config.env.HOST}/api/auth/email-verify/${emailToken}`;
+      const verifyLink = `${config.env.API_HOST}/auth/email-verify/${emailToken}`;
 
       utils.sendEmail({
         to: email,
@@ -124,7 +122,7 @@ class AuthControllers {
         expiresIn: "1h",
       });
 
-      const recoveryLink = `${config.env.HOST}/change-passwd/${recoveryToken}`;
+      const recoveryLink = `${config.env.ORIGIN_HOST}/passwd-change/${recoveryToken}`;
 
       utils.sendEmail({
         to: email,
@@ -135,6 +133,27 @@ class AuthControllers {
       res.status(200).json({ msg: config.authMsg.recoveryEmail });
     } catch (err) {
       utils.handleError(res, err);
+    }
+  };
+
+  public tokenValidator: IController = (req, res) => {
+    const { token } = req.params;
+    const { setCookie } = req.query;
+
+    if (!token) {
+      return res.status(403).json({ msg: config.serverMsg.denied });
+    }
+
+    try {
+      utils.jwtVerify(token);
+
+      if (Boolean(setCookie)) {
+        res.cookie("token", token, config.cookie);
+      }
+
+      res.sendStatus(200);
+    } catch (err) {
+      res.status(401).json({ msg: config.serverMsg.invalidToken });
     }
   };
 }

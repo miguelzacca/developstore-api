@@ -7,7 +7,7 @@ config();
 class Config {
   public get env() {
     try {
-      return utils.validateInput(process.env, "en");
+      return utils.validateInput(process.env, "env");
     } catch (err: any) {
       throw new Error(err.zod);
     }
@@ -24,7 +24,7 @@ class Config {
   });
 
   public cors = {
-    origin: [this.env.HOST],
+    origin: [this.env.ORIGIN_HOST, this.env.API_HOST],
     methods: ["GET", "POST", "PATCH", "DELETE"],
     credentials: true,
   };
@@ -41,7 +41,6 @@ class Config {
     incorrect: "Incorrect password.",
     emailExists: "This email already exists.",
     noEmailToken: "No email token provided.",
-    emailAlreadyVerified: "Email already verified.",
     noVerifiedEmail: "No email verified.",
     recoveryEmail: "Recovery email successfully send.",
   };
