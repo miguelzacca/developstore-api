@@ -1,13 +1,17 @@
 import config from "../config.js";
-import { IObjKey, IController } from "../types/global.js";
+import { ObjKey, Controller } from "../types/global.js";
 import utils from "../utils.js";
 
 class UserControllers {
-  public getUser: IController = async (req, res) => {
+  public getUser: Controller = async (req, res) => {
     const { token } = req.cookies;
 
     try {
       const id = utils.jwtVerify(token, "id");
+
+      if (!id) {
+        throw { status: 401, msg: config.serverMsg.invalidToken };
+      }
 
       const user = await utils.findUserByField({ id }, true);
 
@@ -21,14 +25,14 @@ class UserControllers {
     }
   };
 
-  public patchUser: IController = async (req, res) => {
+  public patchUser: Controller = async (req, res) => {
     const { token } = req.cookies;
 
     try {
       const id = utils.jwtVerify(token, "id");
 
       const sanitizedInput = utils.sanitizeInput(req.body);
-      const input: IObjKey = utils.validateInput(sanitizedInput, "patch");
+      const input: ObjKey = utils.validateInput(sanitizedInput, "patch");
 
       let user = await utils.findUserByField({ id });
 
@@ -46,7 +50,7 @@ class UserControllers {
     }
   };
 
-  public deleteUser: IController = async (req, res) => {
+  public deleteUser: Controller = async (req, res) => {
     const { token } = req.cookies;
 
     try {
@@ -68,7 +72,7 @@ class UserControllers {
     }
   };
 
-  public changePasswd: IController = async (req, res) => {
+  public changePasswd: Controller = async (req, res) => {
     const { token } = req.cookies;
 
     try {

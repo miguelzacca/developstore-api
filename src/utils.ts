@@ -6,9 +6,9 @@ import User from "./models/User.js";
 import config from "./config.js";
 import {
   FindAttributes,
-  IObjKey,
-  IUserModel,
-  IZodHandleSchema,
+  ObjKey,
+  UserModel,
+  ZodHandleSchema,
 } from "./types/global";
 import { Response } from "express";
 
@@ -35,7 +35,7 @@ class Utils {
     SECRET: z.string().min(64),
   });
 
-  private _objectKey = (obj: IObjKey) => {
+  private _objectKey = (obj: ObjKey) => {
     const key = Object.keys(obj)[0];
     return {
       key,
@@ -50,7 +50,7 @@ class Utils {
 
   public validateInput = (input: object, schema: string) => {
     try {
-      const handleSchema: IZodHandleSchema = {
+      const handleSchema: ZodHandleSchema = {
         register: this._registerSchema,
         patch: this._patchSchema,
         changePasswd: this._changePasswdSchema,
@@ -62,7 +62,7 @@ class Utils {
     }
   };
 
-  public findUserByField = async (field: IObjKey, restrict = false) => {
+  public findUserByField = async (field: ObjKey, restrict = false) => {
     const { key, value } = this._objectKey(field);
 
     let attributes: FindAttributes = undefined;
@@ -73,20 +73,20 @@ class Utils {
     const user = (await User.findOne({
       where: { [key]: value },
       attributes,
-    })) as IUserModel;
+    })) as UserModel;
 
     return user;
   };
 
-  public sanitizeInput = (input: IObjKey) => {
-    const sanitizedData: IObjKey = {};
+  public sanitizeInput = (input: ObjKey) => {
+    const sanitizedData: ObjKey = {};
     for (const key of Object.keys(input)) {
       sanitizedData[key] = xss(input[key]);
     }
     return sanitizedData;
   };
 
-  public updateUserField = async (user: IUserModel, fields: IObjKey) => {
+  public updateUserField = async (user: UserModel, fields: ObjKey) => {
     for (const key in fields) {
       if (key !== "passwd") {
         user[key] = fields[key];
@@ -122,7 +122,7 @@ class Utils {
     res.status(500).json({ msg: config.serverMsg.err });
   };
 
-  public sendEmail = async ({ to, subject, link }: IObjKey) => {
+  public sendEmail = async ({ to, subject, link }: ObjKey) => {
     await config.transporter.sendMail({
       from: "Develop Store",
       to,

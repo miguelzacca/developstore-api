@@ -3,10 +3,10 @@ import jwt from "jsonwebtoken";
 import User from "../models/User.js";
 import config from "../config.js";
 import utils from "../utils.js";
-import { IObjKey, IController } from "../types/global.js";
+import { ObjKey, Controller } from "../types/global.js";
 
 class AuthControllers {
-  public emailVerify: IController = async (req, res) => {
+  public emailVerify: Controller = async (req, res) => {
     const emailToken = req.params?.token;
 
     if (!emailToken) {
@@ -23,7 +23,7 @@ class AuthControllers {
       }
 
       if (user["verifiedEmail"]) {
-        return res.redirect(`${config.env.ORIGIN_HOST}/login`)
+        return res.redirect(`${config.env.ORIGIN_HOST}/login`);
       }
 
       user["verifiedEmail"] = true;
@@ -35,10 +35,10 @@ class AuthControllers {
     }
   };
 
-  public register: IController = async (req, res) => {
+  public register: Controller = async (req, res) => {
     try {
       const sanitizedInput = utils.sanitizeInput(req.body);
-      const input: IObjKey = utils.validateInput(sanitizedInput, "register");
+      const input: ObjKey = utils.validateInput(sanitizedInput, "register");
       const { name, email, passwd } = input;
 
       const emailExists = await utils.findUserByField({ email });
@@ -74,10 +74,10 @@ class AuthControllers {
     }
   };
 
-  public login: IController = async (req, res) => {
+  public login: Controller = async (req, res) => {
     try {
       const sanitizedInput = utils.sanitizeInput(req.body);
-      const input: IObjKey = sanitizedInput;
+      const input: ObjKey = sanitizedInput;
       const { email, passwd } = input;
 
       const user = await utils.findUserByField({ email });
@@ -108,8 +108,8 @@ class AuthControllers {
     }
   };
 
-  public passwdRecovery: IController = async (req, res) => {
-    const email = req.params?.email;
+  public passwdRecovery: Controller = async (req, res) => {
+    const { email } = req.params;
 
     try {
       const userExists = await utils.findUserByField({ email });
@@ -136,25 +136,15 @@ class AuthControllers {
     }
   };
 
-  public tokenValidator: IController = (req, res) => {
+  public tokenValidator: Controller = (req, res) => {
     const { token } = req.params;
     const { setCookie } = req.query;
 
-    if (!token) {
-      return res.status(403).json({ msg: config.serverMsg.denied });
+    if (setCookie) {
+      res.cookie("token", token, config.cookie);
     }
 
-    try {
-      utils.jwtVerify(token);
-
-      if (Boolean(setCookie)) {
-        res.cookie("token", token, config.cookie);
-      }
-
-      res.sendStatus(200);
-    } catch (err) {
-      res.status(401).json({ msg: config.serverMsg.invalidToken });
-    }
+    res.sendStatus(200);
   };
 }
 

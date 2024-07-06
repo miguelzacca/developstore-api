@@ -1,9 +1,9 @@
 import config from "../config.js";
-import { IMiddleware } from "../types/global.js";
+import { Middleware } from "../types/global.js";
 import utils from "../utils.js";
 
-export const checkToken: IMiddleware = (req, res, next) => {
-  const token = req.cookies?.token || req.params?.token;
+export const checkToken: Middleware = (req, res, next) => {
+  const token = req.params?.token || req.cookies?.token;
 
   if (!token) {
     return res.status(403).json({ msg: config.serverMsg.denied });

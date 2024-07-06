@@ -8,7 +8,8 @@
     "build": "npx tsc",
     "start": "node dist/app.js",
     "b:s": "npm run build && npm start",
-    "dev": "tsx watch ."
+    "dev": "tsx watch .",
+    "lint": "npx eslint ."
   },
   "author": "Miguel Zacca",
   "license": "CC-BY-NC-4.0",
@@ -27,17 +28,21 @@
     "zod": "^3.23.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.6.0",
     "@types/bcrypt": "^5.0.2",
     "@types/cookie-parser": "^1.4.7",
     "@types/cors": "^2.8.17",
+    "@types/eslint__js": "^8.42.3",
     "@types/express": "^4.17.21",
     "@types/jsonwebtoken": "^9.0.6",
     "@types/node-cron": "^3.0.11",
     "@types/nodemailer": "^6.4.15",
     "@types/sequelize": "^4.28.20",
     "copyfiles": "^2.4.1",
+    "eslint": "^8.57.0",
     "sass": "^1.77.6",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "typescript-eslint": "^7.15.0"
   },
   "repository": {
     "type": "git",
