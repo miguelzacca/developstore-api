@@ -5,10 +5,9 @@
   "main": "dist/app.js",
   "type": "module",
   "scripts": {
-    "build": "npx tsc",
-    "start": "node dist/app.js",
-    "b:s": "npm run build && npm start",
-    "dev": "tsx watch .",
+    "build": "swc src -d dist --config-file swc.config.json",
+    "start": "node dist/src/app.js",
+    "dev": "swc src -d dist --config-file swc.config.json --watch & node --watch dist/src/app.js",
     "lint": "npx eslint ."
   },
   "author": "Miguel Zacca",
@@ -29,6 +28,8 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.6.0",
+    "@swc/cli": "^0.4.0",
+    "@swc/core": "^1.6.13",
     "@types/bcrypt": "^5.0.2",
     "@types/cookie-parser": "^1.4.7",
     "@types/cors": "^2.8.17",
