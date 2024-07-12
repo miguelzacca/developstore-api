@@ -1,5 +1,5 @@
 import { config } from '../config.js'
-import { ObjKey, Controller } from '../types/global.js'
+import { Controller } from '../types/global.js'
 import { utils } from '../utils.js'
 
 class UserControllers {
@@ -32,7 +32,7 @@ class UserControllers {
       const id = utils.jwtVerify(token, 'id')
 
       const sanitizedInput = utils.sanitizeInput(req.body)
-      const input: ObjKey = utils.validateInput(sanitizedInput, 'patch')
+      const input = utils.validateInput(sanitizedInput, 'patch')
 
       let user = await utils.findUserByField({ id })
 

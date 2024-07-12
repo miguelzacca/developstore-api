@@ -1,9 +1,9 @@
 import * as bcrypt from 'bcrypt'
-import * as jwt from 'jsonwebtoken'
+import jwt from 'jsonwebtoken'
 import { User } from '../models/User.js'
 import { config } from '../config.js'
 import { utils } from '../utils.js'
-import { ObjKey, Controller } from '../types/global.js'
+import { Controller } from '../types/global.js'
 
 class AuthControllers {
   public emailVerify: Controller = async (req, res) => {
@@ -38,8 +38,10 @@ class AuthControllers {
   public register: Controller = async (req, res) => {
     try {
       const sanitizedInput = utils.sanitizeInput(req.body)
-      const input: ObjKey = utils.validateInput(sanitizedInput, 'register')
-      const { name, email, passwd } = input
+      const { name, email, passwd } = utils.validateInput(
+        sanitizedInput,
+        'register'
+      )
 
       const emailExists = await utils.findUserByField({ email })
 
@@ -76,9 +78,7 @@ class AuthControllers {
 
   public login: Controller = async (req, res) => {
     try {
-      const sanitizedInput = utils.sanitizeInput(req.body)
-      const input: ObjKey = sanitizedInput
-      const { email, passwd } = input
+      const { email, passwd } = utils.sanitizeInput(req.body)
 
       const user = await utils.findUserByField({ email })
 
