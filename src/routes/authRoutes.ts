@@ -1,17 +1,17 @@
-import { Router } from "express";
-import auth from "../controllers/authControllers.js";
-import { checkToken } from "../middleware/checkToken.js";
+import { Router } from 'express'
+import { authControllers as auth } from '../controllers/authControllers.js'
+import { checkToken } from '../middleware/checkToken.js'
 
-const router = Router();
+const router = Router()
 
-router.get("/email-verify/:token", auth.emailVerify);
+router.get('/email-verify/:token', auth.emailVerify)
 
-router.post("/register", auth.register);
+router.post('/register', auth.register)
 
-router.post("/login", auth.login);
+router.post('/login', auth.login)
 
-router.get("/passwd-recovery/:email", auth.passwdRecovery);
+router.get('/passwd-recovery/:email', auth.passwdRecovery)
 
-router.get("/token-validator/:token", checkToken, auth.tokenValidator);
+router.get('/token-validator/:token', checkToken, auth.tokenValidator)
 
-export default router;
+export const authRoutes = router

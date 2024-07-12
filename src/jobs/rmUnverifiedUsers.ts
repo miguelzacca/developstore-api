@@ -1,19 +1,19 @@
-import { Op } from "sequelize";
-import User from "../models/User.js";
+import { Op } from 'sequelize'
+import { User } from '../models/User.js'
 
-export const rmUnverifiedUsers = () => {
+export const rmUnverifiedUsers = async () => {
   try {
-    const paramDate = new Date(Date.now() - 1 * 60 * 60 * 1000);
+    const paramDate = new Date(Date.now() - 1 * 60 * 60 * 1000)
 
-    User.destroy({
+    await User.destroy({
       where: {
         verifiedEmail: false,
         createdAt: {
           [Op.lt]: paramDate,
         },
       },
-    });
+    })
   } catch (err) {
-    console.error(err);
+    console.error(err)
   }
-};
+}

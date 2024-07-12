@@ -1,8 +1,8 @@
-import { UUID, UUIDV4, STRING, BOOLEAN } from "sequelize";
-import db from "../db/sequelize.js";
+import { UUID, UUIDV4, STRING, BOOLEAN } from 'sequelize'
+import { db } from '../db/sequelize.js'
 
 const User = db.define(
-  "User",
+  'User',
   {
     id: {
       type: UUID,
@@ -35,6 +35,6 @@ const User = db.define(
   {
     updatedAt: false,
   }
-);
+)
 
-export default User;
+export { User }

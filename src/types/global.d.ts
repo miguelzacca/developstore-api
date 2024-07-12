@@ -1,19 +1,19 @@
-import { Request, Response, NextFunction } from "express";
-import { Model, FindAttributeOptions } from "sequelize";
-import { Schema } from "zod";
+import { Request, Response, NextFunction } from 'express'
+import { Model, FindAttributeOptions } from 'sequelize'
+import { Schema } from 'zod'
 
-export type UserModel = Model & Record<string, any>;
+export type UserModel = Model & Record<string, any>
 
-export type ZodHandleSchema = Record<string, Schema>;
+export type ZodHandleSchema = Record<string, Schema>
 
-export type Controller = (req: Request, res: Response) => void;
+export type Controller = (req: Request, res: Response) => void
 
-export type ObjKey = Record<string, string>;
+export type ObjKey = Record<string, string>
 
-export type FindAttributes = FindAttributeOptions | undefined;
+export type FindAttributes = FindAttributeOptions | undefined
 
 export type Middleware = (
   req: Request,
   res: Response,
   next: NextFunction
-) => void;
+) => void

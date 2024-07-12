@@ -1,15 +1,15 @@
-import { Router } from "express";
-import user from "../controllers/userControllers.js";
-import { checkToken } from "../middleware/checkToken.js";
+import { Router } from 'express'
+import { userControllers as user } from '../controllers/userControllers.js'
+import { checkToken } from '../middleware/checkToken.js'
 
-const router = Router();
+const router = Router()
 
-router.get("/", checkToken, user.getUser);
+router.get('/', checkToken, user.getUser)
 
-router.patch("/update", checkToken, user.patchUser);
+router.patch('/update', checkToken, user.patchUser)
 
-router.delete("/delete", checkToken, user.deleteUser);
+router.delete('/delete', checkToken, user.deleteUser)
 
-router.patch("/change-passwd", checkToken, user.changePasswd);
+router.patch('/change-passwd', checkToken, user.changePasswd)
 
-export default router;
+export const userRoutes = router

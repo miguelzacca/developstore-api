@@ -5,10 +5,11 @@
   "main": "dist/app.js",
   "type": "module",
   "scripts": {
-    "build": "swc src -d dist --config-file swc.config.json",
+    "build:tsc": "tsc",
+    "build": "swc src -d dist --config-file .swcrc",
     "start": "node dist/src/app.js",
-    "dev": "swc src -d dist --config-file swc.config.json --watch & node --watch dist/src/app.js",
-    "lint": "npx eslint ."
+    "dev": "swc src -d dist --config-file .swcrc --watch & node --watch dist/src/app.js",
+    "lint": "eslint ."
   },
   "author": "Miguel Zacca",
   "license": "CC-BY-NC-4.0",
