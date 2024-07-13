@@ -9,24 +9,20 @@ const User = db.define(
       defaultValue: UUIDV4,
       primaryKey: true,
     },
-
     name: {
       type: STRING(100),
       allowNull: false,
     },
-
     email: {
       type: STRING(100),
       unique: true,
       allowNull: false,
     },
-
     verifiedEmail: {
       type: BOOLEAN,
       defaultValue: false,
       allowNull: false,
     },
-
     passwd: {
       type: STRING,
       allowNull: false,

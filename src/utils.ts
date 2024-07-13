@@ -7,24 +7,30 @@ import { config } from './config.js'
 import { Response } from 'express'
 import {
   FindAttributes,
-  ObjKey,
   UserModel,
   ZodHandleSchema,
+  ObjKey,
 } from './types/global'
 
+interface SendEmailProps {
+  to: string
+  subject: string
+  link: string
+}
+
 class Utils {
-  private _changePasswdSchema = z.object({
+  private changePasswdSchema = z.object({
     passwd: z.string().min(6).max(16),
   })
 
-  private _registerSchema = this._changePasswdSchema.extend({
+  private registerSchema = this.changePasswdSchema.extend({
     name: z.string().min(3).max(100),
     email: z.string().max(100).email(),
   })
 
-  private _patchSchema = this._registerSchema.partial()
+  private patchSchema = this.registerSchema.partial()
 
-  private _envSchema = z.object({
+  private envSchema = z.object({
     NODE_ENV: z.enum(['production', 'development']),
     PORT: z.coerce.number().min(3000),
     ORIGIN_HOST: z.string().url(),
@@ -35,7 +41,7 @@ class Utils {
     SECRET: z.string().min(64),
   })
 
-  private _objectKey = (obj: ObjKey) => {
+  private objectKey = (obj: ObjKey) => {
     const key = Object.keys(obj)[0]
     return {
       key,
@@ -43,27 +49,27 @@ class Utils {
     }
   }
 
-  private _handleZodError = (err: any) => {
-    const __dir = err.issues[0]
-    return `${__dir.path}: ${__dir.message}`
+  private handleZodError = (err: any) => {
+    const dir = err.issues[0]
+    return `${dir.path}: ${dir.message}`
   }
 
   public validateInput = (input: object, schema: string) => {
     try {
       const handleSchema: ZodHandleSchema = {
-        register: this._registerSchema,
-        patch: this._patchSchema,
-        changePasswd: this._changePasswdSchema,
-        env: this._envSchema,
+        register: this.registerSchema,
+        patch: this.patchSchema,
+        changePasswd: this.changePasswdSchema,
+        env: this.envSchema,
       }
       return handleSchema[schema].parse(input)
     } catch (err) {
-      throw { zod: this._handleZodError(err) }
+      throw { zod: this.handleZodError(err) }
     }
   }
 
   public findUserByField = async (field: ObjKey, restrict = false) => {
-    const { key, value } = this._objectKey(field)
+    const { key, value } = this.objectKey(field)
 
     let attributes: FindAttributes = undefined
     if (restrict) {
@@ -104,7 +110,7 @@ class Utils {
       const payload = jwt.verify(token, config.env.SECRET) as JwtPayload
       return payloadName && payload[payloadName]
     } catch (err) {
-      throw { status: 401, msg: config.serverMsg.invalidToken }
+      throw { custom: true, status: 401, msg: config.serverMsg.invalidToken }
     }
   }
 
@@ -113,7 +119,7 @@ class Utils {
       return res.status(422).json(err)
     }
 
-    if (err.status && err.msg) {
+    if (err.custom) {
       const { status, msg } = err
       return res.status(status).json({ msg })
     }
@@ -122,7 +128,7 @@ class Utils {
     res.status(500).json({ msg: config.serverMsg.err })
   }
 
-  public sendEmail = async ({ to, subject, link }: ObjKey) => {
+  public sendEmail = async ({ to, subject, link }: SendEmailProps) => {
     await config.transporter.sendMail({
       from: 'Develop Store',
       to,

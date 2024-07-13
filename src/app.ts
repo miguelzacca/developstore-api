@@ -7,8 +7,11 @@ import { authRoutes } from './routes/authRoutes.js'
 import { userRoutes } from './routes/userRoutes.js'
 import { db } from './db/sequelize.js'
 import { rmUnverifiedUsers } from './jobs/rmUnverifiedUsers.js'
+import { productsRoutes } from './routes/productRoutes.js'
 
 const app = express()
+
+app.use('/public', express.static('public'))
 
 app.use(cors(config.cors))
 app.use(express.json())
@@ -16,9 +19,10 @@ app.use(cookieParser())
 
 app.use('/auth', authRoutes)
 app.use('/user', userRoutes)
+app.use('/products', productsRoutes)
 
-cron.schedule('0 0 * * *', async () => {
-  await rmUnverifiedUsers()
+cron.schedule('0 0 * * *', () => {
+  rmUnverifiedUsers()
 })
 
 db.sync()

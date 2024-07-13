@@ -10,7 +10,7 @@ class UserControllers {
       const id = utils.jwtVerify(token, 'id')
 
       if (!id) {
-        throw { status: 401, msg: config.serverMsg.invalidToken }
+        throw { custom: true, status: 401, msg: config.serverMsg.invalidToken }
       }
 
       const user = await utils.findUserByField({ id }, true)

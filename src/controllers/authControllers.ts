@@ -64,7 +64,7 @@ class AuthControllers {
 
       const verifyLink = `${config.env.API_HOST}/auth/email-verify/${emailToken}`
 
-      await utils.sendEmail({
+      utils.sendEmail({
         to: email,
         subject: 'Email Verification Link',
         link: verifyLink,
@@ -124,7 +124,7 @@ class AuthControllers {
 
       const recoveryLink = `${config.env.ORIGIN_HOST}/passwd-change/${recoveryToken}`
 
-      await utils.sendEmail({
+      utils.sendEmail({
         to: email,
         subject: 'Password Recovery',
         link: recoveryLink,

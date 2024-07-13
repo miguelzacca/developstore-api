@@ -5,7 +5,7 @@ export const rmUnverifiedUsers = async () => {
   try {
     const paramDate = new Date(Date.now() - 1 * 60 * 60 * 1000)
 
-    await User.destroy({
+    User.destroy({
       where: {
         verifiedEmail: false,
         createdAt: {
