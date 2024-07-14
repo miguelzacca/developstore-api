@@ -1,10 +1,11 @@
-import { Controller } from '../types/global'
-import { products } from '../data/products.js'
+import { Controller, ProductModel } from '../types/global'
+import { Products } from '../models/Products.js'
 import { utils } from '../utils.js'
 
 class ProductControllers {
-  public getProducts: Controller = (req, res) => {
+  public getProducts: Controller = async (req, res) => {
     try {
+      const products: ProductModel[] = await Products.findAll()
       const { category } = req.query
 
       const data = category

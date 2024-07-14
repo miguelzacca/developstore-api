@@ -8,6 +8,7 @@ import { userRoutes } from './routes/userRoutes.js'
 import { db } from './db/sequelize.js'
 import { rmUnverifiedUsers } from './jobs/rmUnverifiedUsers.js'
 import { productsRoutes } from './routes/productRoutes.js'
+import { seed } from './scripts/seed.js'
 
 const app = express()
 
@@ -26,7 +27,10 @@ cron.schedule('0 0 * * *', () => {
 })
 
 db.sync()
-  .then(() => {
+  .then(async () => {
+    await seed.init()
+    await seed.run()
+
     const PORT = config.env.PORT
     app.listen(PORT, () => {
       console.log(`Running... :${PORT}`)

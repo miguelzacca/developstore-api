@@ -1,7 +1,7 @@
 import { UUID, UUIDV4, STRING, BOOLEAN } from 'sequelize'
 import { db } from '../db/sequelize.js'
 
-const User = db.define(
+export const User = db.define(
   'User',
   {
     id: {
@@ -32,5 +32,3 @@ const User = db.define(
     updatedAt: false,
   }
 )
-
-export { User }
