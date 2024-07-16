@@ -38,11 +38,10 @@ class AuthControllers {
   public register: Controller = async (req, res) => {
     try {
       const sanitizedInput = utils.sanitizeInput(req.body)
-      const {
-        name: uname,
-        email,
-        passwd,
-      } = utils.validateInput(sanitizedInput, 'register')
+      const { uname, email, passwd } = utils.validateInput(
+        sanitizedInput,
+        'register'
+      )
 
       const emailExists = await utils.findUserByField({ email })
 
