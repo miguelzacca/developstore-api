@@ -38,10 +38,11 @@ class AuthControllers {
   public register: Controller = async (req, res) => {
     try {
       const sanitizedInput = utils.sanitizeInput(req.body)
-      const { name, email, passwd } = utils.validateInput(
-        sanitizedInput,
-        'register'
-      )
+      const {
+        name: uname,
+        email,
+        passwd,
+      } = utils.validateInput(sanitizedInput, 'register')
 
       const emailExists = await utils.findUserByField({ email })
 
@@ -53,7 +54,7 @@ class AuthControllers {
       const passwdHash = await bcrypt.hash(passwd, salt)
 
       await User.create({
-        name,
+        uname,
         email,
         passwd: passwdHash,
       })

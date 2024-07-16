@@ -24,7 +24,7 @@ class Utils {
   })
 
   private registerSchema = this.changePasswdSchema.extend({
-    name: z.string().min(3).max(100),
+    uname: z.string().min(3).max(100),
     email: z.string().max(100).email(),
   })
 

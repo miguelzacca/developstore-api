@@ -27,7 +27,7 @@ export const Products = db.define(
       allowNull: false,
     },
     oldPrice: {
-      type: INTEGER,
+      type: DECIMAL,
       allowNull: true,
     },
     price: {

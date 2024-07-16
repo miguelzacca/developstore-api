@@ -6,13 +6,7 @@ class ProductControllers {
   public getProducts: Controller = async (req, res) => {
     try {
       const products: ProductModel[] = await Products.findAll()
-      const { category } = req.query
-
-      const data = category
-        ? products.filter((el) => el.category === category)
-        : products
-
-      res.status(200).json(data)
+      res.status(200).json(products)
     } catch (err) {
       utils.handleError(res, err)
     }

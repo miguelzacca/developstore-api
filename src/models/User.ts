@@ -9,7 +9,7 @@ export const User = db.define(
       defaultValue: UUIDV4,
       primaryKey: true,
     },
-    name: {
+    uname: {
       type: STRING(100),
       allowNull: false,
     },

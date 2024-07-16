@@ -2,7 +2,6 @@ import { config } from '../config.js'
 import { Products } from '../models/Products.js'
 
 interface ProductEl {
-  id: number
   category: string
   productName: string
   info: string
@@ -13,7 +12,6 @@ interface ProductEl {
 
 const products: ProductEl[] = [
   ...Array.from({ length: 7 }, (_, i) => ({
-    id: i + 1,
     category: 'Recommended',
     productName: `Product Name - ${i + 1}`,
     info: 'Small information',
@@ -22,7 +20,6 @@ const products: ProductEl[] = [
     price: 2.99,
   })),
   ...Array.from({ length: 7 }, (_, i) => ({
-    id: i + 8,
     category: 'Popular 2024',
     productName: `Product Name - ${i + 8}`,
     info: 'Popular 2024',
@@ -31,7 +28,6 @@ const products: ProductEl[] = [
     price: 1.99,
   })),
   ...Array.from({ length: 7 }, (_, i) => ({
-    id: i + 15,
     category: 'The best',
     productName: `Product Name - ${i + 15}`,
     info: 'The best',
@@ -51,7 +47,7 @@ class Seed {
   public init = async () => {
     try {
       await Products.destroy({ where: {} })
-      console.log('SEED CLEAN')
+      console.log('SEED INIT')
     } catch (err) {
       console.error(err)
     }
@@ -60,11 +56,9 @@ class Seed {
   public run = async () => {
     try {
       for (const product of this.products) {
-        const { id, productName, img, category, price, oldPrice, info } =
-          product
+        const { productName, img, category, price, oldPrice, info } = product
 
         await Products.create({
-          id,
           productName,
           img,
           category,
@@ -73,7 +67,7 @@ class Seed {
           info,
         })
       }
-      console.log('GENERATED SEED\n')
+      console.log('SEED RUN\n')
     } catch (err) {
       console.error(err)
     }
