@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import * as cron from 'node-cron'
 import cookieParser from 'cookie-parser'
+import compression from 'compression'
 import { config } from './config.js'
 import { authRoutes } from './routes/authRoutes.js'
 import { userRoutes } from './routes/userRoutes.js'
@@ -12,11 +13,19 @@ import { seed } from './scripts/seed.js'
 
 const app = express()
 
-app.use('/public', express.static('public'))
+app.use(
+  '/public',
+  express.static('public', {
+    maxAge: '1d',
+    etag: false,
+  })
+)
 
 app.use(cors(config.cors))
 app.use(express.json())
+
 app.use(cookieParser())
+app.use(compression())
 
 app.use('/auth', authRoutes)
 app.use('/user', userRoutes)

@@ -73,7 +73,7 @@ class Utils {
 
     let attributes: FindAttributes = undefined
     if (restrict) {
-      attributes = { exclude: ['id', 'passwd'] }
+      attributes = { exclude: ['id', 'passwd', 'verifiedEmail'] }
     }
 
     const user = (await User.findOne({

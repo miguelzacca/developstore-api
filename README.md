@@ -29,7 +29,7 @@ docker-compose up
 - `cookie-parser`
 - `cors`
 - `dotenv`
-- `ejs`
+- `compression`
 - `express`
 - `jsonwebtoken`
 - `node-cron`

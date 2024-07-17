@@ -1,5 +1,6 @@
 import { config } from '../config.js'
 import { Products } from '../models/Products.js'
+import { faker } from '@faker-js/faker'
 
 interface ProductEl {
   category: string
@@ -11,26 +12,26 @@ interface ProductEl {
 }
 
 const products: ProductEl[] = [
-  ...Array.from({ length: 7 }, (_, i) => ({
+  ...Array.from({ length: 7 }, () => ({
     category: 'Recommended',
-    productName: `Product Name - ${i + 1}`,
-    info: 'Small information',
+    productName: faker.commerce.productName().slice(0, 20),
+    info: faker.commerce.productDescription().slice(0, 20),
     img: `${config.env.API_HOST}/public/product.webp`,
     oldPrice: 5.99,
     price: 2.99,
   })),
-  ...Array.from({ length: 7 }, (_, i) => ({
+  ...Array.from({ length: 7 }, () => ({
     category: 'Popular 2024',
-    productName: `Product Name - ${i + 8}`,
-    info: 'Popular 2024',
+    productName: faker.commerce.productName().slice(0, 20),
+    info: faker.commerce.productDescription().slice(0, 20),
     img: `${config.env.API_HOST}/public/product.webp`,
     oldPrice: 3.25,
     price: 1.99,
   })),
-  ...Array.from({ length: 7 }, (_, i) => ({
+  ...Array.from({ length: 7 }, () => ({
     category: 'The best',
-    productName: `Product Name - ${i + 15}`,
-    info: 'The best',
+    productName: faker.commerce.productName().slice(0, 20),
+    info: faker.commerce.productDescription().slice(0, 20),
     img: `${config.env.API_HOST}/public/product.webp`,
     oldPrice: 24.99,
     price: 14.99,
