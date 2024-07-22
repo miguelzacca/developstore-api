@@ -1,6 +1,6 @@
 import { Sequelize } from 'sequelize'
 
-const db = new Sequelize({
+export const db = new Sequelize({
   dialect: 'sqlite',
   storage: './.data/database.db',
   logging: false,
@@ -9,5 +9,3 @@ const db = new Sequelize({
 db.authenticate().catch((err) => {
   console.error(err)
 })
-
-export { db }

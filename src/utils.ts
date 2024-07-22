@@ -121,7 +121,10 @@ class Utils {
 
     if (err.custom) {
       const { status, msg } = err
-      return res.status(status).json({ msg })
+      if (msg) {
+        return res.status(status).json({ msg })
+      }
+      return res.sendStatus(status)
     }
 
     console.error(err)
