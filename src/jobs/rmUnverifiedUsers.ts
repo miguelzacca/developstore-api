@@ -1,13 +1,13 @@
 import { Op } from 'sequelize'
-import { User } from '../models/User.js'
+import { User } from '../infrastructure/database/models/User.js'
 
 export const rmUnverifiedUsers = async () => {
   try {
     const paramDate = new Date(Date.now() - 1 * 60 * 60 * 1000)
 
-    User.destroy({
+    await User.destroy({
       where: {
-        verifiedEmail: false,
+        verified_email: false,
         createdAt: {
           [Op.lt]: paramDate,
         },

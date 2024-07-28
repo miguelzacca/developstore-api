@@ -1,11 +1,9 @@
 import { Sequelize } from 'sequelize'
 
-export const db = new Sequelize({
+export const sequelize = new Sequelize({
   dialect: 'sqlite',
   storage: './.data/database.db',
   logging: false,
 })
 
-db.authenticate().catch((err) => {
-  console.error(err)
-})
+sequelize.authenticate()
