@@ -96,6 +96,10 @@ export class UserControllers {
     try {
       const id = this.authServices.jwtHandler(token, 'id')
 
+      if (!id) {
+        return res.status(401).json({ msg: config.serverMsg.invalidToken })
+      }
+
       const favorites = await this.userRepository.getFavorites(id)
 
       res.status(200).json(favorites)

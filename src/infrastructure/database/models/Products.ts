@@ -1,49 +1,8 @@
+import { ProductsEntity } from '../../../domain/entities/products.js'
 import { sequelize } from '../sequelize.js'
-import { INTEGER, STRING, DECIMAL, Model } from 'sequelize'
+import { INTEGER, STRING, DECIMAL } from 'sequelize'
 
-export interface ProductsAttributes {
-  id?: string
-  category: string
-  productName: string
-  info: string
-  img: string
-  oldPrice: number
-  price: number
-}
-
-export class Products extends Model<ProductsAttributes> {
-  private props!: ProductsAttributes
-
-  get id() {
-    return this.props.id
-  }
-
-  get category() {
-    return this.props.category
-  }
-
-  get productName() {
-    return this.props.productName
-  }
-
-  get info() {
-    return this.props.info
-  }
-
-  get img() {
-    return this.props.img
-  }
-
-  get oldPrice() {
-    return this.props.oldPrice
-  }
-
-  get price() {
-    return this.props.price
-  }
-}
-
-Products.init(
+export const Products = ProductsEntity.init(
   {
     id: {
       type: INTEGER,

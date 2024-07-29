@@ -1,4 +1,4 @@
-# E-Commerce
+# E-Commerce (README deprecated)
 
 E-Commerce project. School work. (Under development)
 

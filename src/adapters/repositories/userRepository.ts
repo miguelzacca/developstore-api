@@ -4,8 +4,8 @@ import * as bcrypt from 'bcrypt'
 import { RegisterBody } from '../dto/registerBody.js'
 import { Favorites } from '../../infrastructure/database/models/Favorites.js'
 import { Products } from '../../infrastructure/database/models/Products.js'
-import { UserEntity } from '../../domain/user.js'
-import { FavoritesEntity } from '../../domain/favorites.js'
+import { UserEntity } from '../../domain/entities/user.js'
+import { FavoritesEntity } from '../../domain/entities/favorites.js'
 
 export interface IUserRepository {
   findByField(
@@ -60,9 +60,10 @@ export class UserRepository implements IUserRepository {
     }
 
     const salt = await bcrypt.genSalt(10)
-    const hashedNewPasswd = await bcrypt.hash(salt, newPasswd)
+    const hashedNewPasswd = await bcrypt.hash(newPasswd, salt)
 
     user.set('passwd', hashedNewPasswd)
+    await user.save()
   }
 
   async save(user: UserEntity): Promise<void> {
@@ -97,7 +98,7 @@ export class UserRepository implements IUserRepository {
       ],
     })
 
-    // eslint-disable-next-line
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
     return data?.favorites || []
   }

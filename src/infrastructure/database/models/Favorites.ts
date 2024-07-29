@@ -1,7 +1,7 @@
 import { Products } from './Products.js'
 import { sequelize } from '../sequelize.js'
 import { INTEGER, UUID } from 'sequelize'
-import { FavoritesEntity } from '../../../domain/favorites.js'
+import { FavoritesEntity } from '../../../domain/entities/favorites.js'
 import { User } from './User.js'
 
 export const Favorites = FavoritesEntity.init(

@@ -18,6 +18,14 @@ export class UserEntity extends Model<UserAttributes> {
     this.verified_email = state
   }
 
+  get passwd(): string {
+    return this.passwd
+  }
+
+  set passwd(value: string) {
+    this.passwd = value
+  }
+
   get id(): string {
     return this.id
   }

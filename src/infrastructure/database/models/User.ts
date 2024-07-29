@@ -1,6 +1,6 @@
 import { UUID, UUIDV4, STRING, BOOLEAN } from 'sequelize'
 import { sequelize } from '../sequelize.js'
-import { UserEntity } from '../../../domain/user.js'
+import { UserEntity } from '../../../domain/entities/user.js'
 
 export const User = UserEntity.init(
   {
