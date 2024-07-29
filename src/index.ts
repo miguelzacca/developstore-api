@@ -3,23 +3,15 @@ import cors from 'cors'
 import * as cron from 'node-cron'
 import cookieParser from 'cookie-parser'
 import compression from 'compression'
-import { config } from './config.js'
+import { config } from './config/config.js'
 import { createAuthRoutes } from './adapters/http/routes/authRoutes.js'
 import { createUserRoutes } from './adapters/http/routes/userRoutes.js'
 import { sequelize } from './infrastructure/database/sequelize.js'
 import { rmUnverifiedUsers } from './jobs/rmUnverifiedUsers.js'
 import { createProductsRoutes } from './adapters/http/routes/productsRoutes.js'
-import { Seed } from './infrastructure/database/seed/populatedb.js'
-import { AuthControllers } from './adapters/http/controllers/authControllers.js'
-import { UserRepository } from './adapters/repositories/userRepository.js'
-import { AuthServices } from './application/authServices.js'
-import { User } from './infrastructure/database/models/User.js'
-import { Favorites } from './infrastructure/database/models/Favorites.js'
-import { UserControllers } from './adapters/http/controllers/userControllers.js'
-import { ProductControllers } from './adapters/http/controllers/productControllers.js'
-import { ProductsRepository } from './adapters/repositories/productsRepository.js'
-import { Products } from './infrastructure/database/models/Products.js'
+import { PopulateProducts } from './infrastructure/database/seed/populateProducts.js'
 import { notFound } from './adapters/http/middleware/notFound.js'
+import { dependencyInjector } from './config/dependencyInjector.js'
 
 const app = express()
 
@@ -36,16 +28,10 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(compression())
 
-const populatedb = new Seed()
+const populateProducts = new PopulateProducts()
 
-const userRepository = new UserRepository(User, Favorites)
-const productsRepository = new ProductsRepository(Products)
-
-const authServices = new AuthServices()
-
-const authControllers = new AuthControllers(userRepository, authServices)
-const userControllers = new UserControllers(userRepository)
-const productsControllers = new ProductControllers(productsRepository)
+const { authControllers, userControllers, productsControllers } =
+  dependencyInjector()
 
 const authRoutes = createAuthRoutes(authControllers)
 const userRoutes = createUserRoutes(userControllers)
@@ -63,8 +49,8 @@ cron.schedule('0 0 * * *', async () => {
 sequelize
   .sync()
   .then(async () => {
-    await populatedb.init()
-    await populatedb.run()
+    await populateProducts.init()
+    await populateProducts.run()
 
     const { PORT, API_ADDR } = config.env
     app.listen(PORT, () => {

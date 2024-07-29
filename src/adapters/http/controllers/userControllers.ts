@@ -1,17 +1,21 @@
-import { config } from '../../../config.js'
+import { AuthServices } from '../../../application/authServices.js'
+import { config } from '../../../config/config.js'
 import { Controller } from '../../../types/global.js'
 import * as utils from '../../../utils.js'
 import { ChangePasswdDTO } from '../../dto/changePasswdBody.js'
 import { UserRepository } from '../../repositories/userRepository.js'
 
 export class UserControllers {
-  constructor(private userRepository: UserRepository) {}
+  constructor(
+    private userRepository: UserRepository,
+    private authServices: AuthServices,
+  ) {}
 
   getUser: Controller = async (req, res) => {
     const { token } = req.cookies
 
     try {
-      const id = utils.jwtVerify(token, 'id')
+      const id = this.authServices.jwtHandler(token, 'id')
 
       if (!id) {
         return res.status(401).json({ msg: config.serverMsg.invalidToken })
@@ -32,7 +36,7 @@ export class UserControllers {
   changePasswd: Controller = async (req, res) => {
     try {
       const { token } = req.cookies
-      const email = utils.jwtVerify(token, 'email')
+      const email = this.authServices.jwtHandler(token, 'email')
 
       const { passwd } = new ChangePasswdDTO(req.body)
 
@@ -55,7 +59,7 @@ export class UserControllers {
     try {
       const { token } = req.cookies
 
-      const id = utils.jwtVerify(token, 'id')
+      const id = this.authServices.jwtHandler(token, 'id')
 
       const user = await this.userRepository.findByField({ id })
 
@@ -77,7 +81,7 @@ export class UserControllers {
       const { token } = req.cookies
       const { productId } = req.body
 
-      const userId = utils.jwtVerify(token, 'id')
+      const userId = this.authServices.jwtHandler(token, 'id')
 
       await this.userRepository.toggleFavorite(userId, productId)
       res.sendStatus(200)
@@ -90,7 +94,7 @@ export class UserControllers {
     const { token } = req.cookies
 
     try {
-      const id = utils.jwtVerify(token, 'id')
+      const id = this.authServices.jwtHandler(token, 'id')
 
       const favorites = await this.userRepository.getFavorites(id)
 

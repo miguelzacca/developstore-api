@@ -4,35 +4,38 @@ import * as bcrypt from 'bcrypt'
 import { RegisterBody } from '../dto/registerBody.js'
 import { Favorites } from '../../infrastructure/database/models/Favorites.js'
 import { Products } from '../../infrastructure/database/models/Products.js'
+import { UserEntity } from '../../domain/user.js'
+import { FavoritesEntity } from '../../domain/favorites.js'
 
 export interface IUserRepository {
   findByField(
     field: Record<string, any>,
     restrict?: boolean,
-  ): Promise<User | null>
-  delete(target: string | User): Promise<void>
+  ): Promise<UserEntity | null>
+  delete(target: string | UserEntity): Promise<void>
   changePasswd(id: string, newPasswd: string): Promise<void>
-  save(user: User): Promise<void>
+  save(user: UserEntity): Promise<void>
   create(userAttributes: RegisterBody): Promise<void>
   toggleFavorite(userId: string, productId: string): Promise<void>
-  getFavorites(id: string): Promise<Favorites[]>
+  getFavorites(id: string): Promise<FavoritesEntity[]>
 }
 
 export class UserRepository implements IUserRepository {
   constructor(
     private userModel: typeof User,
     private favoriteModel: typeof Favorites,
+    private productModel: typeof Products,
   ) {}
 
   async findByField(
     field: Record<string, any>,
     restrict?: boolean,
-  ): Promise<User | null> {
+  ): Promise<UserEntity | null> {
     const fieldKey = Object.keys(field)[0]
 
     let attributes: FindAttributeOptions | undefined = undefined
     if (restrict) {
-      attributes = { exclude: ['id', 'passwd', 'verifiedEmail'] }
+      attributes = { exclude: ['id', 'passwd', 'verified_email'] }
     }
 
     return this.userModel.findOne({
@@ -41,7 +44,7 @@ export class UserRepository implements IUserRepository {
     })
   }
 
-  async delete(target: string | User): Promise<void> {
+  async delete(target: string | UserEntity): Promise<void> {
     if (typeof target === 'string') {
       await this.userModel.destroy({ where: { id: target } })
       return
@@ -59,10 +62,10 @@ export class UserRepository implements IUserRepository {
     const salt = await bcrypt.genSalt(10)
     const hashedNewPasswd = await bcrypt.hash(salt, newPasswd)
 
-    user.passwd = hashedNewPasswd
+    user.set('passwd', hashedNewPasswd)
   }
 
-  async save(user: User): Promise<void> {
+  async save(user: UserEntity): Promise<void> {
     await user.save()
   }
 
@@ -71,7 +74,9 @@ export class UserRepository implements IUserRepository {
   }
 
   async toggleFavorite(userId: string, productId: string): Promise<void> {
-    const isFavorite = await Favorites.findOne({ where: { productId } })
+    const isFavorite = await this.favoriteModel.findOne({
+      where: { productId },
+    })
 
     if (isFavorite) {
       this.favoriteModel.destroy({ where: { productId } })
@@ -81,17 +86,19 @@ export class UserRepository implements IUserRepository {
     this.favoriteModel.create({ userId, productId })
   }
 
-  async getFavorites(id: string): Promise<Favorites[]> {
-    const data = await User.findOne({
+  async getFavorites(id: string): Promise<FavoritesEntity[]> {
+    const data = await this.userModel.findOne({
       where: { id },
       include: [
         {
-          model: Products,
+          model: this.productModel,
           as: 'favorites',
         },
       ],
     })
 
+    // eslint-disable-next-line
+    // @ts-expect-error
     return data?.favorites || []
   }
 }

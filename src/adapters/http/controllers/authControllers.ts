@@ -1,16 +1,16 @@
 import * as bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import { config } from '../../../config.js'
+import { config } from '../../../config/config.js'
 import { Controller } from '../../../types/global.js'
 import { UserRepository } from '../../repositories/userRepository.js'
 import { RegisterBodyDTO } from '../../dto/registerBody.js'
 import { AuthServices } from '../../../application/authServices.js'
-import { handleError, jwtVerify } from '../../../utils.js'
+import * as utils from '../../../utils.js'
 
 export class AuthControllers {
   constructor(
     private userRepository: UserRepository,
-    private authServices: AuthServices
+    private authServices: AuthServices,
   ) {}
 
   emailVerify: Controller = async (req, res) => {
@@ -21,7 +21,7 @@ export class AuthControllers {
         return res.status(400).json({ msg: config.authMsg.noEmailToken })
       }
 
-      const email = jwtVerify(emailToken, 'email')
+      const email = this.authServices.jwtHandler(emailToken, 'email')
 
       const user = await this.userRepository.findByField({ email })
 
@@ -33,12 +33,12 @@ export class AuthControllers {
         return res.redirect(`${config.env.ORIGIN_ADDR}/login`)
       }
 
-      user.verified_email = true
+      user.set('verified_email', true)
       await this.userRepository.save(user)
 
       res.status(200).redirect(`${config.env.ORIGIN_ADDR}/login`)
     } catch (err) {
-      handleError(res, err)
+      utils.handleError(res, err)
     }
   }
 
@@ -75,7 +75,7 @@ export class AuthControllers {
 
       res.status(201).json({ msg: config.userMsg.created })
     } catch (err) {
-      handleError(res, err)
+      utils.handleError(res, err)
     }
   }
 
@@ -107,7 +107,7 @@ export class AuthControllers {
 
       res.status(200).json({ msg: config.authMsg.ok })
     } catch (err) {
-      handleError(res, err)
+      utils.handleError(res, err)
     }
   }
 
@@ -135,7 +135,7 @@ export class AuthControllers {
 
       res.status(200).json({ msg: config.authMsg.recoveryEmail })
     } catch (err) {
-      handleError(res, err)
+      utils.handleError(res, err)
     }
   }
 

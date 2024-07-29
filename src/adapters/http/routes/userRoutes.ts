@@ -4,16 +4,16 @@ import { isLoggedIn } from '../middleware/isLoggedIn.js'
 
 const router = Router()
 
-export const createUserRoutes = (user: UserControllers) => {
-  router.get('/', isLoggedIn, user.getUser)
+export const createUserRoutes = (controller: UserControllers) => {
+  router.get('/', isLoggedIn, controller.getUser)
 
-  router.delete('/delete', isLoggedIn, user.deleteUser)
+  router.delete('/delete', isLoggedIn, controller.deleteUser)
 
-  router.patch('/change-passwd', isLoggedIn, user.changePasswd)
+  router.patch('/change-passwd', isLoggedIn, controller.changePasswd)
 
-  router.post('/toggle-favorite', isLoggedIn, user.toggleFavorite)
+  router.post('/toggle-favorite', isLoggedIn, controller.toggleFavorite)
 
-  router.get('/get-favorites', isLoggedIn, user.getFavorites)
+  router.get('/get-favorites', isLoggedIn, controller.getFavorites)
 
   return router
 }

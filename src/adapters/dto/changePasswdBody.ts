@@ -1,22 +1,23 @@
 import { z } from 'zod'
+import * as utils from '../../utils.js'
 
 export interface ChangePasswdBody {
   passwd: string
 }
 
 export class ChangePasswdDTO implements ChangePasswdBody {
-  private static registerSchema = z.object({
+  private changePasswdSchema = z.object({
     passwd: z.string().min(6).max(16),
   })
 
-  private static validate(data: object) {
-    return this.registerSchema.parse(data)
-  }
-
   passwd: string
 
-  constructor(private data: ChangePasswdBody) {
-    const { passwd } = ChangePasswdDTO.validate(data)
+  constructor(data: ChangePasswdBody) {
+    const { passwd } = utils.zodValidator({
+      data,
+      schema: this.changePasswdSchema,
+    })
+
     this.passwd = passwd
   }
 }

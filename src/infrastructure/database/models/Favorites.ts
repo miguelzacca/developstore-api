@@ -1,22 +1,10 @@
-import { User } from './User.js'
 import { Products } from './Products.js'
 import { sequelize } from '../sequelize.js'
-import { INTEGER, Model, UUID } from 'sequelize'
+import { INTEGER, UUID } from 'sequelize'
+import { FavoritesEntity } from '../../../domain/favorites.js'
+import { User } from './User.js'
 
-export interface FavoritesAttributes {
-  userId: string
-  productId: string
-}
-
-export class Favorites
-  extends Model<FavoritesAttributes>
-  implements FavoritesAttributes
-{
-  userId!: string
-  productId!: string
-}
-
-Favorites.init(
+export const Favorites = FavoritesEntity.init(
   {
     userId: {
       type: UUID,
@@ -37,7 +25,7 @@ Favorites.init(
   },
   {
     sequelize,
-  }
+  },
 )
 
 User.belongsToMany(Products, {

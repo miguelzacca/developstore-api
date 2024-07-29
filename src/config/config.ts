@@ -1,5 +1,4 @@
 import { config as envConfig } from 'dotenv'
-import * as nodemailer from 'nodemailer'
 
 envConfig()
 
@@ -26,18 +25,6 @@ export const config = {
       AUTH_DURATION_DAYS: Number(process.env.AUTH_DURATION_DAYS),
       SECRET: process.env.SECRET,
     } as Env
-  },
-
-  get transporter() {
-    return nodemailer.createTransport({
-      host: 'smtp.gmail.com',
-      port: 465,
-      secure: true,
-      auth: {
-        user: this.env.SMTP_USER,
-        pass: this.env.SMTP_PASS,
-      },
-    })
   },
 
   get cors() {

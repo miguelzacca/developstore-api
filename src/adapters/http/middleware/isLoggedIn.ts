@@ -1,5 +1,6 @@
+import { config } from '../../../config/config.js'
 import { Middleware } from '../../../types/global'
-import * as utils from '../../../utils.js'
+import jwt from 'jsonwebtoken'
 
 export const isLoggedIn: Middleware = (req, res, next) => {
   const token = req.params?.token || req.cookies?.token
@@ -9,7 +10,7 @@ export const isLoggedIn: Middleware = (req, res, next) => {
   }
 
   try {
-    utils.jwtVerify(token)
+    jwt.verify(token, config.env.SECRET)
     next()
   } catch (err) {
     res.sendStatus(401)

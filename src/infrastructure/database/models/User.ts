@@ -1,28 +1,8 @@
-import { UUID, UUIDV4, STRING, BOOLEAN, Model } from 'sequelize'
+import { UUID, UUIDV4, STRING, BOOLEAN } from 'sequelize'
 import { sequelize } from '../sequelize.js'
-import { Favorites } from './Favorites.js'
+import { UserEntity } from '../../../domain/user.js'
 
-export interface UserAttributes {
-  id?: string
-  uname: string
-  email: string
-  verified_email?: boolean
-  passwd: string
-  favorites?: Favorites[]
-  createdAt?: Date
-}
-
-export class User extends Model<UserAttributes> implements UserAttributes {
-  id!: string
-  uname!: string
-  email!: string
-  verified_email!: boolean
-  passwd!: string
-  favorites?: Favorites[]
-  createdAt?: Date
-}
-
-User.init(
+export const User = UserEntity.init(
   {
     id: {
       type: UUID,

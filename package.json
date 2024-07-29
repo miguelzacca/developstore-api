@@ -2,14 +2,14 @@
   "name": "developstore-api",
   "version": "latest",
   "description": "Develop Store API.",
-  "main": "dist/app.js",
+  "main": "dist/src/index.js",
   "type": "module",
   "scripts": {
     "build:tsc": "tsc",
     "b:s": "npm run build && npm start",
     "build": "swc src -d dist --config-file .swcrc",
-    "start": "node dist/src/app.js",
-    "dev": "swc src -d dist --config-file .swcrc --watch & node --watch dist/src/app.js",
+    "start": "node dist/src/index.js",
+    "dev": "swc src -d dist --config-file .swcrc --watch & node --watch dist/src/index.js",
     "lint": "eslint ."
   },
   "author": "Miguel Zacca",
