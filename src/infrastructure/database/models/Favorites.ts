@@ -1,40 +1,54 @@
-import { Products } from './Products.js'
 import { sequelize } from '../sequelize.js'
-import { INTEGER, UUID } from 'sequelize'
-import { FavoritesEntity } from '../../../domain/entities/favorites.js'
-import { User } from './User.js'
+import { DataTypes, Model } from 'sequelize'
 
-export const Favorites = FavoritesEntity.init(
-  {
-    userId: {
-      type: UUID,
-      primaryKey: true,
-      references: {
-        model: User,
-        key: 'id',
+export interface FavoritesAttributes {
+  userId: string
+  productId: string
+}
+
+export class Favorites
+  extends Model<FavoritesAttributes>
+  implements FavoritesAttributes
+{
+  static initialize(dbInstance: typeof sequelize) {
+    Favorites.init(
+      {
+        userId: {
+          type: DataTypes.UUID,
+          primaryKey: true,
+          references: {
+            model: 'User',
+            key: 'id',
+          },
+        },
+        productId: {
+          type: DataTypes.INTEGER,
+          primaryKey: true,
+          references: {
+            model: 'Products',
+            key: 'id',
+          },
+        },
       },
-    },
-    productId: {
-      type: INTEGER,
-      primaryKey: true,
-      references: {
-        model: Products,
-        key: 'id',
+      {
+        sequelize: dbInstance,
       },
-    },
-  },
-  {
-    sequelize,
-  },
-)
+    )
+  }
 
-User.belongsToMany(Products, {
-  through: Favorites,
-  foreignKey: 'userId',
-  as: 'favorites',
-})
+  get userId(): string {
+    return this.getDataValue('userId')
+  }
 
-Products.belongsToMany(User, {
-  through: Favorites,
-  foreignKey: 'productId',
-})
+  set userId(id: string) {
+    this.setDataValue('userId', id)
+  }
+
+  get productId(): string {
+    return this.getDataValue('productId')
+  }
+
+  set productId(id: string) {
+    this.setDataValue('productId', id)
+  }
+}

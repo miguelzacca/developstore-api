@@ -4,20 +4,18 @@ import * as bcrypt from 'bcrypt'
 import { RegisterBody } from '../dto/registerBody.js'
 import { Favorites } from '../../infrastructure/database/models/Favorites.js'
 import { Products } from '../../infrastructure/database/models/Products.js'
-import { UserEntity } from '../../domain/entities/user.js'
-import { FavoritesEntity } from '../../domain/entities/favorites.js'
 
 export interface IUserRepository {
   findByField(
     field: Record<string, any>,
     restrict?: boolean,
-  ): Promise<UserEntity | null>
-  delete(target: string | UserEntity): Promise<void>
+  ): Promise<User | null>
+  delete(target: string | User): Promise<void>
   changePasswd(id: string, newPasswd: string): Promise<void>
-  save(user: UserEntity): Promise<void>
+  save(user: User): Promise<void>
   create(userAttributes: RegisterBody): Promise<void>
   toggleFavorite(userId: string, productId: string): Promise<void>
-  getFavorites(id: string): Promise<FavoritesEntity[]>
+  getFavorites(id: string): Promise<Favorites[]>
 }
 
 export class UserRepository implements IUserRepository {
@@ -30,7 +28,7 @@ export class UserRepository implements IUserRepository {
   async findByField(
     field: Record<string, any>,
     restrict?: boolean,
-  ): Promise<UserEntity | null> {
+  ): Promise<User | null> {
     const fieldKey = Object.keys(field)[0]
 
     let attributes: FindAttributeOptions | undefined = undefined
@@ -44,7 +42,7 @@ export class UserRepository implements IUserRepository {
     })
   }
 
-  async delete(target: string | UserEntity): Promise<void> {
+  async delete(target: string | User): Promise<void> {
     if (typeof target === 'string') {
       await this.userModel.destroy({ where: { id: target } })
       return
@@ -62,11 +60,11 @@ export class UserRepository implements IUserRepository {
     const salt = await bcrypt.genSalt(10)
     const hashedNewPasswd = await bcrypt.hash(newPasswd, salt)
 
-    user.set('passwd', hashedNewPasswd)
+    user.passwd = hashedNewPasswd
     await user.save()
   }
 
-  async save(user: UserEntity): Promise<void> {
+  async save(user: User): Promise<void> {
     await user.save()
   }
 
@@ -87,7 +85,7 @@ export class UserRepository implements IUserRepository {
     this.favoriteModel.create({ userId, productId })
   }
 
-  async getFavorites(id: string): Promise<FavoritesEntity[]> {
+  async getFavorites(id: string): Promise<Favorites[]> {
     const data = await this.userModel.findOne({
       where: { id },
       include: [
@@ -98,8 +96,6 @@ export class UserRepository implements IUserRepository {
       ],
     })
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
     return data?.favorites || []
   }
 }

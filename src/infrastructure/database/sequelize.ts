@@ -6,4 +6,7 @@ export const sequelize = new Sequelize({
   logging: false,
 })
 
-sequelize.authenticate()
+sequelize
+  .authenticate()
+  .then((res) => res)
+  .catch((err) => err)

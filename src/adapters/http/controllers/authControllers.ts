@@ -4,7 +4,7 @@ import { config } from '../../../config/config.js'
 import { Controller } from '../../../types/global.js'
 import { UserRepository } from '../../repositories/userRepository.js'
 import { RegisterBodyDTO } from '../../dto/registerBody.js'
-import { AuthServices } from '../../../application/authServices.js'
+import { AuthServices } from '../../../application/services/authServices.js'
 import * as utils from '../../../utils.js'
 
 export class AuthControllers {
@@ -33,7 +33,7 @@ export class AuthControllers {
         return res.redirect(`${config.env.ORIGIN_ADDR}/login`)
       }
 
-      user.set('verified_email', true)
+      user.verified_email = true
       await this.userRepository.save(user)
 
       res.status(200).redirect(`${config.env.ORIGIN_ADDR}/login`)

@@ -1,18 +1,14 @@
 import { Sequelize, Op } from 'sequelize'
 import { Products } from '../../infrastructure/database/models/Products.js'
-import { ProductsEntity } from '../../domain/entities/products.js'
 
 interface ProductsRepositoryInterface {
-  getProducts(category?: string, search?: string): Promise<ProductsEntity[]>
+  getProducts(category?: string, search?: string): Promise<Products[]>
 }
 
 export class ProductsRepository implements ProductsRepositoryInterface {
   constructor(private productsModel: typeof Products) {}
 
-  async getProducts(
-    category?: string,
-    search?: string,
-  ): Promise<ProductsEntity[]> {
+  async getProducts(category?: string, search?: string): Promise<Products[]> {
     if (category) {
       return this.productsModel.findAll({ where: { category } })
     }

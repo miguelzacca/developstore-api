@@ -1,4 +1,4 @@
-import { AuthServices } from '../../../application/authServices.js'
+import { AuthServices } from '../../../application/services/authServices.js'
 import { config } from '../../../config/config.js'
 import { Controller } from '../../../types/global.js'
 import * as utils from '../../../utils.js'
@@ -46,7 +46,7 @@ export class UserControllers {
         return res.status(404).json({ msg: config.userMsg.notFound })
       }
 
-      await this.userRepository.changePasswd(user.id, passwd)
+      await this.userRepository.changePasswd(user.id as string, passwd)
       await this.userRepository.save(user)
 
       res.status(200).json({ msg: config.userMsg.updated })

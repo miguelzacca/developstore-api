@@ -1,4 +1,4 @@
-import { config } from '../config/config.js'
+import { config } from '../../config/config.js'
 import * as nodemailer from 'nodemailer'
 import jwt, { JwtPayload } from 'jsonwebtoken'
 
