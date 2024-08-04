@@ -1,9 +1,9 @@
 import { FindAttributeOptions } from 'sequelize'
-import { User } from '../../infrastructure/database/models/User.js'
 import * as bcrypt from 'bcrypt'
-import { RegisterBody } from '../dto/registerBody.js'
-import { Favorites } from '../../infrastructure/database/models/Favorites.js'
-import { Products } from '../../infrastructure/database/models/Products.js'
+import { RegisterBody } from '../dto/registerBodyDto.js'
+import { Favorites } from '@domain/entities/Favorites.js'
+import { Products } from '@domain/entities/Products.js'
+import { User } from '@domain/entities/User.js'
 
 export interface IUserRepository {
   findByField(
@@ -61,7 +61,7 @@ export class UserRepository implements IUserRepository {
     const hashedNewPasswd = await bcrypt.hash(newPasswd, salt)
 
     user.passwd = hashedNewPasswd
-    await user.save()
+    await this.save(user)
   }
 
   async save(user: User): Promise<void> {

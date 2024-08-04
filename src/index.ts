@@ -11,7 +11,7 @@ import { rmUnverifiedUsers } from './jobs/rmUnverifiedUsers.js'
 import { createProductsRoutes } from './adapters/http/routes/productsRoutes.js'
 import { PopulateProducts } from './infrastructure/database/seed/populateProducts.js'
 import { notFound } from './adapters/http/middleware/notFound.js'
-import { createDependecies } from './config/dependencyInjector.js'
+import { createControllers } from '@config/di/controllersDi.js'
 
 const app = express()
 
@@ -31,7 +31,7 @@ app.use(compression())
 const populateProducts = new PopulateProducts()
 
 const { authControllers, userControllers, productsControllers } =
-  createDependecies()
+  createControllers()
 
 const authRoutes = createAuthRoutes(authControllers)
 const userRoutes = createUserRoutes(userControllers)

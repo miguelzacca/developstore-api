@@ -1,5 +1,5 @@
-import { config } from '../../../config/config.js'
-import { Products } from '../models/Products.js'
+import { config } from '@config/config.js'
+import { Products } from '@domain/entities/Products.js'
 import { faker } from '@faker-js/faker'
 
 interface ProductEl {

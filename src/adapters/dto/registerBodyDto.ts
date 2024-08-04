@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import * as utils from '../../utils.js'
+import { zodValidator } from '@utils/zodValidator.js'
 
 export interface RegisterBody {
   uname: string
@@ -7,7 +7,7 @@ export interface RegisterBody {
   passwd: string
 }
 
-export class RegisterBodyDTO implements RegisterBody {
+export class RegisterBodyDto implements RegisterBody {
   private registerSchema = z.object({
     uname: z.string().min(3).max(50),
     email: z.string().max(100).email(),
@@ -19,7 +19,7 @@ export class RegisterBodyDTO implements RegisterBody {
   passwd: string
 
   constructor(data: RegisterBody) {
-    const { uname, email, passwd } = utils.zodValidator({
+    const { uname, email, passwd } = zodValidator({
       data,
       schema: this.registerSchema,
     })

@@ -1,4 +1,6 @@
+import { CorsOptions } from 'cors'
 import { config as envConfig } from 'dotenv'
+import { CookieOptions } from 'express'
 
 envConfig()
 
@@ -32,7 +34,7 @@ export const config = {
       origin: [this.env.ORIGIN_ADDR, this.env.API_ADDR],
       methods: ['GET', 'POST', 'PATCH', 'DELETE'],
       credentials: true,
-    }
+    } as CorsOptions
   },
 
   get cookie() {
@@ -40,8 +42,9 @@ export const config = {
       httpOnly: true,
       secure: true,
       maxAge: this.env.AUTH_DURATION_DAYS * 24 * 60 * 60 * 1000,
-      sameSite: 'None',
-    } as object
+      path: '/',
+      sameSite: 'lax',
+    } as CookieOptions
   },
 
   get serverMsg() {

@@ -1,57 +1,44 @@
-import { AuthServices } from '../../../application/services/authServices.js'
-import { config } from '../../../config/config.js'
-import { Controller } from '../../../types/global.js'
-import * as utils from '../../../utils.js'
-import { ChangePasswdDTO } from '../../dto/changePasswdBody.js'
-import { UserRepository } from '../../repositories/userRepository.js'
+import { config } from '@config/config.js'
+import { Controller } from '@types'
+import { ChangePasswdDto } from '@adapters/dto/changePasswdBodyDto.js'
+import { GetUserUseCase } from '@application/usecases/user/getUserUseCase.js'
+import { ChangePasswdUseCase } from '@application/usecases/user/changePasswdUseCase.js'
+import { DeleteUserUseCase } from '@application/usecases/user/deleteUserUseCase.js'
+import { ToggleFavoriteUseCase } from '@application/usecases/user/toggleFavoriteUseCase.js'
+import { GetFavoritesUseCase } from '@application/usecases/user/getFavoritesUseCase.js'
+import { handleHttpErrorResponse } from '@utils/handleHttpErrorResponse.js'
 
 export class UserControllers {
   constructor(
-    private userRepository: UserRepository,
-    private authServices: AuthServices,
+    private getUserUseCase: GetUserUseCase,
+    private changePasswdUseCase: ChangePasswdUseCase,
+    private deleteUserUseCase: DeleteUserUseCase,
+    private toggleFavoriteUseCase: ToggleFavoriteUseCase,
+    private getFavoritesUseCase: GetFavoritesUseCase,
   ) {}
 
   getUser: Controller = async (req, res) => {
-    const { token } = req.cookies
-
     try {
-      const id = this.authServices.jwtHandler(token, 'id')
+      const { token } = req.cookies
 
-      if (!id) {
-        return res.status(401).json({ msg: config.serverMsg.invalidToken })
-      }
-
-      const user = await this.userRepository.findByField({ id }, true)
-
-      if (!user) {
-        return res.status(404).json({ msg: config.userMsg.notFound })
-      }
+      const user = await this.getUserUseCase.execute(token)
 
       res.status(200).json(user)
     } catch (err) {
-      utils.handleError(res, err)
+      handleHttpErrorResponse(res, err)
     }
   }
 
   changePasswd: Controller = async (req, res) => {
     try {
       const { token } = req.cookies
-      const email = this.authServices.jwtHandler(token, 'email')
+      const { passwd } = new ChangePasswdDto(req.body)
 
-      const { passwd } = new ChangePasswdDTO(req.body)
-
-      const user = await this.userRepository.findByField({ email })
-
-      if (!user) {
-        return res.status(404).json({ msg: config.userMsg.notFound })
-      }
-
-      await this.userRepository.changePasswd(user.id as string, passwd)
-      await this.userRepository.save(user)
+      await this.changePasswdUseCase.execute(token, passwd)
 
       res.status(200).json({ msg: config.userMsg.updated })
     } catch (err) {
-      utils.handleError(res, err)
+      handleHttpErrorResponse(res, err)
     }
   }
 
@@ -59,20 +46,12 @@ export class UserControllers {
     try {
       const { token } = req.cookies
 
-      const id = this.authServices.jwtHandler(token, 'id')
-
-      const user = await this.userRepository.findByField({ id })
-
-      if (!user) {
-        return res.status(404).json({ msg: config.userMsg.notFound })
-      }
-
-      await this.userRepository.delete(user)
+      await this.deleteUserUseCase.execute(token)
 
       res.clearCookie('token')
       res.status(200).json({ msg: config.userMsg.deleted })
     } catch (err) {
-      utils.handleError(res, err)
+      handleHttpErrorResponse(res, err)
     }
   }
 
@@ -81,30 +60,23 @@ export class UserControllers {
       const { token } = req.cookies
       const { productId } = req.body
 
-      const userId = this.authServices.jwtHandler(token, 'id')
+      await this.toggleFavoriteUseCase.execute(token, productId)
 
-      await this.userRepository.toggleFavorite(userId, productId)
       res.sendStatus(200)
     } catch (err) {
-      utils.handleError(res, err)
+      handleHttpErrorResponse(res, err)
     }
   }
 
   getFavorites: Controller = async (req, res) => {
-    const { token } = req.cookies
-
     try {
-      const id = this.authServices.jwtHandler(token, 'id')
+      const { token } = req.cookies
 
-      if (!id) {
-        return res.status(401).json({ msg: config.serverMsg.invalidToken })
-      }
-
-      const favorites = await this.userRepository.getFavorites(id)
+      const favorites = await this.getFavoritesUseCase.execute(token)
 
       res.status(200).json(favorites)
     } catch (err) {
-      utils.handleError(res, err)
+      handleHttpErrorResponse(res, err)
     }
   }
 }

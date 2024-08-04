@@ -4,9 +4,37 @@
       "syntax": "typescript",
       "tsx": false
     },
+    "baseUrl": "./",
+    "paths": {
+      "@application/*": [
+        "./src/application/*"
+      ],
+      "@infrastructure/*": [
+        "./src/infrastructure/*"
+      ],
+      "@adapters/*": [
+        "./src/adapters/*"
+      ],
+      "@config/*": [
+        "./src/config/*"
+      ],
+      "@types": [
+        "./src/types/global"
+      ],
+      "@domain/*": [
+        "./src/domain/*"
+      ],
+      "@utils/*": [
+        "./src/utils/*"
+      ],
+      "@src/*": [
+        "./src/*"
+      ]
+    },
     "target": "es2020"
   },
   "module": {
-    "type": "es6"
+    "type": "es6",
+    "strict": true
   }
 }

@@ -1,22 +1,41 @@
 {
   "compilerOptions": {
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "target": "ES2020",
-    "module": "ES2022",
+    "module": "ES6",
     "rootDir": "./src",
     "esModuleInterop": true,
     "moduleResolution": "Bundler",
-    // "baseUrl": "."
-    // "paths": {
-    //   "@/*": ["src/*"],
-    //   "@models/*": ["src/models/*"],
-    //   "@types": ["src/types/types.ts"],
-    //   "@db/*": ["src/db/*"],
-    //   "@controllers/*": ["src/controllers/*"],
-    //   "@routes/*": ["src/routes/*"],
-    //   "@middleware/*": ["src/middleware/*"]
-    // }
+    "baseUrl": "./",
+    "paths": {
+      "@application/*": [
+        "./src/application/*"
+      ],
+      "@infrastructure/*": [
+        "./src/infrastructure/*"
+      ],
+      "@adapters/*": [
+        "./src/adapters/*"
+      ],
+      "@config/*": [
+        "./src/config/*"
+      ],
+      "@types": [
+        "./src/types/global"
+      ],
+      "@domain/*": [
+        "./src/domain/*"
+      ],
+      "@utils/*": [
+        "./src/utils/*"
+      ],
+      "@src/*": [
+        "./src/*"
+      ]
+    },
     "resolveJsonModule": true,
-    "outDir": "./dist",
+    "outDir": "./dist/src",
     "removeComments": true,
     "strict": true,
     "skipLibCheck": true

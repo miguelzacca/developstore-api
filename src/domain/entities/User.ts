@@ -1,6 +1,6 @@
-import { DataTypes, Model } from 'sequelize'
-import { sequelize } from '../sequelize.js'
+import { initUserModel } from '@infrastructure/database/models/UserModel.js'
 import { Favorites } from './Favorites.js'
+import { Model } from 'sequelize'
 
 export interface UserAttributes {
   id?: string
@@ -12,41 +12,7 @@ export interface UserAttributes {
   favorites?: Favorites[]
 }
 
-export class User extends Model<UserAttributes> {
-  static initialize(dbInstance: typeof sequelize) {
-    User.init(
-      {
-        id: {
-          type: DataTypes.UUID,
-          defaultValue: DataTypes.UUIDV4,
-          primaryKey: true,
-        },
-        uname: {
-          type: DataTypes.STRING(50),
-          allowNull: false,
-        },
-        email: {
-          type: DataTypes.STRING(100),
-          unique: true,
-          allowNull: false,
-        },
-        verified_email: {
-          type: DataTypes.BOOLEAN,
-          defaultValue: false,
-          allowNull: false,
-        },
-        passwd: {
-          type: DataTypes.STRING,
-          allowNull: false,
-        },
-      },
-      {
-        sequelize: dbInstance,
-        updatedAt: false,
-      },
-    )
-  }
-
+export class User extends Model<UserAttributes> implements UserAttributes {
   get verified_email(): boolean | undefined {
     return this.getDataValue('verified_email')
   }
@@ -87,3 +53,5 @@ export class User extends Model<UserAttributes> {
     this.setDataValue('favorites', value)
   }
 }
+
+initUserModel(User)

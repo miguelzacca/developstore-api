@@ -1,5 +1,5 @@
-import { config } from '../../../config/config.js'
-import { Middleware } from '../../../types/global'
+import { config } from '@config/config.js'
+import { Middleware } from '@types'
 import jwt from 'jsonwebtoken'
 
 export const isLoggedIn: Middleware = (req, res, next) => {

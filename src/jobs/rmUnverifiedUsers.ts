@@ -1,5 +1,5 @@
 import { Op } from 'sequelize'
-import { User } from '../infrastructure/database/models/User.js'
+import { User } from '@domain/entities/User.js'
 
 export const rmUnverifiedUsers = async () => {
   try {
