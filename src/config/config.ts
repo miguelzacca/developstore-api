@@ -42,8 +42,7 @@ export const config = {
       httpOnly: true,
       secure: true,
       maxAge: this.env.AUTH_DURATION_DAYS * 24 * 60 * 60 * 1000,
-      path: '/',
-      sameSite: 'lax',
+      sameSite: 'none',
     } as CookieOptions
   },
 
