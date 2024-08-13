@@ -1,60 +1,98 @@
 {
   "name": "developstore-api",
-  "version": "latest",
-  "description": "Develop Store API.",
-  "main": "dist/src/index.js",
+  "version": "1.0.0",
+  "description": "The Develop Store API.",
   "type": "module",
-  "scripts": {
-    "build:tsc": "tsc",
-    "b:s": "npm run build && npm start",
-    "build": "swc src -d dist --config-file .swcrc",
-    "start": "node dist/src/index.js",
-    "dev": "swc src -d dist --config-file .swcrc --watch & node --watch dist/src/index.js",
-    "lint": "eslint ."
-  },
   "author": "Miguel Zacca",
+  "private": true,
   "license": "CC-BY-NC-4.0",
+  "scripts": {
+    "build": "nest build",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "start": "nest start",
+    "start:dev": "nest start --watch",
+    "start:debug": "nest start --debug --watch",
+    "start:prod": "node dist/main",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:e2e": "jest --config ./test/jest-e2e.json"
+  },
   "dependencies": {
     "@faker-js/faker": "^8.4.1",
+    "@nestjs/common": "^10.0.0",
+    "@nestjs/config": "^3.2.3",
+    "@nestjs/core": "^10.0.0",
+    "@nestjs/mapped-types": "*",
+    "@nestjs/platform-express": "^10.0.0",
+    "@nestjs/schedule": "^4.1.0",
+    "@nestjs/sequelize": "^10.0.1",
+    "@nestjs/serve-static": "^4.0.2",
+    "@nestjs/swagger": "^7.4.0",
     "bcrypt": "^5.1.1",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
-    "express": "^4.19.2",
-    "inversify": "^6.0.2",
+    "express-rate-limit": "^7.4.0",
     "jsonwebtoken": "^9.0.2",
-    "node-cron": "^3.0.3",
-    "nodemailer": "^6.9.13",
-    "reflect-metadata": "^0.2.2",
+    "nodemailer": "^6.9.14",
+    "reflect-metadata": "^0.2.0",
+    "rxjs": "^7.8.1",
     "sequelize": "^6.37.3",
+    "sequelize-typescript": "^2.1.6",
     "sqlite3": "^5.1.7",
-    "zod": "^3.23.0"
+    "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@eslint/js": "^9.6.0",
-    "@swc/cli": "^0.4.0",
-    "@swc/core": "^1.6.13",
+    "@nestjs/cli": "^10.0.0",
+    "@nestjs/schematics": "^10.0.0",
+    "@nestjs/testing": "^10.0.0",
     "@types/bcrypt": "^5.0.2",
     "@types/compression": "^1.7.5",
     "@types/cookie-parser": "^1.4.7",
     "@types/cors": "^2.8.17",
-    "@types/eslint__js": "^8.42.3",
-    "@types/express": "^4.17.21",
+    "@types/express": "^4.17.17",
+    "@types/jest": "^29.5.2",
     "@types/jsonwebtoken": "^9.0.6",
-    "@types/node-cron": "^3.0.11",
+    "@types/node": "^20.14.15",
     "@types/nodemailer": "^6.4.15",
-    "@types/sequelize": "^4.28.20",
-    "eslint": "^8.57.0",
-    "typescript": "^5.4.5",
-    "typescript-eslint": "^7.15.0"
+    "@types/supertest": "^6.0.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "eslint": "^8.42.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "jest": "^29.5.0",
+    "path": "^0.12.7",
+    "prettier": "^3.0.0",
+    "source-map-support": "^0.5.21",
+    "supertest": "^7.0.0",
+    "ts-jest": "^29.1.0",
+    "ts-loader": "^9.4.3",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.1.3"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/miguelzacca/e-commerce.git"
-  },
-  "bugs": {
-    "url": "https://github.com/miguelzacca/e-commerce/issues"
-  },
-  "homepage": "https://github.com/miguelzacca/e-commerce#readme"
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "src",
+    "testRegex": ".*\\.spec\\.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "collectCoverageFrom": [
+      "**/*.(t|j)s"
+    ],
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node"
+  }
 }

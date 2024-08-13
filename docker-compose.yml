@@ -11,4 +11,4 @@ services:
       - "${PORT}:${PORT}"
     env_file:
       - .env
-    command: ["npm", "start"]
+    command: ["npm", "run", "start:prod"]
