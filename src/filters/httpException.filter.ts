@@ -23,6 +23,6 @@ export class HttpExceptionFilter implements ExceptionFilter {
 
     const msg = rawIsString ? JSON.parse(raw)['message'] : raw['message']
 
-    res.status(status).json({ zod: Array.isArray(msg) ? msg[0] : msg })
+    res.status(status).json({ msg: Array.isArray(msg) ? msg[0] : msg })
   }
 }

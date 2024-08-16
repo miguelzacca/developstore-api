@@ -8,7 +8,7 @@ import { UserModule } from './core/user/user.module.js'
 import { AuthModule } from './core/auth/auth.module.js'
 import { ProductsModule } from './core/products/products.module.js'
 import { configuration } from './config/configuration.js'
-import { isLoggedIn } from './core/auth/guard/isLoggedIn.guard.js'
+import { isLoggedIn } from './guard/isLoggedIn.guard.js'
 import { PopulateProductsService } from './database/seed/populateProducts.service.js'
 
 @Module({

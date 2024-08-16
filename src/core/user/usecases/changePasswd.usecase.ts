@@ -1,6 +1,7 @@
 import { ConfigService } from '@nestjs/config'
 import { UserRepository } from '../user.repository.js'
 import { Inject, Injectable } from '@nestjs/common'
+import * as bcrypt from 'bcrypt'
 
 @Injectable()
 export class ChangePasswdUseCase {
@@ -15,10 +16,17 @@ export class ChangePasswdUseCase {
     const user = await this.userRepository.findByField({ email })
 
     if (!user) {
-      const msg = this.configService.get('userMsg.deleted')
+      const msg = this.configService.get('userMsg.notFound')
       throw { custom: { status: 404, msg } }
     }
 
-    await this.userRepository.changePasswd(user.id, newPasswd)
+    const salt = await bcrypt.genSalt(10)
+    const hashedNewPasswd = await bcrypt.hash(newPasswd, salt)
+
+    await this.userRepository.updateField({
+      user,
+      fieldName: 'passwd',
+      fieldValue: hashedNewPasswd,
+    })
   }
 }

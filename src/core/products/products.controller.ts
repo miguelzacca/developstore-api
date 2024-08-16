@@ -1,5 +1,5 @@
 import { GetProductsUseCase } from './usecases/getProducts.usecase.js'
-import { HandleError } from '../../shared/utils/handleError.js'
+import { HandleError } from '../../utils/handleError.js'
 import { Controller, Get, Inject, Query } from '@nestjs/common'
 
 @Controller('/products')

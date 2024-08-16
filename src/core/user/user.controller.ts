@@ -1,4 +1,4 @@
-import { HandleError } from '../../shared/utils/handleError.js'
+import { HandleError } from '../../utils/handleError.js'
 import {
   Body,
   Controller,
@@ -13,7 +13,7 @@ import {
 } from '@nestjs/common'
 import { Request, Response } from 'express'
 import { ChangePasswdBody } from './dto/changePasswdBody.dto.js'
-import { isLoggedIn } from '../auth/guard/isLoggedIn.guard.js'
+import { isLoggedIn } from '../../guard/isLoggedIn.guard.js'
 import { UserServices } from './user.service.js'
 import { ConfigService } from '@nestjs/config'
 

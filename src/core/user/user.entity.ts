@@ -41,4 +41,11 @@ export class User extends Model<User> {
     allowNull: false,
   })
   passwd: string
+
+  @BelongsToMany(() => Products, {
+    through: () => Favorites,
+    foreignKey: 'userId',
+    as: 'favoriteProducts',
+  })
+  favoriteProducts: Products[]
 }

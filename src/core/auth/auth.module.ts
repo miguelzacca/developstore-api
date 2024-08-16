@@ -6,7 +6,7 @@ import { LoginUseCase } from './usecases/login.usecase.js'
 import { PasswdRecoveryUseCase } from './usecases/passwdRecovery.usecase.js'
 import { RegisterUseCase } from './usecases/register.usecase.js'
 import { UserModule } from '../user/user.module.js'
-import { CommonModule } from '../../shared/common/common.module.js'
+import { CommonModule } from '../common/common.module.js'
 import { ConfigModule } from '@nestjs/config'
 
 @Module({

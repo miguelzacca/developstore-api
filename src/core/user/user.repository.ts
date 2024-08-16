@@ -1,10 +1,13 @@
 import { FindAttributeOptions } from 'sequelize'
-import * as bcrypt from 'bcrypt'
 import { RegisterBody } from '../auth/dto/registerBody.dto.js'
-import { Favorites } from './favorites/favorite.entity.js'
-import { Products } from '../products/products.entity.js'
 import { User } from './user.entity.js'
 import { Inject, Injectable } from '@nestjs/common'
+
+interface UpdateField {
+  user: User
+  fieldName: string
+  fieldValue: any
+}
 
 export interface IUserRepository {
   findByField(
@@ -12,11 +15,9 @@ export interface IUserRepository {
     restrict?: boolean,
   ): Promise<User | null>
   delete(target: number | User): Promise<void>
-  changePasswd(id: number, newPasswd: string): Promise<void>
+  updateField({ user, fieldName, fieldValue }: UpdateField): Promise<void>
   save(user: User): Promise<void>
   create(userAttributes: RegisterBody): Promise<void>
-  toggleFavorite(userId: number, productId: number): Promise<void>
-  getFavorites(id: number): Promise<Products[]>
 }
 
 @Injectable()
@@ -24,8 +25,6 @@ export class UserRepository implements IUserRepository {
   constructor(
     @Inject('USER')
     private userModel: typeof User,
-    @Inject('FAVORITES')
-    private favoriteModel: typeof Favorites,
   ) {}
 
   async findByField(
@@ -53,17 +52,12 @@ export class UserRepository implements IUserRepository {
     await target.destroy()
   }
 
-  async changePasswd(id: number, newPasswd: string): Promise<void> {
-    const user = await this.userModel.findByPk(id)
-
-    if (!user) {
-      throw new Error('User not found.')
-    }
-
-    const salt = await bcrypt.genSalt(10)
-    const hashedNewPasswd = await bcrypt.hash(newPasswd, salt)
-
-    user.passwd = hashedNewPasswd
+  async updateField({
+    user,
+    fieldName,
+    fieldValue,
+  }: UpdateField): Promise<void> {
+    user[fieldName] = fieldValue
     await this.save(user)
   }
 
@@ -73,32 +67,5 @@ export class UserRepository implements IUserRepository {
 
   async create(userAttributes: RegisterBody): Promise<void> {
     await this.userModel.create(userAttributes)
-  }
-
-  async toggleFavorite(userId: number, productId: number): Promise<void> {
-    const isFavorite = await this.favoriteModel.findOne({
-      where: { productId },
-    })
-
-    if (isFavorite) {
-      this.favoriteModel.destroy({ where: { productId } })
-      return
-    }
-
-    try {
-      await this.favoriteModel.create({ userId, productId })
-    } catch (error) {
-      console.error(error)
-    }
-  }
-
-  async getFavorites(id: number): Promise<Products[]> {
-    const data = await this.userModel.findOne({
-      where: { id },
-      include: [{ model: Products, as: 'favorites' }],
-    })
-
-    // @ts-expect-error
-    return data?.favorites || []
   }
 }

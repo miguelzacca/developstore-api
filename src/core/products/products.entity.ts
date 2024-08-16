@@ -52,4 +52,10 @@ export class Products extends Model<Products> {
     allowNull: false,
   })
   price: number
+
+  @BelongsToMany(() => User, {
+    through: () => Favorites,
+    foreignKey: 'productId',
+  })
+  users: User[]
 }

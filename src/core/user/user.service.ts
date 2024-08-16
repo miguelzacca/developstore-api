@@ -4,7 +4,7 @@ import { GetFavoritesUseCase } from './usecases/getFavorites.usecase.js'
 import { GetUserUseCase } from './usecases/getUser.usecase.js'
 import { ToggleFavoriteUseCase } from './usecases/toggleFavorite.usecase.js'
 import { Inject } from '@nestjs/common'
-import { CommonServices } from '../../shared/common/common.service.js'
+import { CommonServices } from '../common/common.service.js'
 
 export class UserServices {
   constructor(

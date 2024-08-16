@@ -48,7 +48,7 @@ async function bootstrap() {
     .addTag('developstore-api')
     .build()
   const document = SwaggerModule.createDocument(app, config)
-  SwaggerModule.setup('docs', app, document)
+  SwaggerModule.setup('/', app, document)
 
   await app.listen(configService.get('env.PORT') || 3000)
 }

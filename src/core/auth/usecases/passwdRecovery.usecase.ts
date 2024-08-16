@@ -1,7 +1,7 @@
 import { UserRepository } from '../../user/user.repository.js'
 import { Inject, Injectable } from '@nestjs/common'
 import jwt from 'jsonwebtoken'
-import { CommonServices } from '../../../shared/common/common.service.js'
+import { CommonServices } from '../../common/common.service.js'
 import { ConfigService } from '@nestjs/config'
 
 @Injectable()

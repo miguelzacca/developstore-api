@@ -1,5 +1,5 @@
 import { RegisterBody } from './dto/registerBody.dto.js'
-import { HandleError } from '../../shared/utils/handleError.js'
+import { HandleError } from '../../utils/handleError.js'
 import {
   Body,
   Controller,
@@ -13,7 +13,7 @@ import {
 } from '@nestjs/common'
 import { LoginBody } from './dto/loginBody.dto.js'
 import { Response } from 'express'
-import { isLoggedIn } from './guard/isLoggedIn.guard.js'
+import { isLoggedIn } from '../../guard/isLoggedIn.guard.js'
 import { AuthServices } from './auth.service.js'
 import { ConfigService } from '@nestjs/config'
 
@@ -30,7 +30,9 @@ export class AuthControllers {
   async emailVerify(@Param('token') token: string, @Res() res: Response) {
     try {
       await this.authServices.emailVerify(token)
-      res.status(200).redirect(this.configService.get('env.ORIGIN_ADDR'))
+      res
+        .status(200)
+        .redirect(`${this.configService.get('env.ORIGIN_ADDR')}/login`)
     } catch (err) {
       HandleError.http(err)
     }

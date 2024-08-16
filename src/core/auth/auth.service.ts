@@ -1,4 +1,4 @@
-import { CommonServices } from '../../shared/common/common.service.js'
+import { CommonServices } from '../common/common.service.js'
 import { LoginBody } from './dto/loginBody.dto.js'
 import { RegisterBody } from './dto/registerBody.dto.js'
 import { EmailVerifyUseCase } from './usecases/emailVerify.usecase.js'

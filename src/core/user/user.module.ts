@@ -7,11 +7,12 @@ import { ToggleFavoriteUseCase } from './usecases/toggleFavorite.usecase.js'
 import { GetFavoritesUseCase } from './usecases/getFavorites.usecase.js'
 import { ChangePasswdUseCase } from './usecases/changePasswd.usecase.js'
 import { UserRepository } from './user.repository.js'
-import { CommonModule } from '../../shared/common/common.module.js'
+import { CommonModule } from '../common/common.module.js'
 import { DatabaseModule } from '../../database/database.module.js'
 import { userProviders } from './providers/user.providers.js'
 import { favoriteProviders } from './providers/favorite.providers.js'
 import { ConfigModule } from '@nestjs/config'
+import { FavoriteRepository } from './favorites/favorite.repository.js'
 
 @Module({
   imports: [CommonModule, DatabaseModule, ConfigModule],
@@ -23,10 +24,11 @@ import { ConfigModule } from '@nestjs/config'
     ToggleFavoriteUseCase,
     GetFavoritesUseCase,
     ChangePasswdUseCase,
+    FavoriteRepository,
     UserRepository,
     ...userProviders,
     ...favoriteProviders,
   ],
-  exports: [UserRepository],
+  exports: [UserRepository, FavoriteRepository],
 })
 export class UserModule {}
