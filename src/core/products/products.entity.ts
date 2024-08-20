@@ -55,7 +55,9 @@ export class Products extends Model<Products> {
 
   @BelongsToMany(() => User, {
     through: () => Favorites,
-    foreignKey: 'productId',
+    foreignKey: {
+      name: 'productId',
+    },
   })
   users: User[]
 }

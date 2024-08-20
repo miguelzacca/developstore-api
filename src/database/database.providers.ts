@@ -12,7 +12,7 @@ export const databaseProviders = [
         storage: './.data/database.db',
         logging: false,
       })
-      sequelize.addModels([User, Favorites, Products])
+      sequelize.addModels([User, Products, Favorites])
       await sequelize.sync()
       return sequelize
     },

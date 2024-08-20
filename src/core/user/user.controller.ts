@@ -16,6 +16,7 @@ import { ChangePasswdBody } from './dto/changePasswdBody.dto.js'
 import { isLoggedIn } from '../../guard/isLoggedIn.guard.js'
 import { UserServices } from './user.service.js'
 import { ConfigService } from '@nestjs/config'
+import { ToggleFavoriteBody } from './dto/toggleFavoriteBody.dto.js'
 
 @Controller('/user')
 @UseGuards(isLoggedIn)
@@ -67,10 +68,10 @@ export class UserControllers {
   }
 
   @Post('/toggle-favorite')
-  async toggleFavorite(@Req() req: Request) {
+  async toggleFavorite(@Body() body: ToggleFavoriteBody, @Req() req: Request) {
     try {
       const { token } = req.cookies
-      const { productId } = req.body
+      const { productId } = body
       await this.userServices.toggleFavorite(token, productId)
     } catch (err) {
       HandleError.http(err)

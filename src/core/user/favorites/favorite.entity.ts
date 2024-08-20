@@ -15,6 +15,6 @@ export class Favorites extends Model<Favorites> {
   userId: number
 
   @ForeignKey(() => Products)
-  @Column({ type: DataType.BIGINT })
+  @Column({ type: DataType.BIGINT, primaryKey: true })
   productId: number
 }
