@@ -8,7 +8,7 @@ import {
 import { Products } from '../products/products.entity.js'
 import { Favorites } from './favorites/favorite.entity.js'
 
-@Table({ tableName: 'users', timestamps: false })
+@Table({ tableName: 'users', updatedAt: false })
 export class User extends Model<User> {
   @Column({
     type: DataType.BIGINT,

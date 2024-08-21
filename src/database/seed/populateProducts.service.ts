@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common'
-import { Products } from '../../core/products/products.entity.js'
+import { Products } from '../../modules/products/products.entity.js'
 import { faker } from '@faker-js/faker'
 import { ConfigService } from '@nestjs/config'
 

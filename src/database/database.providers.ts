@@ -1,7 +1,7 @@
 import { Sequelize } from 'sequelize-typescript'
-import { User } from '../core/user/user.entity.js'
-import { Favorites } from '../core/user/favorites/favorite.entity.js'
-import { Products } from '../core/products/products.entity.js'
+import { User } from '../modules/user/user.entity.js'
+import { Favorites } from '../modules/user/favorites/favorite.entity.js'
+import { Products } from '../modules/products/products.entity.js'
 
 export const databaseProviders = [
   {

@@ -1,5 +1,5 @@
 import { Op } from 'sequelize'
-import { User } from '../core/user/user.entity.js'
+import { User } from '../modules/user/user.entity.js'
 import { Injectable } from '@nestjs/common'
 import { Cron } from '@nestjs/schedule'
 

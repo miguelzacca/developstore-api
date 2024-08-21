@@ -18,7 +18,8 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "docs": "npx @compodoc/compodoc -p tsconfig.json -d ./docs -s"
   },
   "dependencies": {
     "@faker-js/faker": "^8.4.1",
@@ -32,6 +33,7 @@
     "@nestjs/serve-static": "^4.0.2",
     "@nestjs/swagger": "^7.4.0",
     "bcrypt": "^5.1.1",
+    "cacheable-request": "^12.0.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
     "compression": "^1.7.4",
@@ -39,6 +41,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express-rate-limit": "^7.4.0",
+    "http-cache-semantics": "^4.1.1",
     "jsonwebtoken": "^9.0.2",
     "nodemailer": "^6.9.14",
     "reflect-metadata": "^0.2.0",
@@ -48,6 +51,7 @@
     "sqlite3": "^5.1.7"
   },
   "devDependencies": {
+    "@compodoc/compodoc": "^1.1.25",
     "@nestjs/cli": "^10.0.0",
     "@nestjs/schematics": "^10.0.0",
     "@nestjs/testing": "^10.0.0",
@@ -56,6 +60,7 @@
     "@types/cookie-parser": "^1.4.7",
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
+    "@types/http-cache-semantics": "^4.0.4",
     "@types/jest": "^29.5.2",
     "@types/jsonwebtoken": "^9.0.6",
     "@types/node": "^20.14.15",

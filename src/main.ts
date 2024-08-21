@@ -12,6 +12,7 @@ import { HttpExceptionFilter } from './filters/httpException.filter.js'
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule)
+  app.getHttpAdapter().getInstance().set('trust proxy', 1)
 
   const configService = app.get(ConfigService)
   const populateProductsService = app.get(PopulateProductsService)
@@ -20,7 +21,7 @@ async function bootstrap() {
 
   app.use(
     rateLimit({
-      windowMs: 1 * 60 * 1000,
+      windowMs: 60_000,
       max: 100,
     }),
   )
