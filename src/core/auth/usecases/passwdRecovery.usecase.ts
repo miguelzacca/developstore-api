@@ -33,7 +33,7 @@ export class PasswdRecoveryUseCase {
 
     const recoveryLink = `${this.configService.get('env.ORIGIN_ADDR')}/passwd-change/${recoveryToken}`
 
-    await this.commonServices.sendLink({
+    this.commonServices.sendLink({
       to: email,
       subject: 'Password Recovery',
       link: recoveryLink,

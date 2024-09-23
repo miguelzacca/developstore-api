@@ -16,7 +16,9 @@ import { Response } from 'express'
 import { isLoggedIn } from '../../guard/isLoggedIn.guard.js'
 import { AuthServices } from './auth.service.js'
 import { ConfigService } from '@nestjs/config'
+import { ApiTags } from '@nestjs/swagger'
 
+@ApiTags('auth')
 @Controller('/auth')
 export class AuthControllers {
   constructor(

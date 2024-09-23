@@ -17,7 +17,9 @@ import { isLoggedIn } from '../../guard/isLoggedIn.guard.js'
 import { UserServices } from './user.service.js'
 import { ConfigService } from '@nestjs/config'
 import { ToggleFavoriteBody } from './dto/toggleFavoriteBody.dto.js'
+import { ApiTags } from '@nestjs/swagger'
 
+@ApiTags('user')
 @Controller('/user')
 @UseGuards(isLoggedIn)
 export class UserControllers {

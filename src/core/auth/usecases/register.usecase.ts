@@ -51,7 +51,7 @@ export class RegisterUseCase {
 
     this.commonServices.sendLink({
       to: email,
-      subject: 'Email Verification Link',
+      subject: 'Email Verification',
       link: verifyLink,
     })
   }

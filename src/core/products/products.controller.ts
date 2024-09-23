@@ -1,7 +1,9 @@
 import { GetProductsUseCase } from './usecases/getProducts.usecase.js'
 import { HandleError } from '../../utils/handleError.js'
 import { Controller, Get, Inject, Query } from '@nestjs/common'
+import { ApiTags } from '@nestjs/swagger'
 
+@ApiTags('products')
 @Controller('/products')
 export class ProductsControllers {
   constructor(

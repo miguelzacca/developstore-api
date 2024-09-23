@@ -112,7 +112,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/modules/auth/auth.controller.ts</code>
+            <code>src/core/auth/auth.controller.ts</code>
         </p>
 
             <p class="comment">
@@ -213,8 +213,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="30"
-                                    class="link-to-prism">src/modules/auth/auth.controller.ts:30</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="32"
+                                    class="link-to-prism">src/core/auth/auth.controller.ts:32</a></div>
                         </td>
                     </tr>
 
@@ -302,8 +302,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="52"
-                                    class="link-to-prism">src/modules/auth/auth.controller.ts:52</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="54"
+                                    class="link-to-prism">src/core/auth/auth.controller.ts:54</a></div>
                         </td>
                     </tr>
 
@@ -391,8 +391,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="63"
-                                    class="link-to-prism">src/modules/auth/auth.controller.ts:63</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="65"
+                                    class="link-to-prism">src/core/auth/auth.controller.ts:65</a></div>
                         </td>
                     </tr>
 
@@ -468,8 +468,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="42"
-                                    class="link-to-prism">src/modules/auth/auth.controller.ts:42</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="44"
+                                    class="link-to-prism">src/core/auth/auth.controller.ts:44</a></div>
                         </td>
                     </tr>
 
@@ -546,8 +546,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="74"
-                                    class="link-to-prism">src/modules/auth/auth.controller.ts:74</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="76"
+                                    class="link-to-prism">src/core/auth/auth.controller.ts:76</a></div>
                         </td>
                     </tr>
 
@@ -639,7 +639,9 @@ import { Response } from &#x27;express&#x27;
 import { isLoggedIn } from &#x27;../../guard/isLoggedIn.guard.js&#x27;
 import { AuthServices } from &#x27;./auth.service.js&#x27;
 import { ConfigService } from &#x27;@nestjs/config&#x27;
+import { ApiTags } from &#x27;@nestjs/swagger&#x27;
 
+@ApiTags(&#x27;auth&#x27;)
 @Controller(&#x27;/auth&#x27;)
 export class AuthControllers {
   constructor(

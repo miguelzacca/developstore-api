@@ -119,7 +119,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/modules/auth/dto/loginBody.dto.ts</code>
+            <code>src/core/auth/dto/loginBody.dto.ts</code>
         </p>
 
 
@@ -143,9 +143,11 @@
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#email" >email</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
                                 <a href="#passwd" >passwd</a>
@@ -178,6 +180,7 @@
                             <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
                         <span ><b>email</b></span>
                         <a href="#email"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -194,13 +197,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @IsNotEmpty()<br />@Length(0, 100)<br />@IsEmail()<br />
+                            @ApiProperty()<br />@IsNotEmpty()<br />@Length(0, 100)<br />@IsEmail()<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/modules/auth/dto/loginBody.dto.ts:7</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/core/auth/dto/loginBody.dto.ts:9</a></div>
                         </td>
                     </tr>
 
@@ -213,6 +216,7 @@
                 <td class="col-md-4">
                     <a name="passwd"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier"></span>
                         <span ><b>passwd</b></span>
@@ -231,13 +235,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @IsNotEmpty()<br />@Length(6, 16)<br />
+                            @ApiProperty()<br />@IsNotEmpty()<br />@Length(6, 16)<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/modules/auth/dto/loginBody.dto.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/core/auth/dto/loginBody.dto.ts:14</a></div>
                         </td>
                     </tr>
 
@@ -256,14 +260,17 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { IsEmail, IsNotEmpty, Length } from &#x27;class-validator&#x27;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty } from &#x27;@nestjs/swagger&#x27;
+import { IsEmail, IsNotEmpty, Length } from &#x27;class-validator&#x27;
 
 export class LoginBody {
+  @ApiProperty()
   @IsNotEmpty()
   @Length(0, 100)
   @IsEmail()
   email: string
 
+  @ApiProperty()
   @IsNotEmpty()
   @Length(6, 16)
   passwd: string

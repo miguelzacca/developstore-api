@@ -33,7 +33,10 @@ export class CommonServices {
 
   async sendLink({ to, subject, link }: SendEmailProps): Promise<void> {
     await this.transporter.sendMail({
-      from: 'Develop Store',
+      from: {
+        name: 'Develop Store',
+        address: this.configService.get('env.SMTP_USER'),
+      },
       to,
       subject,
       html: `<h3 style="font-weight: 400">${link}</h3>`,

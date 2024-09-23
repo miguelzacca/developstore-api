@@ -115,7 +115,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/modules/auth/usecases/passwdRecovery.usecase.ts</code>
+            <code>src/core/auth/usecases/passwdRecovery.usecase.ts</code>
         </p>
 
 
@@ -162,7 +162,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/modules/auth/usecases/passwdRecovery.usecase.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/core/auth/usecases/passwdRecovery.usecase.ts:8</a></div>
                             </td>
                         </tr>
 
@@ -252,7 +252,7 @@
                     <tr>
                         <td class="col-md-4">
                             <div class="io-line">Defined in <a href="" data-line="18"
-                                    class="link-to-prism">src/modules/auth/usecases/passwdRecovery.usecase.ts:18</a></div>
+                                    class="link-to-prism">src/core/auth/usecases/passwdRecovery.usecase.ts:18</a></div>
                         </td>
                     </tr>
 
@@ -339,7 +339,7 @@ export class PasswdRecoveryUseCase {
 
     const recoveryLink &#x3D; &#x60;${this.configService.get(&#x27;env.ORIGIN_ADDR&#x27;)}/passwd-change/${recoveryToken}&#x60;
 
-    await this.commonServices.sendLink({
+    this.commonServices.sendLink({
       to: email,
       subject: &#x27;Password Recovery&#x27;,
       link: recoveryLink,

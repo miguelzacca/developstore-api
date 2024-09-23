@@ -391,7 +391,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Inject, Injectable } from &#x27;@nestjs/common&#x27;
-import { Products } from &#x27;../../modules/products/products.entity.js&#x27;
+import { Products } from &#x27;../../core/products/products.entity.js&#x27;
 import { faker } from &#x27;@faker-js/faker&#x27;
 import { ConfigService } from &#x27;@nestjs/config&#x27;
 
@@ -441,17 +441,13 @@ export class PopulateProductsService {
     ]
   }
 
-  async init() {
-    try {
-      await Products.destroy({ where: {} })
-      console.log(&#x27;SEED INIT&#x27;)
-    } catch (err) {
-      console.error(err)
-    }
-  }
-
   async run() {
     try {
+      const isPopulated &#x3D; (await Products.findAll()).length &gt; 0
+      if (isPopulated) {
+        return
+      }
+
       for (const product of this.products) {
         const { productName, img, category, price, oldPrice, info } &#x3D; product
 
@@ -464,7 +460,7 @@ export class PopulateProductsService {
           info,
         })
       }
-      console.log(&#x27;SEED RUN\n&#x27;)
+      console.log(&#x27;\n&gt; Populate DB\n&#x27;)
     } catch (err) {
       console.error(err)
     }

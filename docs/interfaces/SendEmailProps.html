@@ -122,7 +122,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/modules/common/common.service.ts</code>
+            <code>src/core/common/common.service.ts</code>
         </p>
 
 
@@ -308,7 +308,10 @@ export class CommonServices {
 
   async sendLink({ to, subject, link }: SendEmailProps): Promise&lt;void&gt; {
     await this.transporter.sendMail({
-      from: &#x27;Develop Store&#x27;,
+      from: {
+        name: &#x27;Develop Store&#x27;,
+        address: this.configService.get(&#x27;env.SMTP_USER&#x27;),
+      },
       to,
       subject,
       html: &#x60;&lt;h3 style&#x3D;&quot;font-weight: 400&quot;&gt;${link}&lt;/h3&gt;&#x60;,

@@ -64,13 +64,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/AppModule.html" data-type="entity-link" >AppModule</a>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                        'data-bs-target="#injectables-links-module-AppModule-63a2904c450a3dce1377ca3caae46cca160c2bd4e8a45c5971f796ea23af916d50b5ae812b6440735e4859293a5e7952400d87d2c3558c92c454ebdb8a3ff2e3"' : 'data-bs-target="#xs-injectables-links-module-AppModule-63a2904c450a3dce1377ca3caae46cca160c2bd4e8a45c5971f796ea23af916d50b5ae812b6440735e4859293a5e7952400d87d2c3558c92c454ebdb8a3ff2e3"' }>
+                                        'data-bs-target="#injectables-links-module-AppModule-244eb5bbdea027525e0e0d0d9cfbe1996025217dc28571f79c2fe0f92b09cf629c8d2417a686ba135d07960e94733f3a51d086ddbd45ee43aa7bb022a9153342"' : 'data-bs-target="#xs-injectables-links-module-AppModule-244eb5bbdea027525e0e0d0d9cfbe1996025217dc28571f79c2fe0f92b09cf629c8d2417a686ba135d07960e94733f3a51d086ddbd45ee43aa7bb022a9153342"' }>
                                         <span class="icon ion-md-arrow-round-down"></span>
                                         <span>Injectables</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-AppModule-63a2904c450a3dce1377ca3caae46cca160c2bd4e8a45c5971f796ea23af916d50b5ae812b6440735e4859293a5e7952400d87d2c3558c92c454ebdb8a3ff2e3"' :
-                                        'id="xs-injectables-links-module-AppModule-63a2904c450a3dce1377ca3caae46cca160c2bd4e8a45c5971f796ea23af916d50b5ae812b6440735e4859293a5e7952400d87d2c3558c92c454ebdb8a3ff2e3"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-AppModule-244eb5bbdea027525e0e0d0d9cfbe1996025217dc28571f79c2fe0f92b09cf629c8d2417a686ba135d07960e94733f3a51d086ddbd45ee43aa7bb022a9153342"' :
+                                        'id="xs-injectables-links-module-AppModule-244eb5bbdea027525e0e0d0d9cfbe1996025217dc28571f79c2fe0f92b09cf629c8d2417a686ba135d07960e94733f3a51d086ddbd45ee43aa7bb022a9153342"' }>
                                         <li class="link">
                                             <a href="injectables/PopulateProductsService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >PopulateProductsService</a>
                                         </li>

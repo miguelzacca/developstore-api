@@ -39,14 +39,15 @@ async function bootstrap() {
 
   app.useGlobalFilters(new HttpExceptionFilter())
 
-  await populateProductsService.init()
   await populateProductsService.run()
 
   const config = new DocumentBuilder()
     .setTitle('Develop Store')
     .setDescription('The Develop Store API')
-    .setVersion('latest')
-    .addTag('developstore-api')
+    .setVersion('1.0.0')
+    .addTag('user')
+    .addTag('auth')
+    .addTag('products')
     .build()
   const document = SwaggerModule.createDocument(app, config)
   SwaggerModule.setup('/', app, document)

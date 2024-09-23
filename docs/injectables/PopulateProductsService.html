@@ -156,10 +156,6 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#init" >init</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Async</span>
                                 <a href="#run" >run</a>
                             </li>
                         </ul>
@@ -271,45 +267,6 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="init"></a>
-                    <span class="name">
-                            <span class="modifier">Async</span>
-                        <span ><b>init</b></span>
-                        <a href="#init"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>init()</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="52"
-                                    class="link-to-prism">src/database/seed/populateProducts.service.ts:52</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                        </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="run"></a>
                     <span class="name">
                             <span class="modifier">Async</span>
@@ -328,8 +285,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="61"
-                                    class="link-to-prism">src/database/seed/populateProducts.service.ts:61</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="52"
+                                    class="link-to-prism">src/database/seed/populateProducts.service.ts:52</a></div>
                         </td>
                     </tr>
 
@@ -385,7 +342,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Inject, Injectable } from &#x27;@nestjs/common&#x27;
-import { Products } from &#x27;../../modules/products/products.entity.js&#x27;
+import { Products } from &#x27;../../core/products/products.entity.js&#x27;
 import { faker } from &#x27;@faker-js/faker&#x27;
 import { ConfigService } from &#x27;@nestjs/config&#x27;
 
@@ -435,17 +392,13 @@ export class PopulateProductsService {
     ]
   }
 
-  async init() {
-    try {
-      await Products.destroy({ where: {} })
-      console.log(&#x27;SEED INIT&#x27;)
-    } catch (err) {
-      console.error(err)
-    }
-  }
-
   async run() {
     try {
+      const isPopulated &#x3D; (await Products.findAll()).length &gt; 0
+      if (isPopulated) {
+        return
+      }
+
       for (const product of this.products) {
         const { productName, img, category, price, oldPrice, info } &#x3D; product
 
@@ -458,7 +411,7 @@ export class PopulateProductsService {
           info,
         })
       }
-      console.log(&#x27;SEED RUN\n&#x27;)
+      console.log(&#x27;\n&gt; Populate DB\n&#x27;)
     } catch (err) {
       console.error(err)
     }

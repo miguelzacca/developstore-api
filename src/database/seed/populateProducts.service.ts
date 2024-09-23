@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common'
-import { Products } from '../../modules/products/products.entity.js'
+import { Products } from '../../core/products/products.entity.js'
 import { faker } from '@faker-js/faker'
 import { ConfigService } from '@nestjs/config'
 
@@ -49,17 +49,13 @@ export class PopulateProductsService {
     ]
   }
 
-  async init() {
-    try {
-      await Products.destroy({ where: {} })
-      console.log('SEED INIT')
-    } catch (err) {
-      console.error(err)
-    }
-  }
-
   async run() {
     try {
+      const isPopulated = (await Products.findAll()).length > 0
+      if (isPopulated) {
+        return
+      }
+
       for (const product of this.products) {
         const { productName, img, category, price, oldPrice, info } = product
 
@@ -72,7 +68,7 @@ export class PopulateProductsService {
           info,
         })
       }
-      console.log('SEED RUN\n')
+      console.log('\n> Populate DB\n')
     } catch (err) {
       console.error(err)
     }

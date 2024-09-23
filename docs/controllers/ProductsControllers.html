@@ -112,7 +112,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/modules/products/products.controller.ts</code>
+            <code>src/core/products/products.controller.ts</code>
         </p>
 
             <p class="comment">
@@ -192,8 +192,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="13"
-                                    class="link-to-prism">src/modules/products/products.controller.ts:13</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="15"
+                                    class="link-to-prism">src/core/products/products.controller.ts:15</a></div>
                         </td>
                     </tr>
 
@@ -246,7 +246,9 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { GetProductsUseCase } from &#x27;./usecases/getProducts.usecase.js&#x27;
 import { HandleError } from &#x27;../../utils/handleError.js&#x27;
 import { Controller, Get, Inject, Query } from &#x27;@nestjs/common&#x27;
+import { ApiTags } from &#x27;@nestjs/swagger&#x27;
 
+@ApiTags(&#x27;products&#x27;)
 @Controller(&#x27;/products&#x27;)
 export class ProductsControllers {
   constructor(
