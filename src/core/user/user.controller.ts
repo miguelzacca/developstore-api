@@ -18,6 +18,7 @@ import { UserServices } from './user.service.js'
 import { ConfigService } from '@nestjs/config'
 import { ToggleFavoriteBody } from './dto/toggleFavoriteBody.dto.js'
 import { ApiTags } from '@nestjs/swagger'
+import { ToggleShoppingCartBody } from './dto/toggleShoppingCartBody.dto.js'
 
 @ApiTags('user')
 @Controller('/user')
@@ -85,6 +86,31 @@ export class UserControllers {
     try {
       const { token } = req.cookies
       const favorites = await this.userServices.getFavorites(token)
+      return favorites
+    } catch (err) {
+      HandleError.http(err)
+    }
+  }
+
+  @Post('/toggle-shopping')
+  async toggleShoppingCart(
+    @Body() body: ToggleShoppingCartBody,
+    @Req() req: Request,
+  ) {
+    try {
+      const { token } = req.cookies
+      const { productId } = body
+      await this.userServices.toggleShoppingCart(token, productId)
+    } catch (err) {
+      HandleError.http(err)
+    }
+  }
+
+  @Get('/get-shopping')
+  async getShoppingCart(@Req() req: Request) {
+    try {
+      const { token } = req.cookies
+      const favorites = await this.userServices.getShoppingCart(token)
       return favorites
     } catch (err) {
       HandleError.http(err)

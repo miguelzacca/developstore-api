@@ -30,7 +30,7 @@
     "@nestjs/platform-express": "^10.0.0",
     "@nestjs/schedule": "^4.1.0",
     "@nestjs/sequelize": "^10.0.1",
-    "@nestjs/serve-static": "^4.0.2",
+    "@nestjs/serve-static": "^2.2.2",
     "@nestjs/swagger": "^7.4.0",
     "bcrypt": "^5.1.1",
     "cacheable-request": "^12.0.1",

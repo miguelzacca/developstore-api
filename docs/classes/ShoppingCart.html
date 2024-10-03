@@ -95,7 +95,7 @@
 
 <ol class="breadcrumb">
   <li class="breadcrumb-item">Classes</li>
-  <li class="breadcrumb-item" >User</li>
+  <li class="breadcrumb-item" >ShoppingCart</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -119,7 +119,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/core/user/user.entity.ts</code>
+            <code>src/core/user/shopping/shopping.entity.ts</code>
         </p>
 
 
@@ -141,31 +141,13 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier"></span>
-                                <a href="#email" >email</a>
+                                    <span class="modifier"></span>
+                                <a href="#productId" >productId</a>
                             </li>
                             <li>
                                     <span class="modifier"></span>
-                                <a href="#favoriteProducts" >favoriteProducts</a>
-                            </li>
-                            <li>
                                     <span class="modifier"></span>
-                                <a href="#id" >id</a>
-                            </li>
-                            <li>
-                                    <span class="modifier"></span>
-                                <a href="#passwd" >passwd</a>
-                            </li>
-                            <li>
-                                    <span class="modifier"></span>
-                                <a href="#shoppingCartProducts" >shoppingCartProducts</a>
-                            </li>
-                            <li>
-                                    <span class="modifier"></span>
-                                <a href="#uname" >uname</a>
-                            </li>
-                            <li>
-                                    <span class="modifier"></span>
-                                <a href="#verified_email" >verified_email</a>
+                                <a href="#userId" >userId</a>
                             </li>
                         </ul>
                     </td>
@@ -190,83 +172,12 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="email"></a>
+                    <a name="productId"></a>
                     <span class="name">
                             <span class="modifier"></span>
-                        <span ><b>email</b></span>
-                        <a href="#email"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @Column({type: undefined, allowNull: false})<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/core/user/user.entity.ts:31</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="favoriteProducts"></a>
-                    <span class="name">
                             <span class="modifier"></span>
-                        <span ><b>favoriteProducts</b></span>
-                        <a href="#favoriteProducts"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/Products.html" target="_self" >Products[]</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @BelongsToMany(undefined, {through: () &#x3D;&gt; Favorites, foreignKey: undefined, as: &#x27;favoriteProducts&#x27;})<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/core/user/user.entity.ts:53</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="id"></a>
-                    <span class="name">
-                            <span class="modifier"></span>
-                        <span ><b>id</b></span>
-                        <a href="#id"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>productId</b></span>
+                        <a href="#productId"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -281,13 +192,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @Column({type: undefined, primaryKey: true, autoIncrement: true})<br />
+                            @ForeignKey(undefined)<br />@Column({type: undefined, primaryKey: true})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/core/user/user.entity.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/core/user/shopping/shopping.entity.ts:19</a></div>
                         </td>
                     </tr>
 
@@ -298,17 +209,18 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="passwd"></a>
+                    <a name="userId"></a>
                     <span class="name">
                             <span class="modifier"></span>
-                        <span ><b>passwd</b></span>
-                        <a href="#passwd"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier"></span>
+                        <span ><b>userId</b></span>
+                        <a href="#userId"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 
                     </td>
                 </tr>
@@ -317,121 +229,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @Column({type: undefined, allowNull: false})<br />
+                            @ForeignKey(undefined)<br />@Column({type: undefined, primaryKey: true})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/core/user/user.entity.ts:44</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="shoppingCartProducts"></a>
-                    <span class="name">
-                            <span class="modifier"></span>
-                        <span ><b>shoppingCartProducts</b></span>
-                        <a href="#shoppingCartProducts"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/Products.html" target="_self" >Products[]</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @BelongsToMany(undefined, {through: () &#x3D;&gt; ShoppingCart, foreignKey: undefined, as: &#x27;shoppingCartProducts&#x27;})<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/core/user/user.entity.ts:62</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="uname"></a>
-                    <span class="name">
-                            <span class="modifier"></span>
-                        <span ><b>uname</b></span>
-                        <a href="#uname"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @Column({type: undefined, allowNull: false})<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/core/user/user.entity.ts:25</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="verified_email"></a>
-                    <span class="name">
-                            <span class="modifier"></span>
-                        <span ><b>verified_email</b></span>
-                        <a href="#verified_email"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @Column({type: undefined, allowNull: false, defaultValue: false})<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/core/user/user.entity.ts:38</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/core/user/shopping/shopping.entity.ts:15</a></div>
                         </td>
                     </tr>
 
@@ -451,67 +255,24 @@
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
-  Table,
-  Model,
   Column,
   DataType,
-  BelongsToMany,
+  ForeignKey,
+  Model,
+  Table,
 } from &#x27;sequelize-typescript&#x27;
-import { Products } from &#x27;../products/products.entity.js&#x27;
-import { Favorites } from &#x27;./favorites/favorite.entity.js&#x27;
-import { ShoppingCart } from &#x27;./shopping/shopping.entity.js&#x27;
+import { Products } from &#x27;../../products/products.entity.js&#x27;
+import { User } from &#x27;../user.entity.js&#x27;
 
-@Table({ tableName: &#x27;users&#x27;, updatedAt: false })
-export class User extends Model&lt;User&gt; {
-  @Column({
-    type: DataType.BIGINT,
-    primaryKey: true,
-    autoIncrement: true,
-  })
-  id: number
+@Table({ tableName: &#x27;shoppingCart&#x27;, timestamps: false })
+export class ShoppingCart extends Model&lt;ShoppingCart&gt; {
+  @ForeignKey(() &#x3D;&gt; User)
+  @Column({ type: DataType.BIGINT, primaryKey: true })
+  userId: number
 
-  @Column({
-    type: DataType.STRING(50),
-    allowNull: false,
-  })
-  uname: string
-
-  @Column({
-    type: DataType.STRING(100),
-    allowNull: false,
-  })
-  email: string
-
-  @Column({
-    type: DataType.BOOLEAN,
-    allowNull: false,
-    defaultValue: false,
-  })
-  verified_email: boolean
-
-  @Column({
-    type: DataType.STRING,
-    allowNull: false,
-  })
-  passwd: string
-
-  @BelongsToMany(() &#x3D;&gt; Products, {
-    through: () &#x3D;&gt; Favorites,
-    foreignKey: {
-      name: &#x27;userId&#x27;,
-    },
-    as: &#x27;favoriteProducts&#x27;,
-  })
-  favoriteProducts: Products[]
-
-  @BelongsToMany(() &#x3D;&gt; Products, {
-    through: () &#x3D;&gt; ShoppingCart,
-    foreignKey: {
-      name: &#x27;userId&#x27;,
-    },
-    as: &#x27;shoppingCartProducts&#x27;,
-  })
-  shoppingCartProducts: Products[]
+  @ForeignKey(() &#x3D;&gt; Products)
+  @Column({ type: DataType.BIGINT, primaryKey: true })
+  productId: number
 }
 </code></pre>
     </div>
@@ -551,7 +312,7 @@ export class User extends Model&lt;User&gt; {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'User.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'ShoppingCart.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

@@ -124,6 +124,9 @@
                             <a href="#productsProviders" title="src/core/products/products.providers.ts" ><b>productsProviders</b>&nbsp;&nbsp;&nbsp;(src/.../products.providers.ts)</a>
                         </li>
                         <li>
+                            <a href="#shoppingCartProviders" title="src/core/user/providers/shopping.providers.ts" ><b>shoppingCartProviders</b>&nbsp;&nbsp;&nbsp;(src/.../shopping.providers.ts)</a>
+                        </li>
+                        <li>
                             <a href="#userProviders" title="src/core/user/providers/user.providers.ts" ><b>userProviders</b>&nbsp;&nbsp;&nbsp;(src/.../user.providers.ts)</a>
                         </li>
                     </ul>
@@ -245,7 +248,7 @@
         storage: &#x27;./.data/database.db&#x27;,
         logging: false,
       })
-      sequelize.addModels([User, Products, Favorites])
+      sequelize.addModels([User, Products, Favorites, ShoppingCart])
       await sequelize.sync()
       return sequelize
     },
@@ -317,6 +320,40 @@
   {
     provide: &#x27;PRODUCTS&#x27;,
     useValue: Products,
+  },
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/core/user/providers/shopping.providers.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="shoppingCartProviders"></a>
+                    <span class="name">
+                        <span ><b>shoppingCartProviders</b></span>
+                        <a href="#shoppingCartProviders"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  {
+    provide: &#x27;SHOPPING&#x27;,
+    useValue: ShoppingCart,
   },
 ]</code>
                     </td>

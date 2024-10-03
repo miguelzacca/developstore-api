@@ -154,11 +154,19 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#getShoppingCart" >getShoppingCart</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#getUser" >getUser</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
                                 <a href="#toggleFavorite" >toggleFavorite</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#toggleShoppingCart" >toggleShoppingCart</a>
                             </li>
                         </ul>
                     </td>
@@ -178,12 +186,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(commonServices: <a href="../injectables/CommonServices.html" target="_self">CommonServices</a>, getUserUseCase: <a href="../injectables/GetUserUseCase.html" target="_self">GetUserUseCase</a>, changePasswdUseCase: <a href="../injectables/ChangePasswdUseCase.html" target="_self">ChangePasswdUseCase</a>, deleteUserUseCase: <a href="../injectables/DeleteUserUseCase.html" target="_self">DeleteUserUseCase</a>, toggleFavoriteUseCase: <a href="../injectables/ToggleFavoriteUseCase.html" target="_self">ToggleFavoriteUseCase</a>, getFavoritesUseCase: <a href="../injectables/GetFavoritesUseCase.html" target="_self">GetFavoritesUseCase</a>)</code>
+<code>constructor(commonServices: <a href="../injectables/CommonServices.html" target="_self">CommonServices</a>, getUserUseCase: <a href="../injectables/GetUserUseCase.html" target="_self">GetUserUseCase</a>, changePasswdUseCase: <a href="../injectables/ChangePasswdUseCase.html" target="_self">ChangePasswdUseCase</a>, deleteUserUseCase: <a href="../injectables/DeleteUserUseCase.html" target="_self">DeleteUserUseCase</a>, toggleFavoriteUseCase: <a href="../injectables/ToggleFavoriteUseCase.html" target="_self">ToggleFavoriteUseCase</a>, getFavoritesUseCase: <a href="../injectables/GetFavoritesUseCase.html" target="_self">GetFavoritesUseCase</a>, toggleShoppingCartUseCase: <a href="../injectables/ToggleShoppingCartUseCase.html" target="_self">ToggleShoppingCartUseCase</a>, getShoppingCartUseCase: <a href="../injectables/GetShoppingCartUseCase.html" target="_self">GetShoppingCartUseCase</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/core/user/user.service.ts:9</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/core/user/user.service.ts:11</a></div>
                             </td>
                         </tr>
 
@@ -272,6 +280,30 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>toggleShoppingCartUseCase</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ToggleShoppingCartUseCase.html" target="_self" >ToggleShoppingCartUseCase</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>getShoppingCartUseCase</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/GetShoppingCartUseCase.html" target="_self" >GetShoppingCartUseCase</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -309,8 +341,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="30"
-                                    class="link-to-prism">src/core/user/user.service.ts:30</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="36"
+                                    class="link-to-prism">src/core/user/user.service.ts:36</a></div>
                         </td>
                     </tr>
 
@@ -390,8 +422,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="35"
-                                    class="link-to-prism">src/core/user/user.service.ts:35</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="41"
+                                    class="link-to-prism">src/core/user/user.service.ts:41</a></div>
                         </td>
                     </tr>
 
@@ -459,8 +491,77 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="45"
-                                    class="link-to-prism">src/core/user/user.service.ts:45</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="51"
+                                    class="link-to-prism">src/core/user/user.service.ts:51</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>token</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getShoppingCart"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>getShoppingCart</b></span>
+                        <a href="#getShoppingCart"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getShoppingCart(token: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="61"
+                                    class="link-to-prism">src/core/user/user.service.ts:61</a></div>
                         </td>
                     </tr>
 
@@ -528,8 +629,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="25"
-                                    class="link-to-prism">src/core/user/user.service.ts:25</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="31"
+                                    class="link-to-prism">src/core/user/user.service.ts:31</a></div>
                         </td>
                     </tr>
 
@@ -597,8 +698,89 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="40"
-                                    class="link-to-prism">src/core/user/user.service.ts:40</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="46"
+                                    class="link-to-prism">src/core/user/user.service.ts:46</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>token</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>productId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleShoppingCart"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>toggleShoppingCart</b></span>
+                        <a href="#toggleShoppingCart"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>toggleShoppingCart(token: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, productId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="56"
+                                    class="link-to-prism">src/core/user/user.service.ts:56</a></div>
                         </td>
                     </tr>
 
@@ -673,6 +855,8 @@ import { GetUserUseCase } from &#x27;./usecases/getUser.usecase.js&#x27;
 import { ToggleFavoriteUseCase } from &#x27;./usecases/toggleFavorite.usecase.js&#x27;
 import { Inject } from &#x27;@nestjs/common&#x27;
 import { CommonServices } from &#x27;../common/common.service.js&#x27;
+import { ToggleShoppingCartUseCase } from &#x27;./usecases/toggleShopping.usecase.js&#x27;
+import { GetShoppingCartUseCase } from &#x27;./usecases/getShopping.usecase.js&#x27;
 
 export class UserServices {
   constructor(
@@ -688,6 +872,10 @@ export class UserServices {
     private toggleFavoriteUseCase: ToggleFavoriteUseCase,
     @Inject()
     private getFavoritesUseCase: GetFavoritesUseCase,
+    @Inject()
+    private toggleShoppingCartUseCase: ToggleShoppingCartUseCase,
+    @Inject()
+    private getShoppingCartUseCase: GetShoppingCartUseCase,
   ) {}
 
   async getUser(token: string) {
@@ -713,6 +901,16 @@ export class UserServices {
   async getFavorites(token: string) {
     const id &#x3D; this.commonServices.extractJwtPayload(token, &#x27;id&#x27;)
     return this.getFavoritesUseCase.execute(id)
+  }
+
+  async toggleShoppingCart(token: string, productId: number) {
+    const userId &#x3D; this.commonServices.extractJwtPayload(token, &#x27;id&#x27;)
+    return this.toggleShoppingCartUseCase.execute(userId, productId)
+  }
+
+  async getShoppingCart(token: string) {
+    const id &#x3D; this.commonServices.extractJwtPayload(token, &#x27;id&#x27;)
+    return this.getShoppingCartUseCase.execute(id)
   }
 }
 </code></pre>

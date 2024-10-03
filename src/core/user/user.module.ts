@@ -13,6 +13,10 @@ import { userProviders } from './providers/user.providers.js'
 import { favoriteProviders } from './providers/favorite.providers.js'
 import { ConfigModule } from '@nestjs/config'
 import { FavoriteRepository } from './favorites/favorite.repository.js'
+import { ToggleShoppingCartUseCase } from './usecases/toggleShopping.usecase.js'
+import { GetShoppingCartUseCase } from './usecases/getShopping.usecase.js'
+import { ShoppingCartRepository } from './shopping/shopping.repository.js'
+import { shoppingCartProviders } from './providers/shopping.providers.js'
 
 @Module({
   imports: [CommonModule, DatabaseModule, ConfigModule],
@@ -23,12 +27,16 @@ import { FavoriteRepository } from './favorites/favorite.repository.js'
     DeleteUserUseCase,
     ToggleFavoriteUseCase,
     GetFavoritesUseCase,
+    ToggleShoppingCartUseCase,
+    ShoppingCartRepository,
+    GetShoppingCartUseCase,
     ChangePasswdUseCase,
     FavoriteRepository,
     UserRepository,
     ...userProviders,
     ...favoriteProviders,
+    ...shoppingCartProviders,
   ],
-  exports: [UserRepository, FavoriteRepository],
+  exports: [UserRepository, FavoriteRepository, ShoppingCartRepository],
 })
 export class UserModule {}

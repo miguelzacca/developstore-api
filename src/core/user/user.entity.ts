@@ -7,6 +7,7 @@ import {
 } from 'sequelize-typescript'
 import { Products } from '../products/products.entity.js'
 import { Favorites } from './favorites/favorite.entity.js'
+import { ShoppingCart } from './shopping/shopping.entity.js'
 
 @Table({ tableName: 'users', updatedAt: false })
 export class User extends Model<User> {
@@ -50,4 +51,13 @@ export class User extends Model<User> {
     as: 'favoriteProducts',
   })
   favoriteProducts: Products[]
+
+  @BelongsToMany(() => Products, {
+    through: () => ShoppingCart,
+    foreignKey: {
+      name: 'userId',
+    },
+    as: 'shoppingCartProducts',
+  })
+  shoppingCartProducts: Products[]
 }

@@ -5,6 +5,8 @@ import { GetUserUseCase } from './usecases/getUser.usecase.js'
 import { ToggleFavoriteUseCase } from './usecases/toggleFavorite.usecase.js'
 import { Inject } from '@nestjs/common'
 import { CommonServices } from '../common/common.service.js'
+import { ToggleShoppingCartUseCase } from './usecases/toggleShopping.usecase.js'
+import { GetShoppingCartUseCase } from './usecases/getShopping.usecase.js'
 
 export class UserServices {
   constructor(
@@ -20,6 +22,10 @@ export class UserServices {
     private toggleFavoriteUseCase: ToggleFavoriteUseCase,
     @Inject()
     private getFavoritesUseCase: GetFavoritesUseCase,
+    @Inject()
+    private toggleShoppingCartUseCase: ToggleShoppingCartUseCase,
+    @Inject()
+    private getShoppingCartUseCase: GetShoppingCartUseCase,
   ) {}
 
   async getUser(token: string) {
@@ -45,5 +51,15 @@ export class UserServices {
   async getFavorites(token: string) {
     const id = this.commonServices.extractJwtPayload(token, 'id')
     return this.getFavoritesUseCase.execute(id)
+  }
+
+  async toggleShoppingCart(token: string, productId: number) {
+    const userId = this.commonServices.extractJwtPayload(token, 'id')
+    return this.toggleShoppingCartUseCase.execute(userId, productId)
+  }
+
+  async getShoppingCart(token: string) {
+    const id = this.commonServices.extractJwtPayload(token, 'id')
+    return this.getShoppingCartUseCase.execute(id)
   }
 }

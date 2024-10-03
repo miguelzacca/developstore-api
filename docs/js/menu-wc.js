@@ -184,13 +184,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/UserModule.html" data-type="entity-link" >UserModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                            'data-bs-target="#controllers-links-module-UserModule-6079c083e9012a23e2e1547b579a13bfa3a91d59584665031a22c431369917492fe60133f54aa861845a356659f914e817aa996ae3efde21402b699fb5f151f0"' : 'data-bs-target="#xs-controllers-links-module-UserModule-6079c083e9012a23e2e1547b579a13bfa3a91d59584665031a22c431369917492fe60133f54aa861845a356659f914e817aa996ae3efde21402b699fb5f151f0"' }>
+                                            'data-bs-target="#controllers-links-module-UserModule-dd0095e2cc5904d20b948fb4038317db330967432350723b14a7ee95984ee179c666b735d05768a58786394e2dbcd6d7c744b0ff2f645b7f9b818a2eee473736"' : 'data-bs-target="#xs-controllers-links-module-UserModule-dd0095e2cc5904d20b948fb4038317db330967432350723b14a7ee95984ee179c666b735d05768a58786394e2dbcd6d7c744b0ff2f645b7f9b818a2eee473736"' }>
                                             <span class="icon ion-md-swap"></span>
                                             <span>Controllers</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-UserModule-6079c083e9012a23e2e1547b579a13bfa3a91d59584665031a22c431369917492fe60133f54aa861845a356659f914e817aa996ae3efde21402b699fb5f151f0"' :
-                                            'id="xs-controllers-links-module-UserModule-6079c083e9012a23e2e1547b579a13bfa3a91d59584665031a22c431369917492fe60133f54aa861845a356659f914e817aa996ae3efde21402b699fb5f151f0"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="controllers-links-module-UserModule-dd0095e2cc5904d20b948fb4038317db330967432350723b14a7ee95984ee179c666b735d05768a58786394e2dbcd6d7c744b0ff2f645b7f9b818a2eee473736"' :
+                                            'id="xs-controllers-links-module-UserModule-dd0095e2cc5904d20b948fb4038317db330967432350723b14a7ee95984ee179c666b735d05768a58786394e2dbcd6d7c744b0ff2f645b7f9b818a2eee473736"' }>
                                             <li class="link">
                                                 <a href="controllers/UserControllers.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >UserControllers</a>
                                             </li>
@@ -198,13 +198,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     </li>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-bs-toggle="collapse" ${ isNormalMode ?
-                                        'data-bs-target="#injectables-links-module-UserModule-6079c083e9012a23e2e1547b579a13bfa3a91d59584665031a22c431369917492fe60133f54aa861845a356659f914e817aa996ae3efde21402b699fb5f151f0"' : 'data-bs-target="#xs-injectables-links-module-UserModule-6079c083e9012a23e2e1547b579a13bfa3a91d59584665031a22c431369917492fe60133f54aa861845a356659f914e817aa996ae3efde21402b699fb5f151f0"' }>
+                                        'data-bs-target="#injectables-links-module-UserModule-dd0095e2cc5904d20b948fb4038317db330967432350723b14a7ee95984ee179c666b735d05768a58786394e2dbcd6d7c744b0ff2f645b7f9b818a2eee473736"' : 'data-bs-target="#xs-injectables-links-module-UserModule-dd0095e2cc5904d20b948fb4038317db330967432350723b14a7ee95984ee179c666b735d05768a58786394e2dbcd6d7c744b0ff2f645b7f9b818a2eee473736"' }>
                                         <span class="icon ion-md-arrow-round-down"></span>
                                         <span>Injectables</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-UserModule-6079c083e9012a23e2e1547b579a13bfa3a91d59584665031a22c431369917492fe60133f54aa861845a356659f914e817aa996ae3efde21402b699fb5f151f0"' :
-                                        'id="xs-injectables-links-module-UserModule-6079c083e9012a23e2e1547b579a13bfa3a91d59584665031a22c431369917492fe60133f54aa861845a356659f914e817aa996ae3efde21402b699fb5f151f0"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-UserModule-dd0095e2cc5904d20b948fb4038317db330967432350723b14a7ee95984ee179c666b735d05768a58786394e2dbcd6d7c744b0ff2f645b7f9b818a2eee473736"' :
+                                        'id="xs-injectables-links-module-UserModule-dd0095e2cc5904d20b948fb4038317db330967432350723b14a7ee95984ee179c666b735d05768a58786394e2dbcd6d7c744b0ff2f645b7f9b818a2eee473736"' }>
                                         <li class="link">
                                             <a href="injectables/ChangePasswdUseCase.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ChangePasswdUseCase</a>
                                         </li>
@@ -218,10 +218,19 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                             <a href="injectables/GetFavoritesUseCase.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >GetFavoritesUseCase</a>
                                         </li>
                                         <li class="link">
+                                            <a href="injectables/GetShoppingCartUseCase.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >GetShoppingCartUseCase</a>
+                                        </li>
+                                        <li class="link">
                                             <a href="injectables/GetUserUseCase.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >GetUserUseCase</a>
                                         </li>
                                         <li class="link">
+                                            <a href="injectables/ShoppingCartRepository.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ShoppingCartRepository</a>
+                                        </li>
+                                        <li class="link">
                                             <a href="injectables/ToggleFavoriteUseCase.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ToggleFavoriteUseCase</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="injectables/ToggleShoppingCartUseCase.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ToggleShoppingCartUseCase</a>
                                         </li>
                                         <li class="link">
                                             <a href="injectables/UserRepository.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >UserRepository</a>
@@ -280,7 +289,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/RegisterBody.html" data-type="entity-link" >RegisterBody</a>
                             </li>
                             <li class="link">
+                                <a href="classes/ShoppingCart.html" data-type="entity-link" >ShoppingCart</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/ToggleFavoriteBody.html" data-type="entity-link" >ToggleFavoriteBody</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/ToggleShoppingCartBody.html" data-type="entity-link" >ToggleShoppingCartBody</a>
                             </li>
                             <li class="link">
                                 <a href="classes/User.html" data-type="entity-link" >User</a>
@@ -323,6 +338,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/GetProductsUseCase.html" data-type="entity-link" >GetProductsUseCase</a>
                                 </li>
                                 <li class="link">
+                                    <a href="injectables/GetShoppingCartUseCase.html" data-type="entity-link" >GetShoppingCartUseCase</a>
+                                </li>
+                                <li class="link">
                                     <a href="injectables/GetUserUseCase.html" data-type="entity-link" >GetUserUseCase</a>
                                 </li>
                                 <li class="link">
@@ -347,7 +365,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/RmUnverifiedUsers.html" data-type="entity-link" >RmUnverifiedUsers</a>
                                 </li>
                                 <li class="link">
+                                    <a href="injectables/ShoppingCartRepository.html" data-type="entity-link" >ShoppingCartRepository</a>
+                                </li>
+                                <li class="link">
                                     <a href="injectables/ToggleFavoriteUseCase.html" data-type="entity-link" >ToggleFavoriteUseCase</a>
+                                </li>
+                                <li class="link">
+                                    <a href="injectables/ToggleShoppingCartUseCase.html" data-type="entity-link" >ToggleShoppingCartUseCase</a>
                                 </li>
                                 <li class="link">
                                     <a href="injectables/UserRepository.html" data-type="entity-link" >UserRepository</a>
@@ -380,6 +404,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/IFavoritesRepository.html" data-type="entity-link" >IFavoritesRepository</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/IShoppingCartRepository.html" data-type="entity-link" >IShoppingCartRepository</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/IUserRepository.html" data-type="entity-link" >IUserRepository</a>
