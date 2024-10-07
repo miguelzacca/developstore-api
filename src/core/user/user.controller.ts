@@ -19,6 +19,7 @@ import { ConfigService } from '@nestjs/config'
 import { ToggleFavoriteBody } from './dto/toggleFavoriteBody.dto.js'
 import { ApiTags } from '@nestjs/swagger'
 import { ToggleShoppingCartBody } from './dto/toggleShoppingCartBody.dto.js'
+import { UpdateFieldBody } from './dto/updateFieldBody.dto.js'
 
 @ApiTags('user')
 @Controller('/user')
@@ -112,6 +113,16 @@ export class UserControllers {
       const { token } = req.cookies
       const favorites = await this.userServices.getShoppingCart(token)
       return favorites
+    } catch (err) {
+      HandleError.http(err)
+    }
+  }
+
+  @Patch('/update-field')
+  async updateField(@Req() req: Request, @Body() body: UpdateFieldBody) {
+    try {
+      const { token } = req.cookies
+      await this.userServices.updateField({ token, ...body })
     } catch (err) {
       HandleError.http(err)
     }

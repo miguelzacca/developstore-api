@@ -38,6 +38,12 @@ export class User extends Model<User> {
   verified_email: boolean
 
   @Column({
+    type: DataType.TEXT,
+    allowNull: true
+  })
+  profile_image: string | null
+
+  @Column({
     type: DataType.STRING,
     allowNull: false,
   })

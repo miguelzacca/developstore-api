@@ -7,6 +7,13 @@ import { Inject } from '@nestjs/common'
 import { CommonServices } from '../common/common.service.js'
 import { ToggleShoppingCartUseCase } from './usecases/toggleShopping.usecase.js'
 import { GetShoppingCartUseCase } from './usecases/getShopping.usecase.js'
+import { UpdateFieldUseCase } from './usecases/updateField.usecase.js'
+
+interface UpdateFieldProps {
+  token: string
+  fieldName: string
+  fieldValue: any
+}
 
 export class UserServices {
   constructor(
@@ -26,6 +33,8 @@ export class UserServices {
     private toggleShoppingCartUseCase: ToggleShoppingCartUseCase,
     @Inject()
     private getShoppingCartUseCase: GetShoppingCartUseCase,
+    @Inject()
+    private updateFieldUseCase: UpdateFieldUseCase,
   ) {}
 
   async getUser(token: string) {
@@ -61,5 +70,10 @@ export class UserServices {
   async getShoppingCart(token: string) {
     const id = this.commonServices.extractJwtPayload(token, 'id')
     return this.getShoppingCartUseCase.execute(id)
+  }
+
+  async updateField({ token, fieldName, fieldValue }: UpdateFieldProps) {
+    const userId = this.commonServices.extractJwtPayload(token, 'id')
+    return this.updateFieldUseCase.execute(userId, fieldName, fieldValue)
   }
 }

@@ -17,6 +17,7 @@ import { ToggleShoppingCartUseCase } from './usecases/toggleShopping.usecase.js'
 import { GetShoppingCartUseCase } from './usecases/getShopping.usecase.js'
 import { ShoppingCartRepository } from './shopping/shopping.repository.js'
 import { shoppingCartProviders } from './providers/shopping.providers.js'
+import { UpdateFieldUseCase } from './usecases/updateField.usecase.js'
 
 @Module({
   imports: [CommonModule, DatabaseModule, ConfigModule],
@@ -28,6 +29,7 @@ import { shoppingCartProviders } from './providers/shopping.providers.js'
     ToggleFavoriteUseCase,
     GetFavoritesUseCase,
     ToggleShoppingCartUseCase,
+    UpdateFieldUseCase,
     ShoppingCartRepository,
     GetShoppingCartUseCase,
     ChangePasswdUseCase,
